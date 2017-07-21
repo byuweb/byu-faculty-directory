@@ -1,0 +1,12 @@
+---
+name: byu-faculty-directory
+description: byu-faculty-directory
+resources:
+  - src: dist/**
+    dest: ./
+entrypoints:
+  "byu-faculty-directory.js": 'Examines browser support and downloads the appropriate component bundle'
+  "byu-faculty-directory.min.js": 'Minified - Examines browser support and downloads the appropriate component bundle'
+  "byu-faculty-directory.css": 'Main CSS file'
+  "byu-faculty-directory.min.css": 'Main CSS file'
+docs: https://github.com/byuweb/byu-faculty-directory

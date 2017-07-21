@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+  ~  @license
+  ~    Copyright 2017 Brigham Young University
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>byu-faculty-directory Demo</title>
+
+  <link rel="stylesheet" href="dist/byu-faculty-directory.min.css">
+  <script defer src="dist/byu-faculty-directory.min.js"></script>
+
+  <script>
+    function btnUpdate_click() {
+      var apiKey = document.getElementById('txtApiKey').value;
+      alert(apiKey);
+      document.getElementById('directory').apiKey = apiKey;
+    }
+  </script>
+
+</head>
+<body>
+
+<h1>BYU Faculty Directory</h1>
+
+<form>
+  To begin, enter Your API Key:
+  <input type="text" id="txtApiKey" />
+  <input type="button" id="btnUpdate" Value="Update" onclick="btnUpdate_click()" />
+
+</form>
+
+<byu-faculty-directory id="directory"></byu-faculty-directory>
+
+</body>
+</html>
+
