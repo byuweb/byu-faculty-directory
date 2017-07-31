@@ -28,11 +28,11 @@ gulp.task('build', ['wc:build'], function () {
 initWcBuild(gulp, {
   componentName: 'byu-faculty-directory',
   js: {
-    input: './byu-faculty-directory.js',
+    input: './components/byu-faculty-directory-components.js',
     polyfillUrl: 'https://cdn.byu.edu/web-component-polyfills/latest/web-component-polyfills.min.js'
   },
   css: {
-    input: './byu-faculty-directory.scss'
+    input: './components/byu-faculty-directory-components.scss'
   }
 });
 
@@ -45,9 +45,7 @@ gulp.task('watch', ['build'], function (done) {
     notify: false
   }, done);
 
-  gulp.watch(['demo.html', './byu-faculty-directory/**'], ['build']);
+  gulp.watch(['demo.html', './components/**'], ['build']);
 });
 
 gulp.task('default', ['watch']);
-
-

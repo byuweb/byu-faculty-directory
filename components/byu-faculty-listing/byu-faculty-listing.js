@@ -16,14 +16,23 @@
  **/
 "use strict";
 
-import template from './byu-faculty-directory.html';
+import template from './byu-faculty-listing.html';
 import * as util from 'byu-web-component-utils';
 
 const ATTR_API_KEY = 'api-key';
+const ATTR_NAME = 'name';
+const ATTR_TITLE = 'title';
+const ATTR_OFFICE = 'office';
+const ATTR_PHONE = 'phone';
+const ATTR_EMAIL = 'email';
+const ATTR_OFFICE_HOURS = 'office_hours';
+const ATTR_RESEARCH = 'research';
+const ATTR_BIOGRAPHY = 'biography';
 
 const DEFAULT_apiKey = 1;
+const DEFAULT_INFORMATION = "Unknown";
 
-class ByuFacultyDirectory extends HTMLElement {
+class ByuFacultyListing extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -31,7 +40,7 @@ class ByuFacultyDirectory extends HTMLElement {
 
   connectedCallback() {
     //This will stamp our template for us, then let us perform actions on the stamped DOM.
-    util.applyTemplate(this, 'byu-faculty-directory', template, () => {
+    util.applyTemplate(this, 'byu-faculty-listing', template, () => {
       setupButtonListeners(this);
       applyApiKey(this);
 
@@ -44,11 +53,19 @@ class ByuFacultyDirectory extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [ATTR_API_KEY];
+    return [ATTR_API_KEY, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY];
   }
 
   attributeChangedCallback(attr, oldValue, newValue) {
     switch (attr) {
+      case ATTR_NAME:
+      case ATTR_TITLE:
+      case ATTR_OFFICE:
+      case ATTR_PHONE:
+      case ATTR_EMAIL:
+      case ATTR_OFFICE_HOURS:
+      case ATTR_RESEARCH:
+      case ATTR_BIOGRAPHY:
       case ATTR_API_KEY:
         applyApiKey(this);
         break;
@@ -66,10 +83,97 @@ class ByuFacultyDirectory extends HTMLElement {
     return DEFAULT_apiKey;
   }
 
+  set name(value) {
+    this.setAttribute(ATTR_NAME, value);
+  }
+
+  get name() {
+    if (this.hasAttribute(ATTR_NAME)) {
+      return this.getAttribute(ATTR_NAME);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set title(value) {
+    this.setAttribute(ATTR_TITLE, value);
+  }
+
+  get title() {
+    if (this.hasAttribute(ATTR_TITLE)) {
+      return this.getAttribute(ATTR_TITLE);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set office(value) {
+    this.setAttribute(ATTR_OFFICE, value);
+  }
+
+  get office() {
+    if (this.hasAttribute(ATTR_OFFICE)) {
+      return this.getAttribute(ATTR_OFFICE);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set phone(value) {
+    this.setAttribute(ATTR_PHONE, value);
+  }
+
+  get phone() {
+    if (this.hasAttribute(ATTR_PHONE)) {
+      return this.getAttribute(ATTR_PHONE);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set email(value) {
+    this.setAttribute(ATTR_EMAIL, value);
+  }
+
+  get email() {
+    if (this.hasAttribute(ATTR_EMAIL)) {
+      return this.getAttribute(ATTR_EMAIL);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set office_hours(value) {
+    this.setAttribute(ATTR_OFFICE_HOURS, value);
+  }
+
+  get office_hours() {
+    if (this.hasAttribute(ATTR_OFFICE_HOURS)) {
+      return this.getAttribute(ATTR_OFFICE_HOURS);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set research(value) {
+    this.setAttribute(ATTR_RESEARCH, value);
+  }
+
+  get research() {
+    if (this.hasAttribute(ATTR_RESEARCH)) {
+      return this.getAttribute(ATTR_RESEARCH);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set biography(value) {
+    this.setAttribute(ATTR_BIOGRAPHY, value);
+  }
+
+  get biography() {
+    if (this.hasAttribute(ATTR_BIOGRAPHY)) {
+      return this.getAttribute(ATTR_BIOGRAPHY);
+    }
+    return DEFAULT_INFORMATION;
+  }
 }
 
-window.customElements.define('byu-faculty-directory', ByuFacultyDirectory);
-window.ByuFacultyDirectory = ByuFacultyDirectory;
+window.customElements.define('byu-faculty-listing', ByuFacultyListing);
+window.ByuFacultyListing = ByuFacultyListing;
 
 // -------------------- Helper Functions --------------------
 

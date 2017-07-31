@@ -92,12 +92,33 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
   /******/__webpack_require__.p = "";
   /******/
   /******/ // Load entry module and return exports
-  /******/return __webpack_require__(__webpack_require__.s = 2);
+  /******/return __webpack_require__(__webpack_require__.s = 5);
   /******/
 })(
 /************************************************************************/
 /******/[
 /* 0 */
+/***/function (module, __webpack_exports__, __webpack_require__) {
+
+  "use strict";
+  /* harmony import */
+  var __WEBPACK_IMPORTED_MODULE_0__lib_templating__ = __webpack_require__(8);
+  /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__lib_matchesSelector__ = __webpack_require__(1);
+  /* harmony import */var __WEBPACK_IMPORTED_MODULE_2__lib_querySelectorSlot__ = __webpack_require__(7);
+  /* harmony import */var __WEBPACK_IMPORTED_MODULE_3__lib_createEvent__ = __webpack_require__(6);
+  /* harmony reexport (binding) */__webpack_require__.d(__webpack_exports__, "a", function () {
+    return __WEBPACK_IMPORTED_MODULE_0__lib_templating__["a"];
+  });
+  /* unused harmony reexport matchesSelector */
+  /* unused harmony reexport querySelectorSlot */
+  /* unused harmony reexport createEvent */
+  /**
+   * Created by ThatJoeMoore on 2/14/17
+   */
+
+  /***/
+},
+/* 1 */
 /***/function (module, __webpack_exports__, __webpack_require__) {
 
   "use strict";
@@ -132,14 +153,68 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 1 */
+/* 2 */
+/***/function (module, exports) {
+
+  /*
+  	MIT License http://www.opensource.org/licenses/mit-license.php
+  	Author Tobias Koppers @sokra
+  */
+  // css base code, injected by the css-loader
+  module.exports = function () {
+    var list = [];
+
+    // return the list of modules as css string
+    list.toString = function toString() {
+      var result = [];
+      for (var i = 0; i < this.length; i++) {
+        var item = this[i];
+        if (item[2]) {
+          result.push("@media " + item[2] + "{" + item[1] + "}");
+        } else {
+          result.push(item[1]);
+        }
+      }
+      return result.join("");
+    };
+
+    // import a list of modules into the list
+    list.i = function (modules, mediaQuery) {
+      if (typeof modules === "string") modules = [[null, modules, ""]];
+      var alreadyImportedModules = {};
+      for (var i = 0; i < this.length; i++) {
+        var id = this[i][0];
+        if (typeof id === "number") alreadyImportedModules[id] = true;
+      }
+      for (i = 0; i < modules.length; i++) {
+        var item = modules[i];
+        // skip already imported module
+        // this implementation is not 100% perfect for weird media query combinations
+        //  when a module is imported multiple times with different media queries.
+        //  I hope this will never occur (Hey this way we have smaller bundles)
+        if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+          if (mediaQuery && !item[2]) {
+            item[2] = mediaQuery;
+          } else if (mediaQuery) {
+            item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+          }
+          list.push(item);
+        }
+      }
+    };
+    return list;
+  };
+
+  /***/
+},
+/* 3 */
 /***/function (module, __webpack_exports__, __webpack_require__) {
 
   "use strict";
   /* harmony import */
-  var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_directory_html__ = __webpack_require__(10);
-  /* harmony import */var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_directory_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__byu_faculty_directory_html__);
-  /* harmony import */var __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__ = __webpack_require__(3);
+  var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html__ = __webpack_require__(12);
+  /* harmony import */var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html__);
+  /* harmony import */var __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__ = __webpack_require__(0);
   /**
    *  @license
    *    Copyright 2017 Brigham Young University
@@ -158,28 +233,37 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
    **/
 
   var ATTR_API_KEY = 'api-key';
+  var ATTR_NAME = 'name';
+  var ATTR_TITLE = 'title';
+  var ATTR_OFFICE = 'office';
+  var ATTR_PHONE = 'phone';
+  var ATTR_EMAIL = 'email';
+  var ATTR_OFFICE_HOURS = 'office_hours';
+  var ATTR_RESEARCH = 'research';
+  var ATTR_BIOGRAPHY = 'biography';
 
   var DEFAULT_apiKey = 1;
+  var DEFAULT_INFORMATION = "Unknown";
 
-  var ByuFacultyDirectory = function (_HTMLElement) {
-    _inherits(ByuFacultyDirectory, _HTMLElement);
+  var ByuFacultyListing = function (_HTMLElement) {
+    _inherits(ByuFacultyListing, _HTMLElement);
 
-    function ByuFacultyDirectory() {
-      _classCallCheck(this, ByuFacultyDirectory);
+    function ByuFacultyListing() {
+      _classCallCheck(this, ByuFacultyListing);
 
-      var _this = _possibleConstructorReturn(this, (ByuFacultyDirectory.__proto__ || Object.getPrototypeOf(ByuFacultyDirectory)).call(this));
+      var _this = _possibleConstructorReturn(this, (ByuFacultyListing.__proto__ || Object.getPrototypeOf(ByuFacultyListing)).call(this));
 
       _this.attachShadow({ mode: 'open' });
       return _this;
     }
 
-    _createClass(ByuFacultyDirectory, [{
+    _createClass(ByuFacultyListing, [{
       key: 'connectedCallback',
       value: function connectedCallback() {
         var _this2 = this;
 
         //This will stamp our template for us, then let us perform actions on the stamped DOM.
-        __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__["a" /* applyTemplate */](this, 'byu-faculty-directory', __WEBPACK_IMPORTED_MODULE_0__byu_faculty_directory_html___default.a, function () {
+        __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__["a" /* applyTemplate */](this, 'byu-faculty-listing', __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html___default.a, function () {
           setupButtonListeners(_this2);
           applyApiKey(_this2);
 
@@ -195,6 +279,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       key: 'attributeChangedCallback',
       value: function attributeChangedCallback(attr, oldValue, newValue) {
         switch (attr) {
+          case ATTR_NAME:
+          case ATTR_TITLE:
+          case ATTR_OFFICE:
+          case ATTR_PHONE:
+          case ATTR_EMAIL:
+          case ATTR_OFFICE_HOURS:
+          case ATTR_RESEARCH:
+          case ATTR_BIOGRAPHY:
           case ATTR_API_KEY:
             applyApiKey(this);
             break;
@@ -211,18 +303,106 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
         return DEFAULT_apiKey;
       }
+    }, {
+      key: 'name',
+      set: function set(value) {
+        this.setAttribute(ATTR_NAME, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_NAME)) {
+          return this.getAttribute(ATTR_NAME);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'title',
+      set: function set(value) {
+        this.setAttribute(ATTR_TITLE, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_TITLE)) {
+          return this.getAttribute(ATTR_TITLE);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'office',
+      set: function set(value) {
+        this.setAttribute(ATTR_OFFICE, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_OFFICE)) {
+          return this.getAttribute(ATTR_OFFICE);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'phone',
+      set: function set(value) {
+        this.setAttribute(ATTR_PHONE, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_PHONE)) {
+          return this.getAttribute(ATTR_PHONE);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'email',
+      set: function set(value) {
+        this.setAttribute(ATTR_EMAIL, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_EMAIL)) {
+          return this.getAttribute(ATTR_EMAIL);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'office_hours',
+      set: function set(value) {
+        this.setAttribute(ATTR_OFFICE_HOURS, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_OFFICE_HOURS)) {
+          return this.getAttribute(ATTR_OFFICE_HOURS);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'research',
+      set: function set(value) {
+        this.setAttribute(ATTR_RESEARCH, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_RESEARCH)) {
+          return this.getAttribute(ATTR_RESEARCH);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'biography',
+      set: function set(value) {
+        this.setAttribute(ATTR_BIOGRAPHY, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_BIOGRAPHY)) {
+          return this.getAttribute(ATTR_BIOGRAPHY);
+        }
+        return DEFAULT_INFORMATION;
+      }
     }], [{
       key: 'observedAttributes',
       get: function get() {
-        return [ATTR_API_KEY];
+        return [ATTR_API_KEY, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY];
       }
     }]);
 
-    return ByuFacultyDirectory;
+    return ByuFacultyListing;
   }(HTMLElement);
 
-  window.customElements.define('byu-faculty-directory', ByuFacultyDirectory);
-  window.ByuFacultyDirectory = ByuFacultyDirectory;
+  window.customElements.define('byu-faculty-listing', ByuFacultyListing);
+  window.ByuFacultyListing = ByuFacultyListing;
 
   // -------------------- Helper Functions --------------------
 
@@ -323,13 +503,310 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 2 */
+/* 4 */
+/***/function (module, __webpack_exports__, __webpack_require__) {
+
+  "use strict";
+  /* harmony import */
+  var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_profile_html__ = __webpack_require__(13);
+  /* harmony import */var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_profile_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__byu_faculty_profile_html__);
+  /* harmony import */var __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__ = __webpack_require__(0);
+  /**
+   *  @license
+   *    Copyright 2017 Brigham Young University
+   *
+   *    Licensed under the Apache License, Version 2.0 (the "License");
+   *    you may not use this file except in compliance with the License.
+   *    You may obtain a copy of the License at
+   *
+   *        http://www.apache.org/licenses/LICENSE-2.0
+   *
+   *    Unless required by applicable law or agreed to in writing, software
+   *    distributed under the License is distributed on an "AS IS" BASIS,
+   *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   *    See the License for the specific language governing permissions and
+   *    limitations under the License.
+   **/
+
+  var ATTR_API_KEY = 'api-key';
+  var ATTR_NAME = 'name';
+  var ATTR_TITLE = 'title';
+  var ATTR_OFFICE = 'office';
+  var ATTR_PHONE = 'phone';
+  var ATTR_EMAIL = 'email';
+  var ATTR_OFFICE_HOURS = 'office_hours';
+  var ATTR_RESEARCH = 'research';
+  var ATTR_BIOGRAPHY = 'biography';
+
+  var DEFAULT_apiKey = 1;
+  var DEFAULT_INFORMATION = "Unknown";
+
+  var ByuFacultyProfile = function (_HTMLElement2) {
+    _inherits(ByuFacultyProfile, _HTMLElement2);
+
+    function ByuFacultyProfile() {
+      _classCallCheck(this, ByuFacultyProfile);
+
+      var _this3 = _possibleConstructorReturn(this, (ByuFacultyProfile.__proto__ || Object.getPrototypeOf(ByuFacultyProfile)).call(this));
+
+      _this3.attachShadow({ mode: 'open' });
+      return _this3;
+    }
+
+    _createClass(ByuFacultyProfile, [{
+      key: 'connectedCallback',
+      value: function connectedCallback() {
+        var _this4 = this;
+
+        //This will stamp our template for us, then let us perform actions on the stamped DOM.
+        __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__["a" /* applyTemplate */](this, 'byu-faculty-profile', __WEBPACK_IMPORTED_MODULE_0__byu_faculty_profile_html___default.a, function () {
+          setupButtonListeners(_this4);
+          applyApiKey(_this4);
+
+          setupSlotListeners(_this4);
+        });
+      }
+    }, {
+      key: 'disconnectedCallback',
+      value: function disconnectedCallback() {
+        teardownButtonListeners(this);
+      }
+    }, {
+      key: 'attributeChangedCallback',
+      value: function attributeChangedCallback(attr, oldValue, newValue) {
+        switch (attr) {
+          case ATTR_NAME:
+          case ATTR_TITLE:
+          case ATTR_OFFICE:
+          case ATTR_PHONE:
+          case ATTR_EMAIL:
+          case ATTR_OFFICE_HOURS:
+          case ATTR_RESEARCH:
+          case ATTR_BIOGRAPHY:
+          case ATTR_API_KEY:
+            applyApiKey(this);
+            break;
+        }
+      }
+    }, {
+      key: 'apiKey',
+      set: function set(value) {
+        this.setAttribute(ATTR_API_KEY, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_API_KEY)) {
+          return this.getAttribute(ATTR_API_KEY);
+        }
+        return DEFAULT_apiKey;
+      }
+    }, {
+      key: 'name',
+      set: function set(value) {
+        this.setAttribute(ATTR_NAME, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_NAME)) {
+          return this.getAttribute(ATTR_NAME);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'title',
+      set: function set(value) {
+        this.setAttribute(ATTR_TITLE, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_TITLE)) {
+          return this.getAttribute(ATTR_TITLE);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'office',
+      set: function set(value) {
+        this.setAttribute(ATTR_OFFICE, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_OFFICE)) {
+          return this.getAttribute(ATTR_OFFICE);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'phone',
+      set: function set(value) {
+        this.setAttribute(ATTR_PHONE, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_PHONE)) {
+          return this.getAttribute(ATTR_PHONE);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'email',
+      set: function set(value) {
+        this.setAttribute(ATTR_EMAIL, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_EMAIL)) {
+          return this.getAttribute(ATTR_EMAIL);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'office_hours',
+      set: function set(value) {
+        this.setAttribute(ATTR_OFFICE_HOURS, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_OFFICE_HOURS)) {
+          return this.getAttribute(ATTR_OFFICE_HOURS);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'research',
+      set: function set(value) {
+        this.setAttribute(ATTR_RESEARCH, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_RESEARCH)) {
+          return this.getAttribute(ATTR_RESEARCH);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }, {
+      key: 'biography',
+      set: function set(value) {
+        this.setAttribute(ATTR_BIOGRAPHY, value);
+      },
+      get: function get() {
+        if (this.hasAttribute(ATTR_BIOGRAPHY)) {
+          return this.getAttribute(ATTR_BIOGRAPHY);
+        }
+        return DEFAULT_INFORMATION;
+      }
+    }], [{
+      key: 'observedAttributes',
+      get: function get() {
+        return [ATTR_API_KEY, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY];
+      }
+    }]);
+
+    return ByuFacultyProfile;
+  }(HTMLElement);
+
+  window.customElements.define('byu-faculty-profile', ByuFacultyProfile);
+  window.ByuFacultyProfile = ByuFacultyProfile;
+
+  // -------------------- Helper Functions --------------------
+
+  function applyApiKey(component) {
+    // let output = component.shadowRoot.querySelector('.output');
+
+    // let count = component.apiKey;
+
+    // //Remove all current children
+    // while(output.firstChild) {
+    //   output.removeChild(output.firstChild);
+    // }
+
+    // if (count === 0) return;
+
+    // let slot = component.shadowRoot.querySelector('#apiKey-template');
+
+    // let template = util.querySelectorSlot(slot, 'template');
+
+    // if (!template) {
+    //   throw new Error('No template was specified!');
+    // }
+
+    // for (let i = 0; i < count; i++) {
+    //   let element = document.importNode(template.content, true);
+    //   output.appendChild(element);
+    // }
+    var apiKey = component.apiKey;
+    console.log(apiKey);
+    console.log(component.apiKey);
+    if (apiKey && apiKey != '') {
+      // var xhr = new XMLHttpRequest();
+      // xhr.onreadystatechange = function () {
+      //   if (xhr.readyState == XMLHttpRequest.DONE) {
+      //     if (xhr.status == 200) {
+      //       console.log(xhr.responseText);
+      //     }
+      //     else if (xhr.status == 400) {
+      //       alert('Bad Request');
+      //     }
+      //     else {
+      //       alert('unspecified error');
+      //       console.log(xhr);
+      //     }
+      //   }
+      // };
+      // xhr.open("GET", "https://ws.byu.edu/services/facultyProfile/faculty?applicationKey=" + apiKey, true);
+      // xhr.send();
+
+      jsonp('https://ws.byu.edu/services/facultyProfile/faculty?applicationKey=' + apiKey, function (data) {
+        console.log(data);
+      });
+    }
+  }
+
+  function jsonp(url, callback) {
+    var callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+    window[callbackName] = function (data) {
+      delete window[callbackName];
+      document.body.removeChild(script);
+      callback(data);
+    };
+
+    var script = document.createElement('script');
+    script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
+    document.body.appendChild(script);
+  }
+
+  jsonp('http://www.helloword.com', function (data) {
+    alert(data);
+  });
+
+  function setupButtonListeners(component) {}
+  // let button = component.shadowRoot.querySelector('.apiKey-button');
+
+  // let callback = component.__buttonListener = function(event) {
+  //   component.apiKey = component.apiKey + 1;
+  // };
+
+  // button.addEventListener('click', callback, false);
+
+
+  //We generally want to be good neighbors and clean up after ourselves when we're done with things.
+  function teardownButtonListeners(component) {
+    // let button = component.shadowRoot.querySelector('.apiKey-button');
+
+    // button.removeEventListener('click', component.__buttonListener, false);
+  }
+
+  function setupSlotListeners(component) {}
+  // let slot = component.shadowRoot.querySelector('#apiKey-template');
+
+  // //this will listen to changes to the contents of our <slot>, so we can take appropriate action
+  // slot.addEventListener('slotchange', () => {
+  //   applyApiKey(component);
+  // }, false);
+
+
+  /***/
+},
+/* 5 */
 /***/function (module, __webpack_exports__, __webpack_require__) {
 
   "use strict";
 
   Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-  /* harmony import */var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_directory_byu_faculty_directory_js__ = __webpack_require__(1);
+  /* harmony import */var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_byu_faculty_listing_js__ = __webpack_require__(3);
+  /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__byu_faculty_profile_byu_faculty_profile_js__ = __webpack_require__(4);
   /**
    *  @license
    *    Copyright 2017 Brigham Young University
@@ -349,28 +826,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 3 */
-/***/function (module, __webpack_exports__, __webpack_require__) {
-
-  "use strict";
-  /* harmony import */
-  var __WEBPACK_IMPORTED_MODULE_0__lib_templating__ = __webpack_require__(6);
-  /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__lib_matchesSelector__ = __webpack_require__(0);
-  /* harmony import */var __WEBPACK_IMPORTED_MODULE_2__lib_querySelectorSlot__ = __webpack_require__(5);
-  /* harmony import */var __WEBPACK_IMPORTED_MODULE_3__lib_createEvent__ = __webpack_require__(4);
-  /* harmony reexport (binding) */__webpack_require__.d(__webpack_exports__, "a", function () {
-    return __WEBPACK_IMPORTED_MODULE_0__lib_templating__["a"];
-  });
-  /* unused harmony reexport matchesSelector */
-  /* unused harmony reexport querySelectorSlot */
-  /* unused harmony reexport createEvent */
-  /**
-   * Created by ThatJoeMoore on 2/14/17
-   */
-
-  /***/
-},
-/* 4 */
+/* 6 */
 /***/function (module, __webpack_exports__, __webpack_require__) {
 
   "use strict";
@@ -403,13 +859,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 5 */
+/* 7 */
 /***/function (module, __webpack_exports__, __webpack_require__) {
 
   "use strict";
   /* unused harmony export default */
   /* harmony import */
-  var __WEBPACK_IMPORTED_MODULE_0__matchesSelector_js__ = __webpack_require__(0);
+  var __WEBPACK_IMPORTED_MODULE_0__matchesSelector_js__ = __webpack_require__(1);
   /*
    *  @license
    *    Copyright 2017 Brigham Young University
@@ -447,13 +903,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 6 */
+/* 8 */
 /***/function (module, __webpack_exports__, __webpack_require__) {
 
   "use strict";
   /* harmony export (immutable) */
   __webpack_exports__["a"] = applyTemplate;
-  /* harmony import */var __WEBPACK_IMPORTED_MODULE_0_hash_sum__ = __webpack_require__(9);
+  /* harmony import */var __WEBPACK_IMPORTED_MODULE_0_hash_sum__ = __webpack_require__(11);
   /* harmony import */var __WEBPACK_IMPORTED_MODULE_0_hash_sum___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_hash_sum__);
   /*
    *  @license
@@ -484,7 +940,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }
     elSettings.templateHash = sum;
 
-    if (window.ShadyCSS) {
+    if (window.ShadyCSS && !window.ShadyCSS.nativeShadow) {
       applyTemplateShady(element, elementName, template, callback, sum);
     } else {
       applyTemplateNative(element, template, callback);
@@ -535,10 +991,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 7 */
+/* 9 */
 /***/function (module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(8)();
+  exports = module.exports = __webpack_require__(2)();
   // imports
 
 
@@ -550,61 +1006,22 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 8 */
-/***/function (module, exports) {
+/* 10 */
+/***/function (module, exports, __webpack_require__) {
 
-  /*
-  	MIT License http://www.opensource.org/licenses/mit-license.php
-  	Author Tobias Koppers @sokra
-  */
-  // css base code, injected by the css-loader
-  module.exports = function () {
-    var list = [];
+  exports = module.exports = __webpack_require__(2)();
+  // imports
 
-    // return the list of modules as css string
-    list.toString = function toString() {
-      var result = [];
-      for (var i = 0; i < this.length; i++) {
-        var item = this[i];
-        if (item[2]) {
-          result.push("@media " + item[2] + "{" + item[1] + "}");
-        } else {
-          result.push(item[1]);
-        }
-      }
-      return result.join("");
-    };
 
-    // import a list of modules into the list
-    list.i = function (modules, mediaQuery) {
-      if (typeof modules === "string") modules = [[null, modules, ""]];
-      var alreadyImportedModules = {};
-      for (var i = 0; i < this.length; i++) {
-        var id = this[i][0];
-        if (typeof id === "number") alreadyImportedModules[id] = true;
-      }
-      for (i = 0; i < modules.length; i++) {
-        var item = modules[i];
-        // skip already imported module
-        // this implementation is not 100% perfect for weird media query combinations
-        //  when a module is imported multiple times with different media queries.
-        //  I hope this will never occur (Hey this way we have smaller bundles)
-        if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-          if (mediaQuery && !item[2]) {
-            item[2] = mediaQuery;
-          } else if (mediaQuery) {
-            item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-          }
-          list.push(item);
-        }
-      }
-    };
-    return list;
-  };
+  // module
+  exports.push([module.i, "/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */\n/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */", ""]);
+
+  // exports
+
 
   /***/
 },
-/* 9 */
+/* 11 */
 /***/function (module, exports, __webpack_require__) {
 
   "use strict";
@@ -668,13 +1085,21 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 10 */
+/* 12 */
 /***/function (module, exports, __webpack_require__) {
 
-  module.exports = "<style>" + __webpack_require__(7) + "</style> <div class=\"root\"> This is where the profiles will go. </div>";
+  module.exports = "<style>" + __webpack_require__(9) + "</style> <div class=\"root\"> This is where the profiles will go. </div>";
 
   /***/
-}]);
+},
+/* 13 */
+/***/function (module, exports, __webpack_require__) {
+
+  module.exports = "<style>" + __webpack_require__(10) + "</style> <div class=\"root\"> This is where the profiles will go. </div>";
+
+  /***/
+}]
+/******/);
 }());
 
 //# sourceMappingURL=components-compat.js.map
