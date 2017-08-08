@@ -20,14 +20,16 @@ import template from './byu-faculty-profile.html';
 import * as util from 'byu-web-component-utils';
 
 const ATTR_API_KEY = 'api-key';
-const ATTR_NAME = 'name';
-const ATTR_TITLE = 'title';
-const ATTR_OFFICE = 'office';
-const ATTR_PHONE = 'phone';
-const ATTR_EMAIL = 'email';
-const ATTR_OFFICE_HOURS = 'office_hours';
-const ATTR_RESEARCH = 'research';
-const ATTR_BIOGRAPHY = 'biography';
+const ATTR_NAME = 'faculty-name';
+const ATTR_TITLE = 'faculty-title';
+const ATTR_OFFICE = 'faculty-office';
+const ATTR_PHONE = 'faculty-phone';
+const ATTR_EMAIL = 'faculty-email';
+const ATTR_OFFICE_HOURS = 'faculty-office-hours';
+const ATTR_RESEARCH = 'faculty-research';
+const ATTR_BIOGRAPHY = 'faculty-biography';
+const ATTR_PROFILE_IMAGE = 'faculty-image';
+const ATTR_BACKGROUND_IMAGE = 'background-image';
 
 const DEFAULT_apiKey = 1;
 const DEFAULT_INFORMATION = "Unknown";
@@ -41,10 +43,12 @@ class ByuFacultyProfile extends HTMLElement {
   connectedCallback() {
     //This will stamp our template for us, then let us perform actions on the stamped DOM.
     util.applyTemplate(this, 'byu-faculty-profile', template, () => {
+      applyBackgroundImage(this);
+      applyProfileImage(this);
       setupButtonListeners(this);
-      applyApiKey(this);
+      //applyApiKey(this);
 
-      setupSlotListeners(this);
+      //setupSlotListeners(this);
     });
   }
 
@@ -53,7 +57,7 @@ class ByuFacultyProfile extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [ATTR_API_KEY, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY];
+    return [ATTR_PROFILE_IMAGE, ATTR_BACKGROUND_IMAGE, ATTR_API_KEY, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY];
   }
 
   attributeChangedCallback(attr, oldValue, newValue) {
@@ -67,7 +71,11 @@ class ByuFacultyProfile extends HTMLElement {
       case ATTR_RESEARCH:
       case ATTR_BIOGRAPHY:
       case ATTR_API_KEY:
-        applyApiKey(this);
+      case ATTR_BACKGROUND_IMAGE:
+        applyBackgroundImage(this);
+        break
+      case ATTR_PROFILE_IMAGE:
+        applyProfileImage(this);
         break;
     }
   }
@@ -170,85 +178,69 @@ class ByuFacultyProfile extends HTMLElement {
     }
     return DEFAULT_INFORMATION;
   }
+
+  set profileImage(value) {
+    this.setAttribute(ATTR_PROFILE_IMAGE, value);
+  }
+
+  get profileImage() {
+    if (this.hasAttribute(ATTR_PROFILE_IMAGE)) {
+      return this.getAttribute(ATTR_PROFILE_IMAGE);
+    }
+    return '';
+  }
+
+  set backgroundImage(value) {
+    this.setAttribute(ATTR_BACKGROUND_IMAGE, value);
+  }
+
+  get backgroundImage() {
+    if (this.hasAttribute(ATTR_BACKGROUND_IMAGE)) {
+      return this.getAttribute(ATTR_BACKGROUND_IMAGE);
+    }
+    return '';
+  }
 }
 
 window.customElements.define('byu-faculty-profile', ByuFacultyProfile);
 window.ByuFacultyProfile = ByuFacultyProfile;
 
 // -------------------- Helper Functions --------------------
+function applyBackgroundImage(component) {
+  let imageBox = component.shadowRoot.querySelector('div.background-image-wrapper');
+  imageBox.style.backgroundImage = "url('" + component.backgroundImage + "')";
+}
 
-function applyApiKey(component) {
-  // let output = component.shadowRoot.querySelector('.output');
+function applyProfileImage(component) {
+  let profileImages = component.shadowRoot.querySelectorAll('.faculty-image');
 
-  // let count = component.apiKey;
-
-  // //Remove all current children
-  // while(output.firstChild) {
-  //   output.removeChild(output.firstChild);
-  // }
-
-  // if (count === 0) return;
-
-  // let slot = component.shadowRoot.querySelector('#apiKey-template');
-
-  // let template = util.querySelectorSlot(slot, 'template');
-
-  // if (!template) {
-  //   throw new Error('No template was specified!');
-  // }
-
-  // for (let i = 0; i < count; i++) {
-  //   let element = document.importNode(template.content, true);
-  //   output.appendChild(element);
-  // }
-  let apiKey = component.apiKey;
-  console.log(apiKey);
-  console.log(component.apiKey);
-  if (apiKey && apiKey != '') {
-    // var xhr = new XMLHttpRequest();
-    // xhr.onreadystatechange = function () {
-    //   if (xhr.readyState == XMLHttpRequest.DONE) {
-    //     if (xhr.status == 200) {
-    //       console.log(xhr.responseText);
-    //     }
-    //     else if (xhr.status == 400) {
-    //       alert('Bad Request');
-    //     }
-    //     else {
-    //       alert('unspecified error');
-    //       console.log(xhr);
-    //     }
-    //   }
-    // };
-    // xhr.open("GET", "https://ws.byu.edu/services/facultyProfile/faculty?applicationKey=" + apiKey, true);
-    // xhr.send();
-
-    jsonp('https://ws.byu.edu/services/facultyProfile/faculty?applicationKey=' + apiKey, function (data) {
-      console.log(data)
-    });
+  for (var i = 0; i < profileImages.length; i++) {
+    profileImages[i].src = component.profileImage;
   }
 }
 
-
-function jsonp(url, callback) {
-  var callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
-  window[callbackName] = function (data) {
-    delete window[callbackName];
-    document.body.removeChild(script);
-    callback(data);
-  };
-
-  var script = document.createElement('script');
-  script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
-  document.body.appendChild(script);
-}
-
-jsonp('http://www.helloword.com', function (data) {
-  alert(data);
-});
-
 function setupButtonListeners(component) {
-  // let button = component.shadowRoot.querySelector('.apiKey-button');
+  let buttons = component.shadowRoot.querySelectorAll('.chevron');
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function() {
+      if (this.src.includes('Chevron-Right')) {
+        this.src = "/components/byu-faculty-profile/Chevron-Down.svg";
+
+        var element = this, i = 5;
+        while(i-- && (element = element.parentNode));
+        element.className += " expanded";
+      }
+
+      else {
+        this.src = "/components/byu-faculty-profile/Chevron-Right.svg";
+
+        var element = this, i = 5;
+        while(i-- && (element = element.parentNode));
+        element.classList.remove("expanded");
+      }
+    });
+  }
 
   // let callback = component.__buttonListener = function(event) {
   //   component.apiKey = component.apiKey + 1;

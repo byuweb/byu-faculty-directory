@@ -63,18 +63,24 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='30' viewBox='0 0 18 30'%3E%3Cpath fill='%23C1C1C1' d='M0 0h9.333L18 15.001 9.333 30H0l8.667-14.999L0 0z'/%3E%3C/svg%3E"
+
+/***/ }),
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_templating__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_matchesSelector__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_querySelectorSlot__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_createEvent__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_templating__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_matchesSelector__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_querySelectorSlot__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_createEvent__ = __webpack_require__(7);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__lib_templating__["a"]; });
 /* unused harmony reexport matchesSelector */
 /* unused harmony reexport querySelectorSlot */
@@ -93,7 +99,7 @@
 
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -135,7 +141,7 @@ function matchesSelector(el, selector) {
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 /*
@@ -191,13 +197,13 @@ module.exports = function() {
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__ = __webpack_require__(1);
 /**
  *  @license
  *    Copyright 2017 Brigham Young University
@@ -220,14 +226,15 @@ module.exports = function() {
 
 
 const ATTR_API_KEY = 'api-key';
-const ATTR_NAME = 'name';
-const ATTR_TITLE = 'title';
-const ATTR_OFFICE = 'office';
-const ATTR_PHONE = 'phone';
-const ATTR_EMAIL = 'email';
-const ATTR_OFFICE_HOURS = 'office_hours';
-const ATTR_RESEARCH = 'research';
-const ATTR_BIOGRAPHY = 'biography';
+const ATTR_PROFILE_IMAGE = "faculty-image";
+const ATTR_NAME = 'faculty-name';
+const ATTR_TITLE = 'faculty-title';
+const ATTR_OFFICE = 'faculty-office';
+const ATTR_PHONE = 'faculty-phone';
+const ATTR_EMAIL = 'faculty-email';
+const ATTR_OFFICE_HOURS = 'faculty-office-hours';
+const ATTR_RESEARCH = 'faculty-research';
+const ATTR_BIOGRAPHY = 'faculty-biography';
 
 const DEFAULT_apiKey = 1;
 const DEFAULT_INFORMATION = "Unknown";
@@ -241,8 +248,10 @@ class ByuFacultyListing extends HTMLElement {
   connectedCallback() {
     //This will stamp our template for us, then let us perform actions on the stamped DOM.
     __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__["a" /* applyTemplate */](this, 'byu-faculty-listing', __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html___default.a, () => {
-      setupButtonListeners(this);
-      applyApiKey(this);
+      applyProfileImage(this);
+      //setupButtonListeners(this);
+      //applyApiKey(this);
+      //applyListing(this);
 
       setupSlotListeners(this);
     });
@@ -253,7 +262,7 @@ class ByuFacultyListing extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [ATTR_API_KEY, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY];
+    return [ATTR_PROFILE_IMAGE, ATTR_API_KEY, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY];
   }
 
   attributeChangedCallback(attr, oldValue, newValue) {
@@ -267,7 +276,9 @@ class ByuFacultyListing extends HTMLElement {
       case ATTR_RESEARCH:
       case ATTR_BIOGRAPHY:
       case ATTR_API_KEY:
-        applyApiKey(this);
+      case ATTR_PROFILE_IMAGE:
+        applyProfileImage(this);
+        //applyApiKey(this);
         break;
     }
   }
@@ -369,6 +380,17 @@ class ByuFacultyListing extends HTMLElement {
       return this.getAttribute(ATTR_BIOGRAPHY);
     }
     return DEFAULT_INFORMATION;
+  }
+
+  set profileImage(value) {
+    this.setAttribute(ATTR_PROFILE_IMAGE, value);
+  }
+
+  get profileImage() {
+    if (this.hasAttribute(ATTR_PROFILE_IMAGE)) {
+      return this.getAttribute(ATTR_PROFILE_IMAGE);
+    }
+    return '';
   }
 }
 
@@ -376,82 +398,19 @@ window.customElements.define('byu-faculty-listing', ByuFacultyListing);
 window.ByuFacultyListing = ByuFacultyListing;
 
 // -------------------- Helper Functions --------------------
+function applyProfileImage(component) {
+  let profileImages = component.shadowRoot.querySelectorAll('.faculty-image');
 
-function applyApiKey(component) {
-  // let output = component.shadowRoot.querySelector('.output');
-
-  // let count = component.apiKey;
-
-  // //Remove all current children
-  // while(output.firstChild) {
-  //   output.removeChild(output.firstChild);
-  // }
-
-  // if (count === 0) return;
-
-  // let slot = component.shadowRoot.querySelector('#apiKey-template');
-
-  // let template = util.querySelectorSlot(slot, 'template');
-
-  // if (!template) {
-  //   throw new Error('No template was specified!');
-  // }
-
-  // for (let i = 0; i < count; i++) {
-  //   let element = document.importNode(template.content, true);
-  //   output.appendChild(element);
-  // }
-  let apiKey = component.apiKey;
-  console.log(apiKey);
-  console.log(component.apiKey);
-  if (apiKey && apiKey != '') {
-    // var xhr = new XMLHttpRequest();
-    // xhr.onreadystatechange = function () {
-    //   if (xhr.readyState == XMLHttpRequest.DONE) {
-    //     if (xhr.status == 200) {
-    //       console.log(xhr.responseText);
-    //     }
-    //     else if (xhr.status == 400) {
-    //       alert('Bad Request');
-    //     }
-    //     else {
-    //       alert('unspecified error');
-    //       console.log(xhr);
-    //     }
-    //   }
-    // };
-    // xhr.open("GET", "https://ws.byu.edu/services/facultyProfile/faculty?applicationKey=" + apiKey, true);
-    // xhr.send();
-
-    jsonp('https://ws.byu.edu/services/facultyProfile/faculty?applicationKey=' + apiKey, function (data) {
-      console.log(data)
-    });
+  for (var i = 0; i < profileImages.length; i++) {
+    profileImages[i].src = component.profileImage;
   }
 }
 
-
-function jsonp(url, callback) {
-  var callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
-  window[callbackName] = function (data) {
-    delete window[callbackName];
-    document.body.removeChild(script);
-    callback(data);
-  };
-
-  var script = document.createElement('script');
-  script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
-  document.body.appendChild(script);
-}
-
-jsonp('http://www.helloword.com', function (data) {
-  alert(data);
-});
-
 function setupButtonListeners(component) {
-  // let button = component.shadowRoot.querySelector('.apiKey-button');
+  // let button = component.shadowRoot.querySelector('.root');
 
   // let callback = component.__buttonListener = function(event) {
-  //   component.apiKey = component.apiKey + 1;
+  //    alert("Testing");
   // };
 
   // button.addEventListener('click', callback, false);
@@ -459,291 +418,7 @@ function setupButtonListeners(component) {
 
 //We generally want to be good neighbors and clean up after ourselves when we're done with things.
 function teardownButtonListeners(component) {
-  // let button = component.shadowRoot.querySelector('.apiKey-button');
-
-  // button.removeEventListener('click', component.__buttonListener, false);
-}
-
-function setupSlotListeners(component) {
-  // let slot = component.shadowRoot.querySelector('#apiKey-template');
-
-  // //this will listen to changes to the contents of our <slot>, so we can take appropriate action
-  // slot.addEventListener('slotchange', () => {
-  //   applyApiKey(component);
-  // }, false);
-}
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_profile_html__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_profile_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__byu_faculty_profile_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__ = __webpack_require__(0);
-/**
- *  @license
- *    Copyright 2017 Brigham Young University
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- **/
-
-
-
-
-
-const ATTR_API_KEY = 'api-key';
-const ATTR_NAME = 'name';
-const ATTR_TITLE = 'title';
-const ATTR_OFFICE = 'office';
-const ATTR_PHONE = 'phone';
-const ATTR_EMAIL = 'email';
-const ATTR_OFFICE_HOURS = 'office_hours';
-const ATTR_RESEARCH = 'research';
-const ATTR_BIOGRAPHY = 'biography';
-
-const DEFAULT_apiKey = 1;
-const DEFAULT_INFORMATION = "Unknown";
-
-class ByuFacultyProfile extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-  }
-
-  connectedCallback() {
-    //This will stamp our template for us, then let us perform actions on the stamped DOM.
-    __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__["a" /* applyTemplate */](this, 'byu-faculty-profile', __WEBPACK_IMPORTED_MODULE_0__byu_faculty_profile_html___default.a, () => {
-      setupButtonListeners(this);
-      applyApiKey(this);
-
-      setupSlotListeners(this);
-    });
-  }
-
-  disconnectedCallback() {
-    teardownButtonListeners(this);
-  }
-
-  static get observedAttributes() {
-    return [ATTR_API_KEY, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY];
-  }
-
-  attributeChangedCallback(attr, oldValue, newValue) {
-    switch (attr) {
-      case ATTR_NAME:
-      case ATTR_TITLE:
-      case ATTR_OFFICE:
-      case ATTR_PHONE:
-      case ATTR_EMAIL:
-      case ATTR_OFFICE_HOURS:
-      case ATTR_RESEARCH:
-      case ATTR_BIOGRAPHY:
-      case ATTR_API_KEY:
-        applyApiKey(this);
-        break;
-    }
-  }
-
-  set apiKey(value) {
-    this.setAttribute(ATTR_API_KEY, value);
-  }
-
-  get apiKey() {
-    if (this.hasAttribute(ATTR_API_KEY)) {
-      return this.getAttribute(ATTR_API_KEY);
-    }
-    return DEFAULT_apiKey;
-  }
-
-  set name(value) {
-    this.setAttribute(ATTR_NAME, value);
-  }
-
-  get name() {
-    if (this.hasAttribute(ATTR_NAME)) {
-      return this.getAttribute(ATTR_NAME);
-    }
-    return DEFAULT_INFORMATION;
-  }
-
-  set title(value) {
-    this.setAttribute(ATTR_TITLE, value);
-  }
-
-  get title() {
-    if (this.hasAttribute(ATTR_TITLE)) {
-      return this.getAttribute(ATTR_TITLE);
-    }
-    return DEFAULT_INFORMATION;
-  }
-
-  set office(value) {
-    this.setAttribute(ATTR_OFFICE, value);
-  }
-
-  get office() {
-    if (this.hasAttribute(ATTR_OFFICE)) {
-      return this.getAttribute(ATTR_OFFICE);
-    }
-    return DEFAULT_INFORMATION;
-  }
-
-  set phone(value) {
-    this.setAttribute(ATTR_PHONE, value);
-  }
-
-  get phone() {
-    if (this.hasAttribute(ATTR_PHONE)) {
-      return this.getAttribute(ATTR_PHONE);
-    }
-    return DEFAULT_INFORMATION;
-  }
-
-  set email(value) {
-    this.setAttribute(ATTR_EMAIL, value);
-  }
-
-  get email() {
-    if (this.hasAttribute(ATTR_EMAIL)) {
-      return this.getAttribute(ATTR_EMAIL);
-    }
-    return DEFAULT_INFORMATION;
-  }
-
-  set office_hours(value) {
-    this.setAttribute(ATTR_OFFICE_HOURS, value);
-  }
-
-  get office_hours() {
-    if (this.hasAttribute(ATTR_OFFICE_HOURS)) {
-      return this.getAttribute(ATTR_OFFICE_HOURS);
-    }
-    return DEFAULT_INFORMATION;
-  }
-
-  set research(value) {
-    this.setAttribute(ATTR_RESEARCH, value);
-  }
-
-  get research() {
-    if (this.hasAttribute(ATTR_RESEARCH)) {
-      return this.getAttribute(ATTR_RESEARCH);
-    }
-    return DEFAULT_INFORMATION;
-  }
-
-  set biography(value) {
-    this.setAttribute(ATTR_BIOGRAPHY, value);
-  }
-
-  get biography() {
-    if (this.hasAttribute(ATTR_BIOGRAPHY)) {
-      return this.getAttribute(ATTR_BIOGRAPHY);
-    }
-    return DEFAULT_INFORMATION;
-  }
-}
-
-window.customElements.define('byu-faculty-profile', ByuFacultyProfile);
-window.ByuFacultyProfile = ByuFacultyProfile;
-
-// -------------------- Helper Functions --------------------
-
-function applyApiKey(component) {
-  // let output = component.shadowRoot.querySelector('.output');
-
-  // let count = component.apiKey;
-
-  // //Remove all current children
-  // while(output.firstChild) {
-  //   output.removeChild(output.firstChild);
-  // }
-
-  // if (count === 0) return;
-
-  // let slot = component.shadowRoot.querySelector('#apiKey-template');
-
-  // let template = util.querySelectorSlot(slot, 'template');
-
-  // if (!template) {
-  //   throw new Error('No template was specified!');
-  // }
-
-  // for (let i = 0; i < count; i++) {
-  //   let element = document.importNode(template.content, true);
-  //   output.appendChild(element);
-  // }
-  let apiKey = component.apiKey;
-  console.log(apiKey);
-  console.log(component.apiKey);
-  if (apiKey && apiKey != '') {
-    // var xhr = new XMLHttpRequest();
-    // xhr.onreadystatechange = function () {
-    //   if (xhr.readyState == XMLHttpRequest.DONE) {
-    //     if (xhr.status == 200) {
-    //       console.log(xhr.responseText);
-    //     }
-    //     else if (xhr.status == 400) {
-    //       alert('Bad Request');
-    //     }
-    //     else {
-    //       alert('unspecified error');
-    //       console.log(xhr);
-    //     }
-    //   }
-    // };
-    // xhr.open("GET", "https://ws.byu.edu/services/facultyProfile/faculty?applicationKey=" + apiKey, true);
-    // xhr.send();
-
-    jsonp('https://ws.byu.edu/services/facultyProfile/faculty?applicationKey=' + apiKey, function (data) {
-      console.log(data)
-    });
-  }
-}
-
-
-function jsonp(url, callback) {
-  var callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
-  window[callbackName] = function (data) {
-    delete window[callbackName];
-    document.body.removeChild(script);
-    callback(data);
-  };
-
-  var script = document.createElement('script');
-  script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
-  document.body.appendChild(script);
-}
-
-jsonp('http://www.helloword.com', function (data) {
-  alert(data);
-});
-
-function setupButtonListeners(component) {
-  // let button = component.shadowRoot.querySelector('.apiKey-button');
-
-  // let callback = component.__buttonListener = function(event) {
-  //   component.apiKey = component.apiKey + 1;
-  // };
-
-  // button.addEventListener('click', callback, false);
-}
-
-//We generally want to be good neighbors and clean up after ourselves when we're done with things.
-function teardownButtonListeners(component) {
-  // let button = component.shadowRoot.querySelector('.apiKey-button');
+  // let button = component.shadowRoot.querySelector('.root');
 
   // button.removeEventListener('click', component.__buttonListener, false);
 }
@@ -763,9 +438,285 @@ function setupSlotListeners(component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_profile_html__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_profile_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__byu_faculty_profile_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__ = __webpack_require__(1);
+/**
+ *  @license
+ *    Copyright 2017 Brigham Young University
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ **/
+
+
+
+
+
+const ATTR_API_KEY = 'api-key';
+const ATTR_NAME = 'faculty-name';
+const ATTR_TITLE = 'faculty-title';
+const ATTR_OFFICE = 'faculty-office';
+const ATTR_PHONE = 'faculty-phone';
+const ATTR_EMAIL = 'faculty-email';
+const ATTR_OFFICE_HOURS = 'faculty-office-hours';
+const ATTR_RESEARCH = 'faculty-research';
+const ATTR_BIOGRAPHY = 'faculty-biography';
+const ATTR_PROFILE_IMAGE = 'faculty-image';
+const ATTR_BACKGROUND_IMAGE = 'background-image';
+
+const DEFAULT_apiKey = 1;
+const DEFAULT_INFORMATION = "Unknown";
+
+class ByuFacultyProfile extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+
+  connectedCallback() {
+    //This will stamp our template for us, then let us perform actions on the stamped DOM.
+    __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__["a" /* applyTemplate */](this, 'byu-faculty-profile', __WEBPACK_IMPORTED_MODULE_0__byu_faculty_profile_html___default.a, () => {
+      applyBackgroundImage(this);
+      applyProfileImage(this);
+      setupButtonListeners(this);
+      //applyApiKey(this);
+
+      //setupSlotListeners(this);
+    });
+  }
+
+  disconnectedCallback() {
+    teardownButtonListeners(this);
+  }
+
+  static get observedAttributes() {
+    return [ATTR_PROFILE_IMAGE, ATTR_BACKGROUND_IMAGE, ATTR_API_KEY, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY];
+  }
+
+  attributeChangedCallback(attr, oldValue, newValue) {
+    switch (attr) {
+      case ATTR_NAME:
+      case ATTR_TITLE:
+      case ATTR_OFFICE:
+      case ATTR_PHONE:
+      case ATTR_EMAIL:
+      case ATTR_OFFICE_HOURS:
+      case ATTR_RESEARCH:
+      case ATTR_BIOGRAPHY:
+      case ATTR_API_KEY:
+      case ATTR_BACKGROUND_IMAGE:
+        applyBackgroundImage(this);
+        break
+      case ATTR_PROFILE_IMAGE:
+        applyProfileImage(this);
+        break;
+    }
+  }
+
+  set apiKey(value) {
+    this.setAttribute(ATTR_API_KEY, value);
+  }
+
+  get apiKey() {
+    if (this.hasAttribute(ATTR_API_KEY)) {
+      return this.getAttribute(ATTR_API_KEY);
+    }
+    return DEFAULT_apiKey;
+  }
+
+  set name(value) {
+    this.setAttribute(ATTR_NAME, value);
+  }
+
+  get name() {
+    if (this.hasAttribute(ATTR_NAME)) {
+      return this.getAttribute(ATTR_NAME);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set title(value) {
+    this.setAttribute(ATTR_TITLE, value);
+  }
+
+  get title() {
+    if (this.hasAttribute(ATTR_TITLE)) {
+      return this.getAttribute(ATTR_TITLE);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set office(value) {
+    this.setAttribute(ATTR_OFFICE, value);
+  }
+
+  get office() {
+    if (this.hasAttribute(ATTR_OFFICE)) {
+      return this.getAttribute(ATTR_OFFICE);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set phone(value) {
+    this.setAttribute(ATTR_PHONE, value);
+  }
+
+  get phone() {
+    if (this.hasAttribute(ATTR_PHONE)) {
+      return this.getAttribute(ATTR_PHONE);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set email(value) {
+    this.setAttribute(ATTR_EMAIL, value);
+  }
+
+  get email() {
+    if (this.hasAttribute(ATTR_EMAIL)) {
+      return this.getAttribute(ATTR_EMAIL);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set office_hours(value) {
+    this.setAttribute(ATTR_OFFICE_HOURS, value);
+  }
+
+  get office_hours() {
+    if (this.hasAttribute(ATTR_OFFICE_HOURS)) {
+      return this.getAttribute(ATTR_OFFICE_HOURS);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set research(value) {
+    this.setAttribute(ATTR_RESEARCH, value);
+  }
+
+  get research() {
+    if (this.hasAttribute(ATTR_RESEARCH)) {
+      return this.getAttribute(ATTR_RESEARCH);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set biography(value) {
+    this.setAttribute(ATTR_BIOGRAPHY, value);
+  }
+
+  get biography() {
+    if (this.hasAttribute(ATTR_BIOGRAPHY)) {
+      return this.getAttribute(ATTR_BIOGRAPHY);
+    }
+    return DEFAULT_INFORMATION;
+  }
+
+  set profileImage(value) {
+    this.setAttribute(ATTR_PROFILE_IMAGE, value);
+  }
+
+  get profileImage() {
+    if (this.hasAttribute(ATTR_PROFILE_IMAGE)) {
+      return this.getAttribute(ATTR_PROFILE_IMAGE);
+    }
+    return '';
+  }
+
+  set backgroundImage(value) {
+    this.setAttribute(ATTR_BACKGROUND_IMAGE, value);
+  }
+
+  get backgroundImage() {
+    if (this.hasAttribute(ATTR_BACKGROUND_IMAGE)) {
+      return this.getAttribute(ATTR_BACKGROUND_IMAGE);
+    }
+    return '';
+  }
+}
+
+window.customElements.define('byu-faculty-profile', ByuFacultyProfile);
+window.ByuFacultyProfile = ByuFacultyProfile;
+
+// -------------------- Helper Functions --------------------
+function applyBackgroundImage(component) {
+  let imageBox = component.shadowRoot.querySelector('div.background-image-wrapper');
+  imageBox.style.backgroundImage = "url('" + component.backgroundImage + "')";
+}
+
+function applyProfileImage(component) {
+  let profileImages = component.shadowRoot.querySelectorAll('.faculty-image');
+
+  for (var i = 0; i < profileImages.length; i++) {
+    profileImages[i].src = component.profileImage;
+  }
+}
+
+function setupButtonListeners(component) {
+  let buttons = component.shadowRoot.querySelectorAll('.chevron');
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function() {
+      if (this.src.includes('Chevron-Right')) {
+        this.src = "/components/byu-faculty-profile/Chevron-Down.svg";
+
+        var element = this, i = 5;
+        while(i-- && (element = element.parentNode));
+        element.className += " expanded";
+      }
+
+      else {
+        this.src = "/components/byu-faculty-profile/Chevron-Right.svg";
+
+        var element = this, i = 5;
+        while(i-- && (element = element.parentNode));
+        element.classList.remove("expanded");
+      }
+    });
+  }
+
+  // let callback = component.__buttonListener = function(event) {
+  //   component.apiKey = component.apiKey + 1;
+  // };
+
+  // button.addEventListener('click', callback, false);
+}
+
+//We generally want to be good neighbors and clean up after ourselves when we're done with things.
+function teardownButtonListeners(component) {
+  // let button = component.shadowRoot.querySelector('.apiKey-button');
+
+  // button.removeEventListener('click', component.__buttonListener, false);
+}
+
+function setupSlotListeners(component) {
+  // let slot = component.shadowRoot.querySelector('#apiKey-template');
+
+  // //this will listen to changes to the contents of our <slot>, so we can take appropriate action
+  // slot.addEventListener('slotchange', () => {
+  //   applyApiKey(component);
+  // }, false);
+}
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_byu_faculty_listing_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__byu_faculty_profile_byu_faculty_profile_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_byu_faculty_listing_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__byu_faculty_profile_byu_faculty_profile_js__ = __webpack_require__(5);
 /**
  *  @license
  *    Copyright 2017 Brigham Young University
@@ -789,7 +740,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -823,12 +774,12 @@ function createEvent(name, detail) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export default */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__matchesSelector_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__matchesSelector_js__ = __webpack_require__(2);
 /*
  *  @license
  *    Copyright 2017 Brigham Young University
@@ -869,12 +820,12 @@ function querySelectorSlot(slot, selector) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = applyTemplate;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hash_sum__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hash_sum__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hash_sum___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_hash_sum__);
 /*
  *  @license
@@ -960,35 +911,35 @@ function runAfterStamping(element, callback) {
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)();
-// imports
-
-
-// module
-exports.push([module.i, "/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */\n/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */", ""]);
-
-// exports
-
-
-/***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)();
+exports = module.exports = __webpack_require__(3)();
 // imports
 
 
 // module
-exports.push([module.i, "/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */\n/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */", ""]);
+exports.push([module.i, "/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */\n/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */.biography-slot-wrapper{height:190px;-webkit-line-clamp:8}#column-left,#column-middle,#column-right{vertical-align:top}#column-middle{width:25%}.contact-wrapper{margin:30px 0}.faculty-image{height:270px;margin:10px 15px 0;width:auto}#hidden-image{display:none}.listing-root{background-color:#fff;color:#515151;font-family:Gotham A,Gotham B,Helvetica,sans-serif;font-size:1em;font-weight:100;height:300px;margin:0 auto 20px;min-width:250px;width:80%;vertical-align:top;-moz-box-shadow:5px 5px 10px 1px rgba(0,0,0,.2);-webkit-box-shadow:5px 5px 10px 1px rgba(0,0,0,.2);box-shadow:5px 5px 10px 1px rgba(0,0,0,.2)}.listing-root ::slotted(h2){color:#002e5d;font-family:Vitesse A,Vitesse B,Georgia,serif;margin:10px 0 0}.listing-root ::slotted(p){margin:0}.biography-slot-wrapper,.research-slot-wrapper{display:-webkit-box;overflow:hidden;text-overflow:ellipsis;-webkit-box-orient:vertical}.research-slot-wrapper{height:95px;-webkit-line-clamp:3}.section-header{color:#002e5d;margin:15px 0 0}@media only screen and (max-width:1223px){.listing-root{width:95%}}@media only screen and (max-width:1023px){#column-right{display:none}#column-middle{width:60%}.listing-root{width:80%}.office-hours-slot-wrapper{border-bottom:solid}}@media only screen and (max-width:767px){.listing-root{width:95%;margin-left:auto;margin-right:auto}}@media only screen and (max-width:496px){.column{text-align:center;margin:auto}#column-left,#default-image{display:none}#hidden-image{display:block;height:150px;margin:0 auto;padding-top:15px;width:auto}.listing-root{height:425px}}", ""]);
 
 // exports
 
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)();
+// imports
+
+
+// module
+exports.push([module.i, "/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */\n/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */#background-image{display:none}.background-image-wrapper{background-position:50%;background-size:cover;height:300px;width:100%}.card{background-color:#fff;font-family:Gotham A,Gotham B,Helvetica,sans-serif;margin:20px auto 0;padding:5px;width:60%;-moz-box-shadow:5px 5px 10px 1px rgba(0,0,0,.2);-webkit-box-shadow:5px 5px 10px 1px rgba(0,0,0,.2);box-shadow:5px 5px 10px 1px rgba(0,0,0,.2)}.card>table{width:100%}.card-chevron-wrapper{text-align:right}.card-content{display:none}.card-content,.card-content ::slotted(*){margin:5px 0;padding:2px}.card-title-wrapper>h3{color:#002e5d;margin:5px 0}.contact-wrapper{margin:30px 0}.content-wrapper{align-content:center;color:#fff;font-family:Gotham A,Gotham B,Helvetica,sans-serif;font-weight:700;line-height:25px;margin:auto;width:60%}.expanded>.card-content{display:block}.faculty-image{height:250px;margin:10px 0 0;width:auto}#hidden-image{display:none}#left-column{width:170px;padding:15px 15px 15px 0}.profile-root{height:600px}.profile-root ::slotted(h1){font-family:Vitesse A,Vitesse B,Georgia,serif;margin:0 0 10px}#right-column{padding:15px 15px 15px 0}.svg-md{fill:#c1c1c1;height:25px;vertical-align:middle;width:25px}.svg-md:hover{cursor:pointer}.svg-sm{fill:#fff;height:15px;vertical-align:middle;width:15px}@media only screen and (max-width:767px){.card,.content-wrapper{width:80%}}@media only screen and (max-width:580px){.contact-wrapper{margin:15px}.content-wrapper{line-height:18px;text-align:center;width:100%}#default-image,#left-column{display:none}#hidden-image{height:140px;margin:auto;padding:15px 0 10px;width:auto;display:block}#right-column{padding:5px}}@media only screen and (max-width:321px){.card{width:95%}}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1053,16 +1004,34 @@ module.exports = sum;
 
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = "<style>" + __webpack_require__(9) + "</style> <div class=\"root\"> This is where the profiles will go. </div>";
-
-/***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<style>" + __webpack_require__(10) + "</style> <div class=\"root\"> This is where the profiles will go. </div>";
+module.exports = "<style>" + __webpack_require__(10) + "</style> <div class=\"root listing-root\"> <div class=\"image-wrapper\"> <img class=\"faculty-image\" id=\"hidden-image\"> </div> <table> <tbody> <tr> <td id=\"column-left\" class=\"column\"> <div class=\"image-wrapper\"> <img class=\"faculty-image\" id=\"default-image\"> </div> </td> <td id=\"column-middle\" class=\"column\"> <slot id=\"listing-name\" name=\"listing-name\"></slot> <i><slot name=\"listing-title\"></slot></i> <div class=\"contact-wrapper\"> <div class=\"office-slot-wrapper\"> <b>Office: </b><slot name=\"listing-office\"></slot> </div> <div class=\"phone-slot-wrapper\"> <b>Phone: </b><slot name=\"listing-phone\"></slot> </div> <div class=\"email-slot-wrapper\"> <b>Email: </b><slot name=\"listing-email\"></slot> </div> </div> <div class=\"office-hours-slot-wrapper\"> <b>Office Hours: </b><br> <slot name=\"listing-office-hours\"></slot> </div> </td> <td id=\"column-right\" class=\"column\"> <div class=\"research-slot-wrapper\"> <h3 class=\"section-header\">Research:</h3> <div> <slot name=\"listing-research\"></slot> </div> </div> <div class=\"biography-slot-wrapper\"> <h3 class=\"section-header\">Biography:</h3> <div> <slot name=\"listing-biography\"></slot> </div> </div> </td> </tr> </tbody> </table> </div>";
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = "<style>" + __webpack_require__(11) + "</style> <div class=\"root profile-root\"> <div class=\"background-image-wrapper\"> <div> <div class=\"faculty-image-wrapper\"> <img class=\"faculty-image\" id=\"hidden-image\" src=\"xxxHTMLLINKxxx0.92190315027748970.8492288513226911xxx\" alt=\"Faculty Image\"> </div> <table class=\"content-wrapper\"> <tr> <td id=\"left-column\"> <div class=\"faculty-image-wrapper\"> <img class=\"faculty-image\" id=\"default-image\" src=\"xxxHTMLLINKxxx0.64356928983289620.2840878515762624xxx\" alt=\"Faculty Image\"> </div> </td> <td id=\"right-column\"> <slot id=\"faculty-name\" name=\"faculty-name\"></slot> <i><slot name=\"faculty-title\"></slot></i> <div class=\"contact-wrapper\"> <div class=\"office-slot-wrapper\"> <span><img class=\"svg-sm\" src=\"" + __webpack_require__(16) + "\" alt=\"Desk\"> Office: <slot name=\"faculty-office\"></slot></span> </div> <div class=\"email-slot-wrapper\"> <span><img class=\"svg-sm\" src=\"" + __webpack_require__(17) + "\" alt=\"Email\"> Email: <slot name=\"faculty-email\"></slot></span> </div> <div class=\"phone-slot-wrapper\"> <span><img class=\"svg-sm\" src=\"" + __webpack_require__(15) + "\" alt=\"Phone\"> Phone: <slot name=\"faculty-phone\"></slot></span> </div> </div> </td> </tr> </table> </div> </div> <div class=\"additional-info-wrapper\"> <div class=\"card biography-card\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Biography</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"/components/byu-faculty-profile/Chevron-Right.svg\"> </td> </tr> </tbody> </table> <div class=\"card-content\"> <slot name=\"faculty-biography\">No Information</slot> </div> </div> <div class=\"card research-card\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Research</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> <div class=\"card-content\"> <slot name=\"faculty-research\">No Information</slot> </div> </div> <div class=\"card committees-card\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Committees</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> <div class=\"card-content\"> <slot name=\"faculty-committees\">No Information</slot> </div> </div> <div class=\"card papers-card\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Papers</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> <div class=\"card-content\"> <slot name=\"faculty-papers\">No Information</slot> </div> </div> <div class=\"card awards-card\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Awards</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> <div class=\"card-content\"> <slot name=\"faculty-awards\">No Information</slot> </div> </div> <div class=\"card courses-card\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Courses</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> <div class=\"card-content\"> <slot name=\"faculty-courses\">No Information</slot> </div> </div> <div class=\"card office-hours-card\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Office Hours</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> <div class=\"card-content\"> <slot name=\"faculty-office-hours\">No Information</slot> </div> </div> <div class=\"card links-card\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Links</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> <div class=\"card-content\"> <slot name=\"faculty-links\">No Information</slot> </div> </div> </div> </div>";
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/svg+xml,%3Csvg version='1' xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 600.000000 600.000000'%3E%3Cg fill='%23fff'%3E%3Cpath d='M213 63.2c-11.4 5.8-11.9 18.9-1 24.5 3.8 2 6 2.3 15.1 2.3 161.9 0 295.8 98.9 318.3 235 1.3 7.7 3 30.9 3.4 45.3.4 12.4 20.9 17.4 30.2 7.3 2.3-2.6 2.5-3.6 2.8-14.9 1.1-39.8-7.8-77.6-28.3-119.2C518.9 173.1 458.9 121 374 87.7c-43.9-17.3-80.8-24.2-139.5-26.2-16.3-.5-17.2-.5-21.5 1.7zM97.5 103.9c-11.6 2.6-19.7 6.6-32.4 16.1-16.7 12.7-31.1 31.4-37.8 49.2C11 212.6 19 255.1 53.1 306.5c12.4 18.6 28.8 40.7 42.6 57.3 11.9 14.4 45.2 47.9 58.8 59.1 49.6 41.2 128.1 87.5 176 103.8 24.5 8.3 45 12.2 68.5 13 47.6 1.6 88.4-12.6 117-40.7 12.6-12.5 17.3-22.9 17.3-38.5-.1-16.7-3.9-28.5-11-34.4-5.1-4.2-8.9-5.6-52.3-18.2-20.6-6-43.6-12.9-51-15.2-12-3.7-14.6-4.2-23.5-4.2-9.3 0-10.5.2-16.6 3.2-4.2 2.1-12.9 8.6-24.5 18.4-19.5 16.5-24.4 19.5-30.6 18.5-4.2-.7-31.2-13.9-47.4-23.1-48.6-28-86.8-62.5-113.7-103-9.9-14.8-13.1-21.5-12.2-25.4.8-4 3.9-7.1 21.7-22 22.9-19.2 25.7-23.1 25.8-34.8 0-5.7-1.2-9.2-15-43.3-17.2-42.5-23.1-56-26.5-61.2-3.4-5.1-9.5-8.4-19.5-10.3-9.8-1.9-33.6-2.8-39.5-1.6z'/%3E%3Cpath d='M243 135.9c-12.3 6.5-9.8 23 3.9 26 2.5.5 12 1.2 21.1 1.5 47.9 1.4 95.2 18.4 130.4 46.7 12.2 9.8 29.8 28.8 38 41.2 16.1 24.2 23.5 45.9 25.7 75.7 1.4 19.9 1.6 20.6 5 24.5 7.3 8.3 23.8 6.5 28.3-2.9 2-4.3 2.1-19 .1-33.7-8.7-65.5-51.6-121.4-118-154C340.8 143 301.9 134 260.6 134c-11.8 0-14.7.3-17.6 1.9z'/%3E%3Cpath d='M270.5 208.8c-4.5 2.1-7.2 5.6-8.1 10.2-.9 4.2.2 7.4 3.6 11.4 3.7 4.1 8 5.2 23.5 6 18 .9 34.2 6.2 49.6 16.1 15.1 9.8 24.1 19.5 30.5 33 4.3 8.9 6.3 17 7.3 29 .6 7 1.3 10.4 2.8 12.3 2.6 3.7 9.9 7.2 14.8 7.2 5.7 0 12.6-3.7 14.8-8 1.6-3 1.8-5.1 1.3-14.5-1.1-24.6-11-46.7-29-64.9-24.1-24.4-56.4-38-93.6-39.2-11.8-.4-14-.3-17.5 1.4z'/%3E%3C/g%3E%3C/svg%3E"
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/svg+xml,%3Csvg version='1' xmlns='http://www.w3.org/2000/svg' width='801.333' height='800' viewBox='0 0 601.000000 600.000000'%3E%3Cg fill='%23fff'%3E%3Cpath d='M280.2 49.1c-9 1.1-19.7 6.6-26.9 13.7-10.3 10.2-11.2 12.7-22 61.9l-9.6 43.8-.1 15c-.1 33 7.7 43.9 38.4 54.1 8.4 2.8 8.8 2.8 37.5 3.2 28.2.3 29.3.2 38.7-2.2 12.7-3.2 25.1-9.2 30.6-14.5 8.7-8.5 12.7-23.1 12-43.4-.4-12.4-4.9-35.8-15.8-83-4.7-20.2-7.2-25.9-14.5-33.6-11.2-11.8-24.3-16.2-47.4-16-8 .1-17.4.5-20.9 1zM178.9 196.5c-3.6 2-5.3 6.5-4.7 12.7.9 9.1 6.5 11.6 23.9 10.6 10.3-.6 13.2-2.1 14.9-7.4 1.9-5.6.7-11.4-3-14.7-3-2.7-3.3-2.7-15.8-2.7-9 .1-13.5.5-15.3 1.5zm213.5-.5c-3.7 1.5-5.4 5-5.4 11.2 0 5 .4 6.2 2.9 9l2.9 3.3h13.5c13 0 13.6-.1 16.1-2.4 5.7-5.4 5.6-15.6-.1-20-2.3-1.9-3.9-2.1-15.2-2-6.9 0-13.6.4-14.7.9zm-204.5 35.1c-1.5 1.5-1.9 3-1.7 6.2l.3 4.2 4.9.3c7.8.5 9.6-.3 9.6-4.2 0-7.4-8.1-11.5-13.1-6.5zm214.4-.6c-2.4 1.7-3.8 6.4-2.8 9.5.6 1.7 1.5 2 7.5 2 3.8 0 7.2-.5 7.5-1.1 1.1-1.7-.5-7.9-2.6-10-2.3-2.3-6.6-2.5-9.6-.4zM20.3 251c-4.2 2.5-5.6 7.5-5.1 17.4.3 7 .6 7.9 3.6 10.9l3.2 3.2 277.3.3c262.4.2 277.4.1 280.7-1.5 4.9-2.5 6-5.4 6-16.1 0-9.4 0-9.4-3.4-12.8l-3.4-3.4H301.4c-273.7 0-277.9 0-281.1 2zm25.9 41.5c-6.5 2.8-6.2-2.5-6.2 113 0 112.6-.2 109.2 5.1 112.9 1.8 1.2 4.7 1.6 12.1 1.6 9.4 0 9.9-.1 13-2.9l3.3-2.9.5-55.4c.3-30.4.9-56.1 1.4-57.1 2.4-4.9-9.4-4.7 224.7-4.7h218.1l3.4 3.4 3.4 3.4v53.1c0 57.7 0 58.1 5.5 61.7 1.9 1.3 4.7 1.7 11 1.7 9.7 0 13.4-1.2 15.8-5.2 1.6-2.7 1.7-11.2 1.7-109.3 0-83-.3-106.8-1.3-108.8-.7-1.4-2.8-3.3-4.7-4.2-3.3-1.7-17.4-1.8-253.5-1.8-214.4.1-250.5.3-253.3 1.5z'/%3E%3Cpath d='M295.3 404.2c-.6.7-1.3 2.5-1.7 4-.3 1.6-1.1 2.8-1.6 2.8s-1.8 1.2-2.7 2.7c-1.3 2-1.9 5.5-2.3 13.2l-.5 10.4-54 16.5c-29.7 9-54.3 16.9-54.7 17.6-.4.6-.8 2.3-.8 3.8 0 2 .5 2.8 1.8 2.8 1.4 0 83.4-17.5 107.6-23 2.7-.6 5.3-.7 5.8-.2.4.4 1.7 5.7 2.7 11.7 1.9 10 3 12.5 5.6 12.5 2.6 0 3.6-2.4 5.5-12.5 1.1-6 2.4-11.3 2.8-11.7.5-.5 3.1-.4 5.8.2 24.2 5.5 106.2 23 107.6 23 2.3 0 2.5-5.2.3-7-.8-.7-25.5-8.5-54.7-17.4l-53.3-16.2-.5-10.5c-.4-7.7-1-11.2-2.3-13.2-.9-1.5-2.2-2.7-2.7-2.7s-1.3-1.2-1.6-2.8c-1-4.2-2.3-5.2-6.9-5.2-2.3 0-4.7.6-5.2 1.2zm-125 86.2c-2.4 2.1-2.8 3.2-2.8 7.6 0 4.4.4 5.5 2.8 7.6 6.6 5.7 16.7 1.1 16.7-7.6s-10.1-13.3-16.7-7.6zm123.6.5c-6.2 6.2-2 17.1 6.6 17.1 2 0 4.5-.5 5.6-1 2.2-1.2 4.9-6.1 4.9-8.9 0-8.8-10.9-13.4-17.1-7.2zm124.6-1.7c-3.4 1.9-4.4 4.1-4.5 9.1 0 6.3 3.3 9.7 9.5 9.7 6.1 0 9.5-3.6 9.5-10 0-4.2-.4-5.2-3.1-7.4-3.3-2.8-8-3.4-11.4-1.4z'/%3E%3C/g%3E%3C/svg%3E"
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/svg+xml,%3Csvg version='1' xmlns='http://www.w3.org/2000/svg' width='800' height='801.333' viewBox='0 0 600.000000 601.000000'%3E%3Cg fill='%23fff'%3E%3Cpath d='M48 108.1c-2.5.5-7.4 2.3-11 4.1-7.3 3.8-11.6 8.7-15.2 17.5l-2.3 5.8v164c0 152.4.1 164.4 1.7 169.6 3.5 11.2 11.4 19.2 22.8 23.2l6.5 2.2 245.5.3c176.5.2 247.7 0 253.5-.8 8.7-1.2 16.2-4.2 21.1-8.3 3.9-3.3 8.9-12.7 10.3-19.5.8-3.8 1.1-51.9 1.1-164.8 0-141.9-.2-160.3-1.6-166.5-2.7-11.9-10-20.2-22.1-25.1l-5.8-2.3-250-.1c-138.4-.1-252 .2-254.5.7zm462 37.3c0 .5-209.1 206-210 206.4-.4.2-42.8-42.8-94.1-95.5-51.2-52.7-96.6-99.3-100.8-103.6l-7.6-7.7h206.3c113.4 0 206.2.2 206.2.4zM220 331c0 .3-3.9 4.1-8.7 8.4-4.9 4.3-32.9 31.6-62.4 60.6-34.2 33.7-55.1 53.6-58 55.1-4 2.2-5.6 2.4-19.1 2.4H57v-290l81.5 81.5c44.8 44.8 81.5 81.7 81.5 82zm324-17.5V458l-11.7-.1c-21.2-.1-17.6 2-46.5-26.2-13.9-13.6-42.8-42-64.3-63.1l-39-38.5 80.5-80.5c44.3-44.3 80.6-80.6 80.7-80.6.2 0 .3 65 .3 144.5zm-269.6 66.8c7.6 7.3 12.4 10.2 20.5 12.2 7.9 2.1 13.8 1.4 22.2-2.6 4.9-2.3 9.3-6.1 21.5-18l15.2-15.1 51.5 49.9 51.5 49.8-77.4.3c-42.6.1-112.4.1-155.1 0l-77.6-.3 51.9-50.7 51.9-50.8 8.9 9.8c5 5.3 11.7 12.3 15 15.5z'/%3E%3Cpath d='M291 158.6c-19.6 4-35.4 13.2-45.6 26.7-17.7 23.4-20.2 53-6.6 79.2 5.4 10.5 18.1 22.8 29.2 28.3 11.7 5.8 21.8 8.2 34.7 8.2 15.5 0 30.4-3.7 41-10.2 3.2-1.9 3.2-2 1.8-4.9-.9-1.6-1.8-2.9-2.1-2.9-.3 0-3.8 1.5-7.7 3.4-11 5.3-18.5 6.9-31.7 7-19.9 0-34.1-5.5-47.1-18.4-13.2-13.1-19.7-29.9-18.6-48.4 1.5-26.7 17-47.7 42.5-57.4 6.1-2.4 8-2.6 21.2-2.6 13.8 0 14.9.1 22.7 3.1 10.3 3.9 17.3 8.6 25 16.6 10.4 10.8 15.3 22.9 15.3 37.8 0 13.9-4.2 24.4-11.6 28.9-4.8 3.1-11.3 3.2-15.1.4-5-3.8-5.1-5.3-.5-31.5 2.3-13.2 4-24.4 3.7-24.8-.6-1.1-17.2-3.4-19-2.7-.8.3-1.5 1.7-1.5 3.1 0 1.4-.2 2.5-.5 2.5s-2.5-1.5-4.9-3.4c-12.1-9.2-30.7-6.6-42.5 5.9-12.3 13-15.4 32-7.8 46.7 5.2 9.9 13.8 14.8 26.3 14.8 7.6 0 13.9-1.8 19.7-5.8 4-2.8 4.6-3 5.8-1.6.7.9 3.6 2.7 6.3 4.2 5.9 3 19.3 4.2 26.2 2.3 8.9-2.4 16.6-10 20.7-20.4 2.9-7.4 3.5-24.9 1.2-33.7-5.9-22.6-25.8-41.9-50-48.5-5.9-1.6-25.7-2.8-30.5-1.9zm17.7 52.4c6.6 4 8.6 11 5.9 20.2-3.9 13.7-18.9 19.7-27.7 11.2-10.8-10.4-.8-33.2 14.6-33.4 2.3 0 5.4.9 7.2 2z'/%3E%3C/g%3E%3C/svg%3E"
 
 /***/ })
 /******/ ]);

@@ -19,6 +19,174 @@
     ${require('./byu-faculty-profile.scss')}
 </style>
 
-<div class="root">
-  This is where the profiles will go.
+<div class="root profile-root">
+  <div class="background-image-wrapper">
+    <div>
+      <div class="faculty-image-wrapper">
+        <img class="faculty-image" id="hidden-image" src="" alt="Faculty Image"/>
+      </div>
+      <table class="content-wrapper">
+        <tr>
+          <td id="left-column">
+            <div class="faculty-image-wrapper">
+              <img class="faculty-image" id="default-image" src="" alt="Faculty Image"/>
+            </div>
+          </td>
+          <td id="right-column">
+            <slot id="faculty-name" name="faculty-name"></slot>
+            <i><slot name="faculty-title"></slot></i>
+            <div class="contact-wrapper">
+              <div class="office-slot-wrapper">
+                <span><img class="svg-sm" src="WITsymbols-02.svg" alt="Desk">  Office: <slot name="faculty-office"></slot></span>
+              </div>
+              <div class="email-slot-wrapper">
+                <span><img class="svg-sm" src="WITsymbols-03.svg" alt="Email">  Email: <slot name="faculty-email"></slot></span>
+              </div>
+              <div class="phone-slot-wrapper">
+                <span><img class="svg-sm" src="WITsymbols-01.svg" alt="Phone">  Phone: <slot name="faculty-phone"></slot></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="additional-info-wrapper">
+    <div class="card biography-card">
+      <table>
+        <tbody>
+          <tr>
+            <td class="card-title-wrapper">
+              <h3>Biography</h3>
+            </td>
+            <td class="card-chevron-wrapper">
+              <img class="chevron svg-md" src="/components/byu-faculty-profile/Chevron-Right.svg">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-content">
+        <slot name="faculty-biography">No Information</slot>
+      </div>
+    </div>
+    <div class="card research-card">
+      <table>
+        <tbody>
+          <tr>
+            <td class="card-title-wrapper">
+              <h3>Research</h3>
+            </td>
+            <td class="card-chevron-wrapper">
+              <img class="chevron svg-md" src="./Chevron-Right.svg">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-content">
+        <slot name="faculty-research">No Information</slot>
+      </div>
+    </div>
+    <div class="card committees-card">
+      <table>
+        <tbody>
+          <tr>
+            <td class="card-title-wrapper">
+              <h3>Committees</h3>
+            </td>
+            <td class="card-chevron-wrapper">
+              <img class="chevron svg-md" src="./Chevron-Right.svg">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-content">
+        <slot name="faculty-committees">No Information</slot>
+      </div>
+    </div>
+    <div class="card papers-card">
+      <table>
+        <tbody>
+          <tr>
+            <td class="card-title-wrapper">
+              <h3>Papers</h3>
+            </td>
+            <td class="card-chevron-wrapper">
+              <img class="chevron svg-md" src="./Chevron-Right.svg">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-content">
+        <slot name="faculty-papers">No Information</slot>
+      </div>
+    </div>
+    <div class="card awards-card">
+      <table>
+        <tbody>
+          <tr>
+            <td class="card-title-wrapper">
+              <h3>Awards</h3>
+            </td>
+            <td class="card-chevron-wrapper">
+              <img class="chevron svg-md" src="./Chevron-Right.svg">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-content">
+        <slot name="faculty-awards">No Information</slot>
+      </div>
+    </div>
+    <div class="card courses-card">
+      <table>
+        <tbody>
+          <tr>
+            <td class="card-title-wrapper">
+              <h3>Courses</h3>
+            </td>
+            <td class="card-chevron-wrapper">
+              <img class="chevron svg-md" src="./Chevron-Right.svg">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-content">
+        <slot name="faculty-courses">No Information</slot>
+      </div>
+    </div>
+    <div class="card office-hours-card">
+      <table>
+        <tbody>
+          <tr>
+            <td class="card-title-wrapper">
+              <h3>Office Hours</h3>
+            </td>
+            <td class="card-chevron-wrapper">
+              <img class="chevron svg-md" src="./Chevron-Right.svg">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-content">
+        <slot name="faculty-office-hours">No Information</slot>
+      </div>
+    </div>
+    <div class="card links-card">
+      <table>
+        <tbody>
+          <tr>
+            <td class="card-title-wrapper">
+              <h3>Links</h3>
+            </td>
+            <td class="card-chevron-wrapper">
+              <img class="chevron svg-md" src="./Chevron-Right.svg">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-content">
+        <slot name="faculty-links">No Information</slot>
+      </div>
+    </div>
+  </div>
 </div>

@@ -22,8 +22,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>byu-faculty-directory Demo</title>
 
-  <!--<link rel="stylesheet" href="dist/byu-faculty-directory.min.css">
-  <script defer src="dist/byu-faculty-directory.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="//cloud.typography.com/75214/6517752/css/fonts.css" media="all" />
+  <link rel="stylesheet" href="dist/byu-faculty-directory.min.css">
+  <script defer src="dist/components.min.js"></script>
+  <!--<script defer src="dist/components.min.js"></script>
 
   <script>
     function btnUpdate_click() {
@@ -32,7 +34,15 @@
       document.getElementById('directory').apiKey = apiKey;
     }
   </script>-->
+  <style>
+    html {
+      background-color: #efefef;
+    }
 
+    body {
+      margin: 0px;
+    }
+  </style>
 </head>
 <body>
 
@@ -46,6 +56,71 @@
 </form>
 
 <byu-faculty-directory id="directory"></byu-faculty-directory>-->
-
+  <!--<byu-faculty-listing id="demo" faculty-image="./test_image.png">
+    <h2 slot="listing-name">Bradley R. Adams</h2>
+    <span slot="listing-title">Professor and Department Chair</span>
+    <span slot="listing-office">265 Crabtree</span>
+    <span slot="listing-phone">801-422-6300</span>
+    <span slot="listing-email">testingemail@byu.edu</span>
+    <span slot="listing-office-hours">Mon 3-4pm, Wed 2-3pm, Fri 4-5pm</span>
+    <p slot="listing-research">Bradley Adams joined BYU in 2015 after 30 years
+      in industry, including positions at GenRad, MIT Lincoln Laboratories, and
+      Reaction Engineering International. He has significant experience in
+      technical management and has performed R&D in the areas of heat transfer,
+      combustion, and air pollution control, with an emphasis on CFD simulation
+      of these processes. Current research interests include advanced power
+      generation systms (e.g., oxy-fuel combustion, chemical looping),
+      radiative heat transfer, and multi-physics simulations.</p>
+    <p slot="listing-biography">Bradley Adams joined BYU in 2015 after 30 years
+      in industry, including positions at GenRad, MIT Lincoln Laboratories, and
+      Reaction Engineering International. He has significant experience in
+      technical management and has performed R&D in the areas of heat transfer,
+      combustion, and air pollution control, with an emphasis on CFD simulation
+      of these processes. Current research interests include advanced power
+      generation systms (e.g., oxy-fuel combustion, chemical looping),
+      radiative heat transfer, and multi-physics simulations.</p>
+  </byu-faculty-listing>
+  <byu-faculty-listing id="demo" faculty-image="./test_image.png">
+    <h2 slot="listing-name">Bradley R. Adams</h2>
+    <span slot="listing-title">Professor and Department Chair</span>
+    <span slot="listing-office">265 Crabtree</span>
+    <span slot="listing-phone">801-422-6300</span>
+    <span slot="listing-email">testingemail@byu.edu</span>
+    <span slot="listing-office-hours">Mon 3-4pm, Wed 2-3pm, Fri 4-5pm</span>
+    <p slot="listing-research">Bradley Adams joined BYU in 2015 after 30 years
+      in industry, including positions at GenRad, MIT Lincoln Laboratories, and
+      ... READ MORE</p>
+    <p slot="listing-biography">Bradley Adams joined BYU in 2015 after 30 years
+      in industry, including positions at GenRad, MIT Lincoln Laboratories, and
+      Reaction Engineering International. He has significant experience in
+      technical management and has performed R&D in the areas of heat transfer,
+      combustion, and air pollution control, with an emphasis on CFD simulation
+      of these processes. Current research interests include advanced power
+      generation systms (e.g., oxy-fuel combustion, chemical looping),
+      radiative heat transfer, and multi-physics simulations.</p>
+  </byu-faculty-listing>-->
+  <byu-faculty-profile background-image="./test_image_2.jpg" faculty-image="./test_image.png">
+    <h1 slot="faculty-name">Bradley R. Adams</h1>
+    <span slot="faculty-title">Professor and Department Chair</span>
+    <span slot="faculty-office">265 Crabtree</span>
+    <span slot="faculty-phone">801-422-6300</span>
+    <span slot="faculty-email">testingemail@byu.edu</span>
+    <p slot="faculty-biography">Bradley Adams joined BYU in 2015 after 30 years
+      in industry, including positions at GenRad, MIT Lincoln Laboratories, and
+      Reaction Engineering International. He has significant experience in
+      technical management and has performed R&D in the areas of heat transfer,
+      combustion, and air pollution control, with an emphasis on CFD simulation
+      of these processes. Current research interests include advanced power
+      generation systms (e.g., oxy-fuel combustion, chemical looping),
+      radiative heat transfer, and multi-physics simulations.</p>
+    <p slot="faculty-research">Bradley Adams joined BYU in 2015 after 30 years
+      in industry, including positions at GenRad, MIT Lincoln Laboratories, and
+      Reaction Engineering International. He has significant experience in
+      technical management and has performed R&D in the areas of heat transfer,
+      combustion, and air pollution control, with an emphasis on CFD simulation
+      of these processes. Current research interests include advanced power
+      generation systms (e.g., oxy-fuel combustion, chemical looping),
+      radiative heat transfer, and multi-physics simulations.</p>
+  </byu-faculty-profile>
 </body>
 </html>

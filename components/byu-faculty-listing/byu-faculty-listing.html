@@ -19,6 +19,54 @@
     ${require('./byu-faculty-listing.scss')}
 </style>
 
-<div class="root">
-  This is where the profiles will go.
+<div class="root listing-root">
+  <div class="image-wrapper">
+    <img class="faculty-image" id="hidden-image"/>
+  </div>
+  <table>
+    <tbody>
+      <tr>
+        <td id="column-left" class="column">
+            <div class="image-wrapper">
+              <img class="faculty-image" id="default-image"/>
+            </div>
+        </td>
+        <td id="column-middle" class="column">
+          <slot id="listing-name" name="listing-name"></slot>
+          <i><slot name="listing-title"></slot></i>
+
+          <div class="contact-wrapper">
+            <div class="office-slot-wrapper">
+              <b>Office: </b><slot name="listing-office"></slot>
+            </div>
+            <div class="phone-slot-wrapper">
+              <b>Phone: </b><slot name="listing-phone"></slot>
+            </div>
+            <div class="email-slot-wrapper">
+              <b>Email: </b><slot name="listing-email"></slot>
+            </div>
+          </div>
+
+          <div class="office-hours-slot-wrapper">
+            <b>Office Hours: </b><br>
+            <slot name="listing-office-hours"></slot>
+          </div>
+        </td>
+        <td id="column-right" class="column">
+          <div class="research-slot-wrapper">
+            <h3 class="section-header">Research:</h3>
+            <div>
+              <slot name="listing-research"></slot>
+            </div>
+          </div>
+          <div class="biography-slot-wrapper">
+            <h3 class="section-header">Biography:</h3>
+            <div>
+              <slot name="listing-biography"></slot>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

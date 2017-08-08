@@ -16,3 +16,129 @@
  */
 
 @import 'byu-faculty-profile-common';
+
+#background-image {
+  @include hide();
+}
+
+.background-image-wrapper {
+  @include backroundImage();
+}
+
+.card {
+  @include card();
+}
+
+.card > table {
+  @include cardTable();
+}
+
+.card-chevron-wrapper {
+  @include cardChevron();
+}
+
+.card-content {
+  @include cardContent();
+  @include hide();
+}
+
+.card-content ::slotted(*) {
+  @include cardContentSlotted();
+}
+
+.card-title-wrapper > h3 {
+  @include cardTitle();
+}
+
+.contact-wrapper {
+  @include contact();
+}
+
+.content-wrapper {
+  @include content();
+}
+
+.expanded > .card-content {
+  @include show();
+}
+
+.faculty-image {
+  @include facultyImage();
+}
+
+#hidden-image {
+  @include hide();
+}
+
+#left-column {
+  @include leftColumn();
+  @include columnPadding();
+}
+
+.profile-root {
+  @include rootBase();
+}
+
+.profile-root ::slotted(h1) {
+  @include rootBaseSlotted();
+}
+
+#right-column {
+  @include columnPadding();
+}
+
+.svg-md {
+  @include svgMedium();
+}
+
+.svg-md:hover {
+  @include svgMediumHover();
+}
+
+.svg-sm {
+  @include svgSmall();
+}
+
+@media only screen and (max-width: 767px) {
+  .card {
+    @include cardMedium();
+  }
+
+  .content-wrapper {
+    @include contentLong();
+  }
+}
+
+@media only screen and (max-width: 580px) {
+
+  .contact-wrapper {
+    @include contactAdjustedMargin();
+  }
+
+  .content-wrapper {
+    @include contentCenter();
+  }
+
+  #default-image {
+    @include hide();
+  }
+
+  #left-column {
+    @include hide();
+  }
+
+  #hidden-image {
+    @include hiddenImage();
+    @include show();
+  }
+
+  #right-column {
+    @include columnPaddingSmall();
+  }
+}
+
+@media only screen and (max-width: 321px) {
+  .card {
+    @include cardLong();
+  }
+}
