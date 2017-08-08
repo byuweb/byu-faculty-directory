@@ -1,0 +1,144 @@
+/*!
+ *  @license
+ *    Copyright 2017 Brigham Young University
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
+@import 'byu-faculty-profile-common';
+
+#background-image {
+  @include hide();
+}
+
+.background-image-wrapper {
+  @include backroundImage();
+}
+
+.card {
+  @include card();
+}
+
+.card > table {
+  @include cardTable();
+}
+
+.card-chevron-wrapper {
+  @include cardChevron();
+}
+
+.card-content {
+  @include cardContent();
+  @include hide();
+}
+
+.card-content ::slotted(*) {
+  @include cardContentSlotted();
+}
+
+.card-title-wrapper > h3 {
+  @include cardTitle();
+}
+
+.contact-wrapper {
+  @include contact();
+}
+
+.content-wrapper {
+  @include content();
+}
+
+.expanded > .card-content {
+  @include show();
+}
+
+.faculty-image {
+  @include facultyImage();
+}
+
+#hidden-image {
+  @include hide();
+}
+
+#left-column {
+  @include leftColumn();
+  @include columnPadding();
+}
+
+.profile-root {
+  @include rootBase();
+}
+
+.profile-root ::slotted(h1) {
+  @include rootBaseSlotted();
+}
+
+#right-column {
+  @include columnPadding();
+}
+
+.svg-md {
+  @include svgMedium();
+}
+
+.svg-md:hover {
+  @include svgMediumHover();
+}
+
+.svg-sm {
+  @include svgSmall();
+}
+
+@media only screen and (max-width: 767px) {
+  .card {
+    @include cardMedium();
+  }
+
+  .content-wrapper {
+    @include contentLong();
+  }
+}
+
+@media only screen and (max-width: 580px) {
+
+  .contact-wrapper {
+    @include contactAdjustedMargin();
+  }
+
+  .content-wrapper {
+    @include contentCenter();
+  }
+
+  #default-image {
+    @include hide();
+  }
+
+  #left-column {
+    @include hide();
+  }
+
+  #hidden-image {
+    @include hiddenImage();
+    @include show();
+  }
+
+  #right-column {
+    @include columnPaddingSmall();
+  }
+}
+
+@media only screen and (max-width: 321px) {
+  .card {
+    @include cardLong();
+  }
+}

@@ -1,4 +1,4 @@
-/*!
+/**
  *  @license
  *    Copyright 2017 Brigham Young University
  *
@@ -13,6 +13,8 @@
  *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
- */
+ **/
+"use strict";
 
-@import 'byu-faculty-directory/byu-faculty-directory-extras.scss';
+import './byu-faculty-listing/byu-faculty-listing.js';
+import './byu-faculty-profile/byu-faculty-profile.js';

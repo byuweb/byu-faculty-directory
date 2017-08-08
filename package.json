@@ -6,7 +6,7 @@
     "node": ">=6.10.0"
   },
   "description": "byu-faculty-directory",
-  "main": "byu-faculty-directory.js",
+  "main": "components/byu-faculty-directory-components.js",
   "scripts": {
     "build": "gulp build",
     "start": "gulp watch",
