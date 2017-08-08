@@ -220,7 +220,7 @@ function applyProfileImage(component) {
 }
 
 function setupButtonListeners(component) {
-  let buttons = component.shadowRoot.querySelectorAll('.chevron');
+  /*let buttons = component.shadowRoot.querySelectorAll('.chevron');
 
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function() {
@@ -240,6 +240,29 @@ function setupButtonListeners(component) {
         element.classList.remove("expanded");
       }
     });
+  }*/
+
+  let buttons = component.shadowRoot.querySelectorAll('.click-area');
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function cardClick() {
+      var element = this
+      element = element.children[0];
+      element = element.children[0];
+      element = element.children[1];
+      element = element.children[0];
+
+      if (element.src.includes('Chevron-Right')) {
+        element.src = "/components/byu-faculty-profile/Chevron-Down.svg";
+
+        this.parentNode.className += " expanded";
+      }
+
+      else {
+        element.src = "/components/byu-faculty-profile/Chevron-Right.svg";
+        this.parentNode.classList.remove("expanded");
+      }
+    });
   }
 
   // let callback = component.__buttonListener = function(event) {
@@ -254,6 +277,10 @@ function teardownButtonListeners(component) {
   // let button = component.shadowRoot.querySelector('.apiKey-button');
 
   // button.removeEventListener('click', component.__buttonListener, false);
+  let buttons = component.shadowRoot.querySelectorAll('.click-area');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].removeEventListener('click', cardClick);
+  }
 }
 
 function setupSlotListeners(component) {

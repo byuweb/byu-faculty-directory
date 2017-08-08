@@ -65,6 +65,10 @@
   margin: 5px 0px 5px 0px;
 }
 
+@mixin clickAreaHover() {
+  background-color: #EFEFEF;
+}
+
 @mixin columnPaddingNone() {
   padding: 0px;
 }
@@ -103,6 +107,10 @@
   line-height: 18px;
   text-align: center;
   width: 100%;
+}
+
+@mixin cursorPointer() {
+  cursor: pointer;
 }
 
 @mixin facultyImage() {
