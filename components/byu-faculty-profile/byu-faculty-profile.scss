@@ -50,6 +50,11 @@
   @include cardTitle();
 }
 
+.click-area:hover {
+  @include cursorPointer();
+  @include clickAreaHover();
+}
+
 .contact-wrapper {
   @include contact();
 }
@@ -92,7 +97,7 @@
 }
 
 .svg-md:hover {
-  @include svgMediumHover();
+  @include cursorPointer();
 }
 
 .svg-sm {
