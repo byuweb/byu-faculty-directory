@@ -21,12 +21,20 @@
   @include biography();
 }
 
-#column-left, #column-middle, #column-right {
-  @include columnBase();
+#column-left {
+  @include columnLeft();
 }
 
 #column-middle {
   @include columnMiddle();
+}
+
+#column-middle ::slotted(h2) {
+  @include slottedHeader();
+}
+
+#column-right {
+  @include columnRight();
 }
 
 .contact-wrapper {
@@ -61,48 +69,40 @@
   @include research();
 }
 
+.research-slot-wrapper > h3 {
+  @include slottedHeader();
+}
+
 .section-header {
   @include sectionHeader();
 }
 
-@media only screen and (max-width:1223px) {
-  .listing-root {
-    @include rootWidthLong();
-  }
-}
-
-@media only screen and (max-width:1023px) {
+@media only screen and (max-width: 1023px) {
   #column-right {
     @include hide();
   }
 
   #column-middle {
-    @include columnMiddleLong();
+    @include columnRight();
   }
 
   .listing-root {
-    @include rootWidthShort();
+    @include rootMedium();
   }
 
   .office-hours-slot-wrapper {
     @include addBorder();
   }
+
 }
 
-@media only screen and (max-width:767px) {
-  .listing-root {
-    @include rootWidthLong();
-    @include center();
-  }
-}
-
-@media only screen and (max-width:496px) {
-  .column {
-    @include centerColumn();
-  }
-
+@media only screen and (max-width: 671px) {
   #column-left {
     @include hide();
+  }
+  
+  #column-middle {
+    @include centerColumn();
   }
 
   #default-image {
@@ -114,6 +114,6 @@
   }
 
   .listing-root {
-    @include rootAdjustedHeight();
+    @include rootSmall();
   }
 }
