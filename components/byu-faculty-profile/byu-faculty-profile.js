@@ -249,6 +249,7 @@ function setupButtonListeners(component) {
       var element = this
       element = element.children[0];
       element = element.children[0];
+      element = element.children[0];
       element = element.children[1];
       element = element.children[0];
 

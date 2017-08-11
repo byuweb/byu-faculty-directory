@@ -29,28 +29,34 @@
   @include card();
 }
 
-.card:hover {
-  @include clickAreaHover();
-}
-
-.card > table {
-  @include cardTable();
-}
-
 .card-chevron-wrapper {
   @include cardChevron();
 }
 
 .card-content {
+  @include cardContent();
   @include hide();
+}
+
+.card-content ::slotted(*) {
+  @include noMargin();
 }
 
 .card-title-wrapper > h3 {
   @include cardTitle();
 }
 
+.click-area {
+  @include cardPadding;
+}
+
 .click-area:hover {
+  @include clickAreaHover();
   @include cursorPointer();
+}
+
+.click-area > table {
+  @include cardTable();
 }
 
 .contact-wrapper {
