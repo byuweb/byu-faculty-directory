@@ -29,10 +29,6 @@
   @include card();
 }
 
-.card > table {
-  @include cardTable();
-}
-
 .card-chevron-wrapper {
   @include cardChevron();
 }
@@ -43,16 +39,24 @@
 }
 
 .card-content ::slotted(*) {
-  @include cardContentSlotted();
+  @include noMargin();
 }
 
 .card-title-wrapper > h3 {
   @include cardTitle();
 }
 
+.click-area {
+  @include cardPadding;
+}
+
 .click-area:hover {
-  @include cursorPointer();
   @include clickAreaHover();
+  @include cursorPointer();
+}
+
+.click-area > table {
+  @include cardTable();
 }
 
 .contact-wrapper {
@@ -89,6 +93,7 @@
 }
 
 #right-column {
+  @include rightColumn();
   @include columnPadding();
 }
 
@@ -104,17 +109,20 @@
   @include svgSmall();
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 859px) {
   .card {
     @include cardMedium();
   }
 
   .content-wrapper {
-    @include contentLong();
+    @include contentMedium();
   }
 }
 
-@media only screen and (max-width: 580px) {
+@media only screen and (max-width: 491px) {
+  .card {
+    @include cardSmall();
+  }
 
   .contact-wrapper {
     @include contactAdjustedMargin();
@@ -135,15 +143,5 @@
   #hidden-image {
     @include hiddenImage();
     @include show();
-  }
-
-  #right-column {
-    @include columnPaddingSmall();
-  }
-}
-
-@media only screen and (max-width: 321px) {
-  .card {
-    @include cardLong();
   }
 }

@@ -43,6 +43,7 @@ class ByuFacultyListing extends HTMLElement {
     //This will stamp our template for us, then let us perform actions on the stamped DOM.
     util.applyTemplate(this, 'byu-faculty-listing', template, () => {
       applyProfileImage(this);
+      truncateText(this);
       //setupButtonListeners(this);
       //applyApiKey(this);
       //applyListing(this);
@@ -197,6 +198,25 @@ function applyProfileImage(component) {
 
   for (var i = 0; i < profileImages.length; i++) {
     profileImages[i].src = component.profileImage;
+  }
+}
+
+function truncateText(component) {
+  let slots = component.shadowRoot.querySelectorAll('.slot');
+
+  for(var i = 0; i < slots.length; i++) {
+    var slot = slots[i].children[0].assignedNodes()[0];
+
+    if (slots[i].parentNode.className == "research-slot-wrapper") {
+      while (slot.innerText.length > 180) {
+        slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '...');
+      }
+    }
+    else {
+      while (slot.innerText.length > 500) {
+        slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '...');
+      }
+    }
   }
 }
 
