@@ -46,6 +46,7 @@ class ByuFacultyProfile extends HTMLElement {
       applyBackgroundImage(this);
       applyProfileImage(this);
       setupButtonListeners(this);
+      showContent(this);
       //applyApiKey(this);
 
       //setupSlotListeners(this);
@@ -246,22 +247,24 @@ function setupButtonListeners(component) {
 
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function cardClick() {
-      var element = this
+      var element = this;
       element = element.children[0];
       element = element.children[0];
       element = element.children[0];
       element = element.children[1];
-      element = element.children[0];
 
-      if (element.src.includes('Chevron-Right')) {
-        element.src = "/components/byu-faculty-profile/Chevron-Down.svg";
+      if (!element.children[0].classList.contains('hide')) {
+        element.children[0].className += ' hide';
+        element.children[1].classList.remove('hide');
 
-        this.parentNode.className += " expanded";
+        this.parentNode.className += ' expanded';
       }
 
       else {
-        element.src = "/components/byu-faculty-profile/Chevron-Right.svg";
-        this.parentNode.classList.remove("expanded");
+        element.children[0].classList.remove('hide');
+        element.children[1].className += ' hide';
+
+        this.parentNode.classList.remove('expanded');
       }
     });
   }
@@ -291,4 +294,16 @@ function setupSlotListeners(component) {
   // slot.addEventListener('slotchange', () => {
   //   applyApiKey(component);
   // }, false);
+}
+
+function showContent(component) {
+  let slots = component.shadowRoot.querySelectorAll('.card-slot');
+  let cards = component.shadowRoot.querySelectorAll('.card');
+  for (var i = 0; i < slots.length; i++) {
+    var element = slots[i].parentNode.parentNode;
+
+    if (slots[i].assignedNodes().length > 0) {
+      element.classList.remove("hide");
+    }
+  }
 }
