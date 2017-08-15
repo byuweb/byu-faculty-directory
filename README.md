@@ -3,7 +3,7 @@
 This is a simple Web Component using the BYU Web Community web component
 tools.
 
-#Spec URL
+# Spec URL
 
 https://www.figma.com/file/FbyACEZ2W7UJKct4TZW1t8jL/New-Canvas-with-%232A-and-%233
 
