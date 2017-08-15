@@ -24,10 +24,13 @@
 
 @mixin card() {
   background-color: #FFFFFF;
-  font-family: "Gotham A", "Gotham B", Helvetica, sans-serif;
+  color: #515151;
+  font-family: "Gotham Book", Helvetica, sans-serif;
+  font-weight: 200;
   margin: 20px auto 0px auto;
   /*padding: 16px;*/
-  width: 824px;
+  width: 100%;
+  max-width: 824px;
 
   -moz-box-shadow: 8px 8px 16px 1px rgba(0, 0, 0, 0.2);
 	-webkit-box-shadow: 8px 8px 16px 1px rgba(0, 0, 0, 0.2);
@@ -39,7 +42,7 @@
 }
 
 @mixin cardContent() {
-  padding: 0px 16px 16px 16px;
+  padding: 8px 19px 16px 19px;
 }
 
 @mixin cardMedium() {
@@ -95,10 +98,11 @@
   align-content: center;
   color: #FFFFFF;
   font-family: "Gotham A", "Gotham B", Helvetica, sans-serif;;
-  font-weight: bold;
+  font-weight: 500;
   line-height: 24px;
   margin: auto;
-  width: 848px;
+  text-shadow: 4px 4px 8px #000000;
+  width: 824px;
 }
 
 @mixin contentMedium {
@@ -153,19 +157,13 @@
 }
 
 @mixin rootBaseSlotted() {
-  font-family: "Vitesse A","Vitesse B",Georgia,serif;
+  font-family: "Vitesse A", "Vitesse B",Georgia,serif;
   margin: 0px 0px 8px 0px;
+  font-weight: 500;
 }
 
 @mixin show() {
   display: block;
-}
-
-@mixin svgSmall() {
-  fill: #FFFFFF;
-  height: 16px;
-  vertical-align: middle;
-  width: 16px;
 }
 
 @mixin svgMedium() {
@@ -177,4 +175,16 @@
 
 @mixin svgMediumHover() {
   cursor: pointer;
+}
+
+@mixin svgShadow() {
+  -webkit-filter: drop-shadow(2px 2px 4px #000000);
+  filter: drop-shadow(2px 2px 4px #000000);
+}
+
+@mixin svgSmall() {
+  fill: #FFFFFF;
+  height: 16px;
+  vertical-align: middle;
+  width: 16px;
 }

@@ -89,18 +89,13 @@
   .listing-root {
     @include rootMedium();
   }
-
-  .office-hours-slot-wrapper {
-    @include addBorder();
-  }
-
 }
 
 @media only screen and (max-width: 671px) {
   #column-left {
     @include hide();
   }
-  
+
   #column-middle {
     @include centerColumn();
   }

@@ -251,17 +251,19 @@ function setupButtonListeners(component) {
       element = element.children[0];
       element = element.children[0];
       element = element.children[1];
-      element = element.children[0];
 
-      if (element.src.includes('Chevron-Right')) {
-        element.src = "/components/byu-faculty-profile/Chevron-Down.svg";
+      if (!element.children[0].classList.contains('hide')) {
+        element.children[0].className += ' hide';
+        element.children[1].classList.remove('hide');
 
-        this.parentNode.className += " expanded";
+        this.parentNode.className += ' expanded';
       }
 
       else {
-        element.src = "/components/byu-faculty-profile/Chevron-Right.svg";
-        this.parentNode.classList.remove("expanded");
+        element.children[0].classList.remove('hide');
+        element.children[1].className += ' hide';
+
+        this.parentNode.classList.remove('expanded');
       }
     });
   }

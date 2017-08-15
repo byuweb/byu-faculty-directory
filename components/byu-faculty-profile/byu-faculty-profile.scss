@@ -79,6 +79,10 @@
   @include hide();
 }
 
+.hide {
+  @include hide();
+}
+
 #left-column {
   @include leftColumn();
   @include columnPadding();
@@ -103,6 +107,10 @@
 
 .svg-md:hover {
   @include cursorPointer();
+}
+
+.svg-shadow {
+  @include svgShadow();
 }
 
 .svg-sm {
