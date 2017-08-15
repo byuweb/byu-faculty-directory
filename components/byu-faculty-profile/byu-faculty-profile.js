@@ -46,6 +46,7 @@ class ByuFacultyProfile extends HTMLElement {
       applyBackgroundImage(this);
       applyProfileImage(this);
       setupButtonListeners(this);
+      showContent(this);
       //applyApiKey(this);
 
       //setupSlotListeners(this);
@@ -246,7 +247,7 @@ function setupButtonListeners(component) {
 
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function cardClick() {
-      var element = this
+      var element = this;
       element = element.children[0];
       element = element.children[0];
       element = element.children[0];
@@ -293,4 +294,16 @@ function setupSlotListeners(component) {
   // slot.addEventListener('slotchange', () => {
   //   applyApiKey(component);
   // }, false);
+}
+
+function showContent(component) {
+  let slots = component.shadowRoot.querySelectorAll('.card-slot');
+  let cards = component.shadowRoot.querySelectorAll('.card');
+  for (var i = 0; i < slots.length; i++) {
+    var element = slots[i].parentNode.parentNode;
+
+    if (slots[i].assignedNodes().length > 0) {
+      element.classList.remove("hide");
+    }
+  }
 }

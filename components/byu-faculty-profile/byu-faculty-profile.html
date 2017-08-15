@@ -52,7 +52,7 @@
     </div>
   </div>
   <div class="additional-info-wrapper">
-    <div class="card biography-card">
+    <div class="card biography-card expanded hide">
       <div class="click-area">
         <table>
           <tbody>
@@ -61,18 +61,18 @@
                 <h3>Biography</h3>
               </td>
               <td class="card-chevron-wrapper">
-                <img class="chevron svg-md" src="./Chevron-Right.svg">
-                <img class="chevron svg-md hide" src="./Chevron-Down.svg">
+                <img class="chevron svg-md hide" src="./Chevron-Right.svg">
+                <img class="chevron svg-md" src="./Chevron-Down.svg">
               </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="card-content">
-        <slot name="faculty-biography">No Information</slot>
+        <slot class="card-slot" name="faculty-biography">No Information</slot>
       </div>
     </div>
-    <div class="card research-card">
+    <div class="card research-card hide">
       <div class="click-area">
         <table>
           <tbody>
@@ -88,11 +88,11 @@
           </tbody>
         </table>
       </div>
-      <div class="card-content">
-        <slot name="faculty-research">No Information</slot>
+      <div class="card-content hide">
+        <slot class="card-slot" name="faculty-research">No Information</slot>
       </div>
     </div>
-    <div class="card committees-card">
+    <div class="card committees-card hide">
       <div class="click-area">
         <table>
           <tbody>
@@ -109,10 +109,10 @@
         </table>
       </div>
       <div class="card-content">
-        <slot name="faculty-committees">No Information</slot>
+        <slot class="card-slot" name="faculty-committees">No Information</slot>
       </div>
     </div>
-    <div class="card papers-card">
+    <div class="card papers-card hide">
       <div class="click-area">
         <table>
           <tbody>
@@ -129,10 +129,10 @@
         </table>
       </div>
       <div class="card-content">
-        <slot name="faculty-papers">No Information</slot>
+        <slot class="card-slot" name="faculty-papers">No Information</slot>
       </div>
     </div>
-    <div class="card awards-card">
+    <div class="card awards-card hide">
       <div class="click-area">
         <table>
           <tbody>
@@ -149,10 +149,10 @@
         </table>
       </div>
       <div class="card-content">
-        <slot name="faculty-awards">No Information</slot>
+        <slot class="card-slot" name="faculty-awards">No Information</slot>
       </div>
     </div>
-    <div class="card courses-card">
+    <div class="card courses-card hide">
       <div class="click-area">
         <table>
           <tbody>
@@ -169,10 +169,10 @@
         </table>
       </div>
       <div class="card-content">
-        <slot name="faculty-courses">No Information</slot>
+        <slot class="card-slot" name="faculty-courses">No Information</slot>
       </div>
     </div>
-    <div class="card office-hours-card">
+    <div class="card office-hours-card hide">
       <div class="click-area">
         <table>
           <tbody>
@@ -189,10 +189,10 @@
         </table>
       </div>
       <div class="card-content">
-        <slot name="faculty-office-hours">No Information</slot>
+        <slot class="card-slot" name="faculty-office-hours">No Information</slot>
       </div>
     </div>
-    <div class="card links-card">
+    <div class="card links-card hide">
       <div class="click-area">
         <table>
           <tbody>
@@ -209,7 +209,7 @@
         </table>
       </div>
       <div class="card-content">
-        <slot name="faculty-links">No Information</slot>
+        <slot class="card-slot" name="faculty-links">No Information</slot>
       </div>
     </div>
   </div>
