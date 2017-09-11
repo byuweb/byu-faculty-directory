@@ -61,6 +61,10 @@
   @include rootSlottedP();
 }
 
+.profile-link {
+  @include noUnderline();
+}
+
 .research-slot-wrapper, .biography-slot-wrapper {
   @include overflowBase();
 }

@@ -63,10 +63,15 @@
   height: 270px;
   vertical-align: middle;
   width: auto;
+  padding: 4px 0px 4px 0px;
 }
 
 @mixin hide() {
   display: none;
+}
+
+@mixin noUnderline {
+  text-decoration: none;
 }
 
 @mixin overflowBase() {
@@ -78,7 +83,7 @@
 }
 
 @mixin slottedHeader() {
-  margin-top: 4px;
+  margin-top: 0px;
 }
 
 @mixin rootAdjustedHeight() {
@@ -106,7 +111,7 @@
 @mixin rootSlottedH2() {
   color: #002E5D;
   font-family: "Vitesse A","Vitesse B",Georgia,serif;
-  margin: 10px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
 }
 
 @mixin rootSlottedP() {

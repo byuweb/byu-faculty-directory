@@ -18,3 +18,4 @@
 
 import './byu-faculty-listing/byu-faculty-listing.js';
 import './byu-faculty-profile/byu-faculty-profile.js';
+import './byu-faculty-directory/byu-faculty-directory.js';
