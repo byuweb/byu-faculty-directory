@@ -92,6 +92,10 @@
   @include rootBaseSlotted();
 }
 
+.profile-root ::slotted(div) {
+  @include rootBaseSlottedDiv();
+}
+
 #right-column {
   @include rightColumn();
   @include columnPadding();

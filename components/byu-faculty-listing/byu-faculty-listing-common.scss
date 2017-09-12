@@ -20,7 +20,8 @@
 }
 
 @mixin biography() {
-  height: 190px;
+  height: 194px;
+  line-height: 20px;
 }
 
 @mixin center() {
@@ -79,11 +80,21 @@
 }
 
 @mixin research() {
-  height: 84px;
+  line-height: 20px;
+  height: 64px;
 }
 
 @mixin slottedHeader() {
   margin-top: 0px;
+}
+
+@mixin slottedHeaderDiv() {
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #002e5d;
+  font-family: "Vitesse A", "Vitesse B", Georgia, serif;
+  margin: 0;
 }
 
 @mixin rootAdjustedHeight() {

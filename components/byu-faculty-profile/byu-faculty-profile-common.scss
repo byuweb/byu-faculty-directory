@@ -159,6 +159,14 @@
   font-weight: 500;
 }
 
+@mixin rootBaseSlottedDiv() {
+  font-family: "Vitesse A", "Vitesse B", Georgia,serif;
+  margin: 0px 0px 8px 0px;
+  font-weight: 500;
+  display: block;
+  font-size: 2em;
+}
+
 @mixin show() {
   display: block;
 }

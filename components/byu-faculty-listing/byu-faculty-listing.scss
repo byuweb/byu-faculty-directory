@@ -33,6 +33,10 @@
   @include slottedHeader();
 }
 
+#column-middle ::slotted(div) {
+  @include slottedHeaderDiv();
+}
+
 #column-right {
   @include columnRight();
 }
