@@ -95,6 +95,17 @@
   margin: 16px;
 }
 
+@mixin customHeaderSlotted() {
+  color: #002e5d;
+  margin: 0;
+}
+
+@mixin customHeaderSlottedDiv() {
+  color: #002e5d;
+  margin: 0;
+  font-size: 1.17em;
+}
+
 @mixin content() {
   align-content: center;
   color: #FFFFFF;

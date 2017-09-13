@@ -169,6 +169,14 @@ function applyFacultyData(component) {
               element.querySelector('.listing-email').innerHTML = entries[i].getElementsByTagName("EMAIL")[0].childNodes[0].nodeValue;
             }
           }
+
+          if (entries[i].getElementsByTagName("RESEARCH_INTERESTS").length > 0)
+          {
+            if (entries[i].getElementsByTagName("RESEARCH_INTERESTS")[0].childNodes.length > 0)
+            {
+              element.querySelector('.listing-research').innerHTML = entries[i].getElementsByTagName("RESEARCH_INTERESTS")[0].childNodes[0].nodeValue;
+            }
+          }
           output.appendChild(element);
         }
       }

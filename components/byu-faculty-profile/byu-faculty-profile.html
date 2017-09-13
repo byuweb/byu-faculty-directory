@@ -232,5 +232,25 @@
         <slot class="card-slot" name="faculty-links">No Information</slot>
       </div>
     </div>
+    <div class="card custom-card hide">
+      <div class="click-area">
+        <table>
+          <tbody>
+            <tr>
+              <td class="card-title-wrapper">
+                <slot class="card-slot" name="faculty-custom-header"></slot>
+              </td>
+              <td class="card-chevron-wrapper">
+                <img class="chevron svg-md" src="./Chevron-Right.svg">
+                <img class="chevron svg-md hide" src="./Chevron-Down.svg">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-content">
+        <slot class="card-slot" name="faculty-custom-body">No Information</slot>
+      </div>
+    </div>
   </div>
 </div>

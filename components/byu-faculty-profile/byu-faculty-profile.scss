@@ -38,6 +38,14 @@
   @include hide();
 }
 
+.card-title-wrapper ::slotted(h3) {
+  @include customHeaderSlotted();
+}
+
+.card-title-wrapper ::slotted(div) {
+  @include customHeaderSlottedDiv();
+}
+
 .card-content ::slotted(*) {
   @include noMargin();
 }
