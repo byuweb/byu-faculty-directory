@@ -100,7 +100,7 @@
   @include rootBaseSlotted();
 }
 
-.contact-wrapper ::slotted(div) {
+.content-wrapper ::slotted(div) {
   @include rootBaseSlottedDiv();
 }
 
