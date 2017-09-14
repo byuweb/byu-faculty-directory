@@ -96,11 +96,11 @@
   @include columnPadding();
 }
 
-.profile-root ::slotted(h1) {
+.content-wrapper ::slotted(h1) {
   @include rootBaseSlotted();
 }
 
-.profile-root ::slotted(div) {
+.contact-wrapper ::slotted(div) {
   @include rootBaseSlottedDiv();
 }
 
