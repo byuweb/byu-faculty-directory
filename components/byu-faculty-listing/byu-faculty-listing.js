@@ -45,6 +45,7 @@ class ByuFacultyListing extends HTMLElement {
       applyProfileLinks(this);
       truncateText(this);
       setupSlotListeners(this);
+      clearEmptyFields(this);
     });
   }
 
@@ -214,24 +215,58 @@ function truncateText(component) {
   let slots = component.shadowRoot.querySelectorAll('.slot');
 
   for(var i = 0; i < slots.length; i++) {
-    var slot = slots[i].children[0].assignedNodes()[0];
+    if (slots[i].children[0].assignedNodes().length > 0) {
+      var slot = slots[i].children[0].assignedNodes()[0];
 
-    if (slots[i].parentNode.className == "research-slot-wrapper") {
-      if (slot.innerText.length > 140) {
-        while (slot.innerText.length > 140) {
-          slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '... ');
+      if (slots[i].parentNode.className == "research-slot-wrapper") {
+        if (slot.innerText.length > 140) {
+          while (slot.innerText.length > 140) {
+            slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '... ');
+          }
         }
       }
-    }
-    else {
-      if (slot.innerText.length > 500) {
-        while (slot.innerText.length > 500) {
-          slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '... ');
+      else {
+        if (slot.innerText.length > 500) {
+          while (slot.innerText.length > 500) {
+            slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '... ');
+          }
+          slot.innerHTML = slot.innerHTML + "<a style='color: #008080' href='" + component.profileLink + "'>Read More</a>";
         }
-        slot.innerHTML = slot.innerHTML + "<a style='color: #008080' href='" + component.profileLink + "'>Read More</a>";
       }
     }
   }
+}
+
+function clearEmptyFields(component) {
+  let office_hours = component.shadowRoot.querySelectorAll('.office-hours-slot-wrapper');
+
+  for (var i = 0; i < office_hours.length; i++) {
+      var element = office_hours[i];
+      element = element.children[2];
+
+      if (element.assignedNodes().length == 0) {
+        office_hours[i].classList.add("hide");
+      }
+    }
+
+    let research = component.shadowRoot.querySelectorAll('.research-slot-wrapper');
+    let biography = component.shadowRoot.querySelectorAll('.biography-slot-wrapper');
+    for (var i = 0; i < research.length; i++) {
+      var element = research[i];
+      element = element.children[1].children[0];
+
+      if (element.assignedNodes().length == 0) {
+        research[i].classList.add("hide");
+        biography[i].children[0].classList.remove("section-header");
+        biography[i].children[0].classList.add("adjusted-header");
+      }
+
+      element = biography[i];
+      element = element.children[1].children[0];
+      if (element.assignedNodes().length == 0) {
+        biography[i].classList.add("hide");
+      }
+    }
 }
 
 function setupButtonListeners(component) {

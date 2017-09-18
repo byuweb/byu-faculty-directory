@@ -63,7 +63,7 @@
 @mixin facultyImage() {
   height: 270px;
   vertical-align: middle;
-  width: auto;
+  width: 186px;
   padding: 4px 0px 4px 0px;
 }
 
@@ -73,6 +73,11 @@
 
 @mixin noUnderline {
   text-decoration: none;
+}
+
+@mixin adjustedHeader {
+  color: #002e5d;
+  margin: 0;
 }
 
 @mixin overflowBase() {

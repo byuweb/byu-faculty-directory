@@ -53,6 +53,10 @@
   @include hide();
 }
 
+.hide {
+  @include hide();
+}
+
 .listing-root {
   @include rootBase();
 }
@@ -63,6 +67,10 @@
 
 .listing-root ::slotted(p) {
   @include rootSlottedP();
+}
+
+.adjusted-header {
+  @include adjustedHeader();
 }
 
 .profile-link {
