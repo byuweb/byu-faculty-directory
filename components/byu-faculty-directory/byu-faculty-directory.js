@@ -18,7 +18,6 @@
 
 import template from './byu-faculty-directory.html';
 import * as util from 'byu-web-component-utils';
-import 'whatwg-fetch';
 
 const ATTR_API_KEY = 'api-key';
 const ATTR_DEPARTMENT = 'department';
