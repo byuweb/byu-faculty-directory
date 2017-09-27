@@ -90,7 +90,7 @@
 }
 
 @mixin slottedHeader() {
-  margin-top: 0px;
+  margin-top: 6px;
 }
 
 @mixin slottedHeaderDiv() {
@@ -120,6 +120,7 @@
 	-webkit-box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
 	box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
 }
+
 @mixin rootMedium() {
   width: 672px;
 }

@@ -130,12 +130,12 @@ function applyFacultyData(component) {
     }
 
     else {
-      for (let i = 0; i < 10; i++) {//entries; i++) {
+      for (let i = 0; i < entries.length; i++) {//entries; i++) {
         if (entries[i].getElementsByTagName("EMP_STATUS")[0].childNodes[0].nodeValue == 'Active') {
           let element = document.importNode(template.content, true);
           let root = element.querySelector('.directory-child');
           element.querySelector('.listing-name').innerHTML = entries[i].getElementsByTagName("FNAME")[0].childNodes[0].nodeValue + " " + entries[i].getElementsByTagName("LNAME")[0].childNodes[0].nodeValue;
-
+          let net_id = entries[i].getAttribute("username");
 
           if (entries[i].getElementsByTagName("BIO").length > 0)
           {
@@ -176,6 +176,17 @@ function applyFacultyData(component) {
               element.querySelector('.listing-research').innerHTML = entries[i].getElementsByTagName("RESEARCH_INTERESTS")[0].childNodes[0].nodeValue;
             }
           }
+
+          /*var options = {
+            method: 'POST',
+            headers:
+          }
+          fetch("https://api.byu.edu:443/token", {method: 'get'}).then(response => {
+            if (response.ok) {
+              return response.text()
+            }
+            throw new Error('Network response was not OK.')
+          }).then(*/
           output.appendChild(element);
         }
       }

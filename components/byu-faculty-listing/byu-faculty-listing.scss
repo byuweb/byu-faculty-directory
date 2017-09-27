@@ -29,12 +29,10 @@
   @include columnMiddle();
 }
 
-#column-middle ::slotted(h2) {
-  @include slottedHeader();
-}
-
-#column-middle ::slotted(div) {
-  @include slottedHeaderDiv();
+#column-middle {
+  ::slotted(h2) {
+    @include slottedHeader();
+  }
 }
 
 #column-right {
@@ -61,11 +59,31 @@
   @include rootBase();
 }
 
-.listing-root ::slotted(h2) {
+.listing-root {
+  ::slotted(h2) {
+    @include rootSlottedH2();
+  }
+}
+
+#column-middle > a ::slotted(div) {
+  @include slottedHeaderDiv();
+}
+
+#column-middle > a ::slotted(h2) {
   @include rootSlottedH2();
 }
 
-.listing-root ::slotted(p) {
+.listing-root {
+  ::slotted(p) {
+    @include rootSlottedP();
+  }
+}
+
+.contact-wrapper > div ::slotted(p) {
+  @include rootSlottedP();
+}
+
+.slot > ::slotted(p) {
   @include rootSlottedP();
 }
 
