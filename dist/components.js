@@ -231,7 +231,6 @@ module.exports = function() {
 
 
 
-const ATTR_API_KEY = 'api-key';
 const ATTR_PROFILE_IMAGE = "faculty-image";
 const ATTR_NAME = 'faculty-name';
 const ATTR_TITLE = 'faculty-title';
@@ -241,8 +240,8 @@ const ATTR_EMAIL = 'faculty-email';
 const ATTR_OFFICE_HOURS = 'faculty-office-hours';
 const ATTR_RESEARCH = 'faculty-research';
 const ATTR_BIOGRAPHY = 'faculty-biography';
+const ATTR_PROFILE_LINK = 'faculty-profile-link';
 
-const DEFAULT_apiKey = 1;
 const DEFAULT_INFORMATION = "Unknown";
 
 class ByuFacultyListing extends HTMLElement {
@@ -255,12 +254,10 @@ class ByuFacultyListing extends HTMLElement {
     //This will stamp our template for us, then let us perform actions on the stamped DOM.
     __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__["a" /* applyTemplate */](this, 'byu-faculty-listing', __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html___default.a, () => {
       applyProfileImage(this);
+      applyProfileLinks(this);
       truncateText(this);
-      //setupButtonListeners(this);
-      //applyApiKey(this);
-      //applyListing(this);
-
       setupSlotListeners(this);
+      clearEmptyFields(this);
     });
   }
 
@@ -269,7 +266,7 @@ class ByuFacultyListing extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [ATTR_PROFILE_IMAGE, ATTR_API_KEY, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY];
+    return [ATTR_PROFILE_IMAGE, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY, ATTR_PROFILE_LINK];
   }
 
   attributeChangedCallback(attr, oldValue, newValue) {
@@ -281,24 +278,18 @@ class ByuFacultyListing extends HTMLElement {
       case ATTR_EMAIL:
       case ATTR_OFFICE_HOURS:
       case ATTR_RESEARCH:
+        truncateText(this);
+        break;
       case ATTR_BIOGRAPHY:
-      case ATTR_API_KEY:
+        truncateText(this);
+        break;
+      case ATTR_PROFILE_LINK:
+        applyProfileLinks(this);
+        break;
       case ATTR_PROFILE_IMAGE:
         applyProfileImage(this);
-        //applyApiKey(this);
         break;
     }
-  }
-
-  set apiKey(value) {
-    this.setAttribute(ATTR_API_KEY, value);
-  }
-
-  get apiKey() {
-    if (this.hasAttribute(ATTR_API_KEY)) {
-      return this.getAttribute(ATTR_API_KEY);
-    }
-    return DEFAULT_apiKey;
   }
 
   set name(value) {
@@ -399,6 +390,17 @@ class ByuFacultyListing extends HTMLElement {
     }
     return '';
   }
+
+  set profileLink(value) {
+    this.setAttribute(ATTR_PROFILE_LINK, value);
+  }
+
+  get profileLink() {
+    if (this.hasAttribute(ATTR_PROFILE_LINK)) {
+      return this.getAttribute(ATTR_PROFILE_LINK);
+    }
+    return '';
+  }
 }
 
 window.customElements.define('byu-faculty-listing', ByuFacultyListing);
@@ -410,6 +412,14 @@ function applyProfileImage(component) {
 
   for (var i = 0; i < profileImages.length; i++) {
     profileImages[i].src = component.profileImage;
+    //profileImages[i].parentNode.setAttribute('href', component.profileLink);
+  }
+}
+
+function applyProfileLinks(component) {
+  let profileLinks = component.shadowRoot.querySelectorAll('.profile-link');
+  for (var i = 0; i < profileLinks.length; i++) {
+    profileLinks[i].setAttribute('href', component.profileLink);
   }
 }
 
@@ -417,19 +427,58 @@ function truncateText(component) {
   let slots = component.shadowRoot.querySelectorAll('.slot');
 
   for(var i = 0; i < slots.length; i++) {
-    var slot = slots[i].children[0].assignedNodes()[0];
+    if (slots[i].children[0].assignedNodes().length > 0) {
+      var slot = slots[i].children[0].assignedNodes()[0];
 
-    if (slots[i].parentNode.className == "research-slot-wrapper") {
-      while (slot.innerText.length > 180) {
-        slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '...');
+      if (slots[i].parentNode.className == "research-slot-wrapper") {
+        if (slot.innerText.length > 140) {
+          while (slot.innerText.length > 140) {
+            slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '... ');
+          }
+        }
       }
-    }
-    else {
-      while (slot.innerText.length > 500) {
-        slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '...');
+      else {
+        if (slot.innerText.length > 500) {
+          while (slot.innerText.length > 500) {
+            slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '... ');
+          }
+          slot.innerHTML = slot.innerHTML + "<a style='color: #008080' href='" + component.profileLink + "'>Read More</a>";
+        }
       }
     }
   }
+}
+
+function clearEmptyFields(component) {
+  let office_hours = component.shadowRoot.querySelectorAll('.office-hours-slot-wrapper');
+
+  for (var i = 0; i < office_hours.length; i++) {
+      var element = office_hours[i];
+      element = element.children[2];
+
+      if (element.assignedNodes().length == 0) {
+        office_hours[i].classList.add("hide");
+      }
+    }
+
+    let research = component.shadowRoot.querySelectorAll('.research-slot-wrapper');
+    let biography = component.shadowRoot.querySelectorAll('.biography-slot-wrapper');
+    for (var i = 0; i < research.length; i++) {
+      var element = research[i];
+      element = element.children[1].children[0];
+
+      if (element.assignedNodes().length == 0) {
+        research[i].classList.add("hide");
+        biography[i].children[0].classList.remove("section-header");
+        biography[i].children[0].classList.add("adjusted-header");
+      }
+
+      element = biography[i];
+      element = element.children[1].children[0];
+      if (element.assignedNodes().length == 0) {
+        biography[i].classList.add("hide");
+      }
+    }
 }
 
 function setupButtonListeners(component) {
@@ -988,7 +1037,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */\n/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */.biography-slot-wrapper{height:190px}#column-left{padding:16px 8px 16px 16px}#column-middle{padding:16px 8px;width:232px;vertical-align:top}#column-middle ::slotted(h2){margin-top:4px}#column-right{padding:16px 16px 16px 8px;vertical-align:top}.contact-wrapper{margin:32px 0 16px}.faculty-image{height:270px;vertical-align:middle;width:auto}#hidden-image{display:none}.listing-root{background-color:#fff;color:#515151;font-family:Gotham Book,Helvetica,sans-serif;font-weight:200;margin:0 auto 20px;min-width:250px;width:1024px;vertical-align:top;-moz-box-shadow:5px 5px 10px 1px rgba(0,0,0,.2);-webkit-box-shadow:5px 5px 10px 1px rgba(0,0,0,.2);box-shadow:5px 5px 10px 1px rgba(0,0,0,.2)}.listing-root ::slotted(h2){color:#002e5d;font-family:Vitesse A,Vitesse B,Georgia,serif;margin:10px 0 0}.listing-root ::slotted(p){margin:0}.biography-slot-wrapper,.research-slot-wrapper{overflow:hidden}.research-slot-wrapper{height:84px}.research-slot-wrapper>h3{margin-top:4px}.section-header{color:#002e5d;margin:15px 0 0}@media only screen and (max-width:1023px){#column-right{display:none}#column-middle{padding:16px 16px 16px 8px;vertical-align:top}.listing-root{width:672px}}@media only screen and (max-width:671px){#column-left{display:none}#column-middle{text-align:center;margin:auto;padding:16px;width:288px}#default-image{display:none}#hidden-image{display:block;height:150px;margin:0 auto;padding-top:15px;width:auto}.listing-root{width:320px}}", ""]);
+exports.push([module.i, "/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */\n/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */.biography-slot-wrapper{height:194px;line-height:20px}#column-left{padding:16px 8px 16px 16px}#column-middle{padding:16px 8px;width:232px;vertical-align:top}#column-middle ::slotted(h2){margin-top:6px}#column-right{padding:16px 16px 16px 8px;vertical-align:top}.contact-wrapper{margin:32px 0 16px}.faculty-image{height:270px;vertical-align:middle;width:186px;padding:4px 0}#hidden-image,.hide{display:none}.listing-root{background-color:#fff;color:#515151;font-family:Gotham Book,Helvetica,sans-serif;font-weight:200;margin:24px auto;min-width:250px;width:1024px;vertical-align:top;-moz-box-shadow:5px 5px 10px 1px rgba(0,0,0,.2);-webkit-box-shadow:5px 5px 10px 1px rgba(0,0,0,.2);box-shadow:5px 5px 10px 1px rgba(0,0,0,.2)}#column-middle>a ::slotted(div),.listing-root ::slotted(h2){color:#002e5d;font-family:Vitesse A,Vitesse B,Georgia,serif;margin:0}#column-middle>a ::slotted(div){display:block;font-size:1.5em;font-weight:700}#column-middle>a ::slotted(h2){color:#002e5d;font-family:Vitesse A,Vitesse B,Georgia,serif;margin:0}.contact-wrapper>div ::slotted(p),.listing-root ::slotted(p),.slot>::slotted(p){margin:0}.adjusted-header{color:#002e5d;margin:0}.profile-link{text-decoration:none}.biography-slot-wrapper,.research-slot-wrapper{overflow:hidden}.research-slot-wrapper{line-height:20px;height:64px}.research-slot-wrapper>h3{margin-top:6px}.section-header{color:#002e5d;margin:15px 0 0}@media only screen and (max-width:1023px){#column-right{display:none}#column-middle{padding:16px 16px 16px 8px;vertical-align:top}.listing-root{width:672px}}@media only screen and (max-width:671px){#column-left{display:none}#column-middle{text-align:center;margin:auto;padding:16px;width:288px}#default-image{display:none}#hidden-image{display:block;height:150px;margin:0 auto;padding-top:15px;width:auto}.listing-root{width:320px}}", ""]);
 
 // exports
 
@@ -1002,7 +1051,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */\n/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */#background-image{display:none}.background-image-wrapper{background-position:50%;background-size:cover;height:300px;width:100%}.card{background-color:#fff;color:#515151;font-family:Gotham,Helvetica,sans-serif;font-weight:200;line-height:20px;margin:20px auto 0;width:100%;max-width:824px;-moz-box-shadow:8px 8px 16px 1px rgba(0,0,0,.2);-webkit-box-shadow:8px 8px 16px 1px rgba(0,0,0,.2);box-shadow:8px 8px 16px 1px rgba(0,0,0,.2)}.card-chevron-wrapper{text-align:right}.card-content{padding:8px 20px 16px;display:none}.card-content ::slotted(*){margin:0}.card-title-wrapper>h3{color:#002e5d;margin:0}.click-area{padding:16px}.click-area:hover{background-color:#c5c5c5;cursor:pointer}.click-area>table{width:100%}.contact-wrapper{margin:32px 0 0}.content-wrapper{align-content:center;color:#fff;font-family:Gotham A,Gotham B,Helvetica,sans-serif;font-weight:500;line-height:24px;margin:auto;text-shadow:4px 4px 8px #000;width:824px}.expanded>.card-content{display:block}.faculty-image{height:250px;margin:8px 0 0;width:auto}#hidden-image,.hide{display:none}#left-column{width:170px;padding:16px 16px 16px 0}.profile-root{height:600px}.profile-root ::slotted(h1){font-family:Vitesse A,Vitesse B,Georgia,serif;margin:0 0 8px;font-weight:500}#right-column{vertical-align:middle;padding:16px 16px 16px 0}.svg-md{fill:#c1c1c1;height:24px;vertical-align:middle;width:24px}.svg-md:hover{cursor:pointer}.svg-shadow{-webkit-filter:drop-shadow(2px 2px 4px #000);filter:drop-shadow(2px 2px 4px #000000)}.svg-sm{fill:#fff;height:16px;vertical-align:middle;width:16px}@media only screen and (max-width:859px){.card,.content-wrapper{width:456px}}@media only screen and (max-width:491px){.card{width:290px}.contact-wrapper{margin:16px}.content-wrapper{line-height:18px;text-align:center;width:100%}#default-image,#left-column{display:none}#hidden-image{height:140px;margin:auto;padding:16px 0 8px;width:auto;display:block}}", ""]);
+exports.push([module.i, "/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */\n/*!\n *  @license\n *    Copyright 2017 Brigham Young University\n *\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\n *    you may not use this file except in compliance with the License.\n *    You may obtain a copy of the License at\n *\n *        http://www.apache.org/licenses/LICENSE-2.0\n *\n *    Unless required by applicable law or agreed to in writing, software\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n *    See the License for the specific language governing permissions and\n *    limitations under the License.\n */#background-image{display:none}.background-image-wrapper{background-position:50%;background-size:cover;height:300px;width:100%}.card{background-color:#fff;color:#515151;font-family:Gotham,Helvetica,sans-serif;font-weight:200;line-height:20px;margin:20px auto;width:100%;max-width:824px;-moz-box-shadow:8px 8px 16px 1px rgba(0,0,0,.2);-webkit-box-shadow:8px 8px 16px 1px rgba(0,0,0,.2);box-shadow:8px 8px 16px 1px rgba(0,0,0,.2)}.card-chevron-wrapper{text-align:right}.card-content{padding:8px 20px 16px;display:none}.card-title-wrapper ::slotted(h3){color:#002e5d;margin:0}.card-title-wrapper ::slotted(div){color:#002e5d;margin:0;font-size:1.17em;font-family:Gotham,Helvetica,sans-serif;font-weight:600;line-height:20px}.card-content ::slotted(*){margin:0}.card-title-wrapper>h3{color:#002e5d;margin:0}.click-area{padding:16px}.click-area:hover{background-color:#c5c5c5;cursor:pointer}.click-area>table{width:100%}.contact-wrapper{margin:32px 0 0}.content-wrapper{align-content:center;color:#fff;font-family:Gotham A,Gotham B,Helvetica,sans-serif;font-weight:500;line-height:24px;margin:auto;text-shadow:4px 4px 8px #000;width:824px}.expanded>.card-content{display:block}.faculty-image{height:250px;margin:8px 0 0;width:auto}#hidden-image,.hide{display:none}#left-column{width:170px;padding:16px 16px 16px 0}.content-wrapper ::slotted(div),.content-wrapper ::slotted(h1){font-family:Vitesse A,Vitesse B,Georgia,serif;margin:0 0 8px;font-weight:500}.content-wrapper ::slotted(div){display:block;font-size:2em}#right-column{vertical-align:middle;padding:16px 16px 16px 0}.svg-md{fill:#c1c1c1;height:24px;vertical-align:middle;width:24px}.svg-md:hover{cursor:pointer}.svg-shadow{-webkit-filter:drop-shadow(2px 2px 4px #000);filter:drop-shadow(2px 2px 4px #000000)}.svg-sm{fill:#fff;height:16px;vertical-align:middle;width:16px}@media only screen and (max-width:859px){.card,.content-wrapper{width:456px}}@media only screen and (max-width:491px){.card{width:290px}.contact-wrapper{margin:16px}.content-wrapper{line-height:18px;text-align:center;width:100%}#default-image,#left-column{display:none}#hidden-image{height:140px;margin:auto;padding:16px 0 8px;width:auto;display:block}}", ""]);
 
 // exports
 
@@ -1076,13 +1125,13 @@ module.exports = sum;
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<style>" + __webpack_require__(11) + "</style> <div class=\"root listing-root\"> <div class=\"image-wrapper\"> <img class=\"faculty-image\" id=\"hidden-image\"> </div> <table> <tbody> <tr> <td id=\"column-left\" class=\"column\"> <div class=\"image-wrapper\"> <img class=\"faculty-image\" id=\"default-image\"> </div> </td> <td id=\"column-middle\" class=\"column\"> <slot id=\"listing-name\" name=\"listing-name\"></slot> <i><slot name=\"listing-title\"></slot></i> <div class=\"contact-wrapper\"> <div class=\"office-slot-wrapper\"> <b>Office: </b><slot name=\"listing-office\"></slot> </div> <div class=\"phone-slot-wrapper\"> <b>Phone: </b><slot name=\"listing-phone\"></slot> </div> <div class=\"email-slot-wrapper\"> <b>Email: </b><slot name=\"listing-email\"></slot> </div> </div> <div class=\"office-hours-slot-wrapper\"> <b>Office Hours: </b><br> <slot name=\"listing-office-hours\"></slot> </div> </td> <td id=\"column-right\" class=\"column\"> <div class=\"research-slot-wrapper\"> <h3 class=\"section-header\">Research:</h3> <div class=\"slot\"> <slot name=\"listing-research\"></slot> </div> </div> <div class=\"biography-slot-wrapper\"> <h3 class=\"section-header\">Biography:</h3> <div class=\"slot\"> <slot name=\"listing-biography\"></slot> </div> </div> </td> </tr> </tbody> </table> </div>";
+module.exports = "<style>" + __webpack_require__(11) + "</style> <div class=\"root listing-root\"> <div class=\"image-wrapper\"> <img class=\"faculty-image\" id=\"hidden-image\"> </div> <table> <tbody> <tr> <td id=\"column-left\" class=\"column\"> <div class=\"image-wrapper\"> <a class=\"profile-link\" href=\"\"> <img class=\"faculty-image\" id=\"default-image\"> </a> </div> </td> <td id=\"column-middle\" class=\"column\"> <a class=\"profile-link\" href=\"\"> <slot id=\"listing-name\" name=\"listing-name\"></slot> </a> <i><slot name=\"listing-title\"></slot></i> <div class=\"contact-wrapper\"> <div class=\"office-slot-wrapper\"> <b>Office: </b><slot name=\"listing-office\"></slot> </div> <div class=\"phone-slot-wrapper\"> <b>Phone: </b><slot name=\"listing-phone\"></slot> </div> <div class=\"email-slot-wrapper\"> <b>Email: </b><slot name=\"listing-email\"></slot> </div> </div> <div class=\"office-hours-slot-wrapper\"> <b>Office Hours: </b><br> <slot name=\"listing-office-hours\"></slot> </div> </td> <td id=\"column-right\" class=\"column\"> <div class=\"research-slot-wrapper\"> <h3 class=\"section-header\">Research</h3> <div class=\"slot\"> <slot name=\"listing-research\"></slot> </div> </div> <div class=\"biography-slot-wrapper\"> <h3 class=\"section-header\">Biography</h3> <div class=\"slot\"> <slot name=\"listing-biography\"></slot> </div> </div> </td> </tr> </tbody> </table> </div>";
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<style>" + __webpack_require__(12) + "</style> <div class=\"root profile-root\"> <div class=\"background-image-wrapper\"> <div> <div class=\"faculty-image-wrapper\"> <img class=\"faculty-image\" id=\"hidden-image\" src=\"xxxHTMLLINKxxx0.48443427896345060.7069416645148747xxx\" alt=\"Faculty Image\"> </div> <table class=\"content-wrapper\"> <tr> <td id=\"left-column\"> <div class=\"faculty-image-wrapper\"> <img class=\"faculty-image\" id=\"default-image\" src=\"xxxHTMLLINKxxx0.031917457540358020.27365689239166646xxx\" alt=\"Faculty Image\"> </div> </td> <td id=\"right-column\"> <slot id=\"faculty-name\" name=\"faculty-name\"></slot> <i><slot name=\"faculty-title\"></slot></i> <div class=\"contact-wrapper\"> <div class=\"office-slot-wrapper\"> <span><img class=\"svg-sm svg-shadow\" src=\"" + __webpack_require__(17) + "\" alt=\"Desk\"> Office: <slot name=\"faculty-office\"></slot></span> </div> <div class=\"email-slot-wrapper\"> <span><img class=\"svg-sm svg-shadow\" src=\"" + __webpack_require__(18) + "\" alt=\"Email\"> Email: <slot name=\"faculty-email\"></slot></span> </div> <div class=\"phone-slot-wrapper\"> <span><img class=\"svg-sm svg-shadow\" src=\"" + __webpack_require__(16) + "\" alt=\"Phone\"> Phone: <slot name=\"faculty-phone\"></slot></span> </div> </div> </td> </tr> </table> </div> </div> <div class=\"additional-info-wrapper\"> <div class=\"card biography-card expanded hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Biography</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-biography\">No Information</slot> </div> </div> <div class=\"card research-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Research</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content hide\"> <slot class=\"card-slot\" name=\"faculty-research\">No Information</slot> </div> </div> <div class=\"card committees-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Committees</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-committees\">No Information</slot> </div> </div> <div class=\"card papers-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Papers</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-papers\">No Information</slot> </div> </div> <div class=\"card awards-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Awards</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-awards\">No Information</slot> </div> </div> <div class=\"card courses-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Courses</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-courses\">No Information</slot> </div> </div> <div class=\"card office-hours-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Office Hours</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-office-hours\">No Information</slot> </div> </div> <div class=\"card links-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Links</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-links\">No Information</slot> </div> </div> </div> </div>";
+module.exports = "<style>" + __webpack_require__(12) + "</style> <div class=\"root profile-root\"> <div class=\"background-image-wrapper\"> <div> <div class=\"faculty-image-wrapper\"> <img class=\"faculty-image\" id=\"hidden-image\" src=\"xxxHTMLLINKxxx0.41486643695702630.6798291018708698xxx\" alt=\"Faculty Image\"> </div> <table class=\"content-wrapper\"> <tr> <td id=\"left-column\"> <div class=\"faculty-image-wrapper\"> <img class=\"faculty-image\" id=\"default-image\" src=\"xxxHTMLLINKxxx0.7649897891012760.8347288195902187xxx\" alt=\"Faculty Image\"> </div> </td> <td id=\"right-column\"> <slot id=\"faculty-name\" name=\"faculty-name\"></slot> <i><slot name=\"faculty-title\"></slot></i> <div class=\"contact-wrapper\"> <div class=\"office-slot-wrapper\"> <span><img class=\"svg-sm svg-shadow\" src=\"" + __webpack_require__(17) + "\" alt=\"Desk\"> Office: <slot name=\"faculty-office\"></slot></span> </div> <div class=\"email-slot-wrapper\"> <span><img class=\"svg-sm svg-shadow\" src=\"" + __webpack_require__(18) + "\" alt=\"Email\"> Email: <slot name=\"faculty-email\"></slot></span> </div> <div class=\"phone-slot-wrapper\"> <span><img class=\"svg-sm svg-shadow\" src=\"" + __webpack_require__(16) + "\" alt=\"Phone\"> Phone: <slot name=\"faculty-phone\"></slot></span> </div> </div> </td> </tr> </table> </div> </div> <div class=\"additional-info-wrapper\"> <div class=\"card biography-card expanded hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Biography</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-biography\">No Information</slot> </div> </div> <div class=\"card research-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Research</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content hide\"> <slot class=\"card-slot\" name=\"faculty-research\">No Information</slot> </div> </div> <div class=\"card committees-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Committees</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-committees\">No Information</slot> </div> </div> <div class=\"card students-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Students</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-students\">No Information</slot> </div> </div> <div class=\"card papers-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Publications</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-papers\">No Information</slot> </div> </div> <div class=\"card awards-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Awards</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-awards\">No Information</slot> </div> </div> <div class=\"card courses-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Courses</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-courses\">No Information</slot> </div> </div> <div class=\"card office-hours-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Office Hours</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-office-hours\">No Information</slot> </div> </div> <div class=\"card links-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <h3>Links</h3> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-links\">No Information</slot> </div> </div> <div class=\"card custom-card hide\"> <div class=\"click-area\"> <table> <tbody> <tr> <td class=\"card-title-wrapper\"> <slot class=\"card-slot\" name=\"faculty-custom-header\"></slot> </td> <td class=\"card-chevron-wrapper\"> <img class=\"chevron svg-md\" src=\"" + __webpack_require__(1) + "\"> <img class=\"chevron svg-md hide\" src=\"" + __webpack_require__(0) + "\"> </td> </tr> </tbody> </table> </div> <div class=\"card-content\"> <slot class=\"card-slot\" name=\"faculty-custom-body\">No Information</slot> </div> </div> </div> </div>";
 
 /***/ }),
 /* 16 */

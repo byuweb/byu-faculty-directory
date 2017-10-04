@@ -38,6 +38,14 @@
   @include hide();
 }
 
+.card-title-wrapper ::slotted(h3) {
+  @include customHeaderSlotted();
+}
+
+.card-title-wrapper ::slotted(div) {
+  @include customHeaderSlottedDiv();
+}
+
 .card-content ::slotted(*) {
   @include noMargin();
 }
@@ -88,12 +96,12 @@
   @include columnPadding();
 }
 
-.profile-root {
-  @include rootBase();
+.content-wrapper ::slotted(h1) {
+  @include rootBaseSlotted();
 }
 
-.profile-root ::slotted(h1) {
-  @include rootBaseSlotted();
+.content-wrapper ::slotted(div) {
+  @include rootBaseSlottedDiv();
 }
 
 #right-column {

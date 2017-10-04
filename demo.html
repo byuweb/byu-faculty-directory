@@ -23,17 +23,10 @@
   <title>byu-faculty-directory Demo</title>
 
   <link type="text/css" rel="stylesheet" href="//cloud.typography.com/75214/6517752/css/fonts.css" media="all" />
+  <link rel="stylesheet" href="https://cdn.byu.edu/byu-theme-components/latest/byu-theme-components.min.css" />
+  <script async src="https://cdn.byu.edu/byu-theme-components/latest/byu-theme-components.min.js"></script>
   <link rel="stylesheet" href="dist/byu-faculty-directory.min.css">
   <script defer src="dist/components.min.js"></script>
-  <!--<script defer src="dist/components.min.js"></script>
-
-  <script>
-    function btnUpdate_click() {
-      var apiKey = document.getElementById('txtApiKey').value;
-      alert(apiKey);
-      document.getElementById('directory').apiKey = apiKey;
-    }
-  </script>-->
   <style>
     html {
       background-color: #efefef;
@@ -42,33 +35,59 @@
     body {
       margin: 0px;
     }
+
+    .faculty-listing-header {
+      background-color: #FFFFFF;
+      color: #002E5D;
+      font-family: "Vitesse A", "Vitesse B", Helvetica, sans-serif;
+      font-weight: 500;
+      margin: 24px auto 24px auto;
+      min-width: 250px;
+      width: 1008px;
+      padding: 8px;
+      vertical-align: top;
+
+      -moz-box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+    	-webkit-box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+    	box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .faculty-listing-header > h1 {
+      margin: 0px;
+    }
+
+    @media only screen and (max-width: 1023px) {
+      .faculty-listing-header {
+        width: 656px;
+      }
+    }
+
+    @media only screen and (max-width: 671px) {
+      .faculty-listing-header {
+        width: 304px;
+      }
+    }
   </style>
 </head>
 <body>
+  <byu-header>
+    <span slot="site-title">Faculty Directory Component</span>
+  </byu-header>
 
-<!--<h1>BYU Faculty Directory</h1>
-
-<form>
-  To begin, enter Your API Key:
-  <input type="text" id="txtApiKey" />
-  <input type="button" id="btnUpdate" Value="Update" onclick="btnUpdate_click()" />
-
-</form>
-
-<byu-faculty-directory id="directory"></byu-faculty-directory>-->
-  <!--<byu-faculty-listing id="demo" faculty-image="./test_image.png">
-    <h2 slot="listing-name">Bradley R. Adams</h2>
-    <span slot="listing-title">Professor and Department Chair</span>
-    <span slot="listing-office">265 Crabtree</span>
-    <span slot="listing-phone">801-422-6300</span>
-    <span slot="listing-email">testingemail@byu.edu</span>
+  <!--===== DEMO PT 1 =====-->
+  <!--<div class=faculty-listing-header>
+    <h1>
+      Faculty Profiles
+    </h1>
+  </div>
+  <byu-faculty-listing id="demo" faculty-image="./test_image.png" faculty-profile-link="https://home.byu.edu/home/">
+    <div slot="listing-name">Bradley R. Adams</div>
+    <span slot="listing-title">Associate Professor</span>
+    <span slot="listing-office">435W CTB</span>
+    <span slot="listing-phone">801-422-6545</span>
+    <span slot="listing-email">brad.adams@byu.edu</span>
     <span slot="listing-office-hours">Mon 3-4pm, Wed 2-3pm, Fri 4-5pm</span>
-    <p slot="listing-research">Bradley Adams joined BYU in 2015 after 30 years
-      in industry, including positions at GenRad, MIT Lincoln Laboratories, and
-      Reaction Engineering International. He has significant experience in
-      technical management and has performed R&D in the areas of heat transfer,
-      combustion, and air pollution control, with an emphasis on CFD simulation
-      of these processes. Current research interests include advanced power
+    <p slot="listing-research">Current research interests include advanced power
       generation systms (e.g., oxy-fuel combustion, chemical looping),
       radiative heat transfer, and multi-physics simulations.</p>
     <p slot="listing-biography">Bradley Adams joined BYU in 2015 after 30 years
@@ -76,32 +95,53 @@
       Reaction Engineering International. He has significant experience in
       technical management and has performed R&D in the areas of heat transfer,
       combustion, and air pollution control, with an emphasis on CFD simulation
-      of these processes. Current research interests include advanced power
-      generation systms (e.g., oxy-fuel combustion, chemical looping),
-      radiative heat transfer, and multi-physics simulations.</p>
+      of these processes.</p>
   </byu-faculty-listing>
-  <byu-faculty-listing id="demo" faculty-image="./test_image.png">
-    <h2 slot="listing-name">Bradley R. Adams</h2>
-    <span slot="listing-title">Professor and Department Chair</span>
-    <span slot="listing-office">265 Crabtree</span>
-    <span slot="listing-phone">801-422-6300</span>
-    <span slot="listing-email">testingemail@byu.edu</span>
-    <span slot="listing-office-hours">Mon 3-4pm, Wed 2-3pm, Fri 4-5pm</span>
+  <byu-faculty-listing id="demo" faculty-image="./test_image_3.jpg" faculty-profile-link="https://github.com/byuweb">
+    <h2 slot="listing-name">Dan Ames</h2>
+    <span slot="listing-title">Professor</span>
+    <span slot="listing-office">242J CB</span>
+    <span slot="listing-phone">801-422-3620</span>
+    <span slot="listing-email">dan.ames@byu.edu</span>
+    <span slot="listing-office-hours">Mon 12-2pm, Wed 12-1pm, Fri 4-5pm</span>
     <p slot="listing-research">Bradley Adams joined BYU in 2015 after 30 years
       in industry, including positions at GenRad, MIT Lincoln Laboratories, and
-      ... READ MORE</p>
-    <p slot="listing-biography">Bradley Adams joined BYU in 2015 after 30 years
-      in industry, including positions at GenRad, MIT Lincoln Laboratories, and
-      Reaction Engineering International. He has significant experience in
-      technical management and has performed R&D in the areas of heat transfer,
-      combustion, and air pollution control, with an emphasis on CFD simulation
-      of these processes. Current research interests include advanced power
-      generation systms (e.g., oxy-fuel combustion, chemical looping),
-      radiative heat transfer, and multi-physics simulations.</p>
+      more.</p>
+    <p slot="listing-biography">Dr. Ames has been at Brigham Young University
+      since fall 2012. Previously he was an Associate Professor at Idaho State
+      University and a Research Assistant Professor at Utah State University.
+      Dr. Ames is the original developer and project manager of several open
+      source GIS based software tools including the widely used MapWindow GIS
+      (www.mapwindow.org), DotSpatial Library (www.dotspatial.org) and
+      HydroDesktop data management system (www.hydrodesktop.org). Dr. Ames’
+      research interests and publications include geospatial and hydrologic web
+      services, hydrologic information systems, probabilistic watershed
+      modeling, uncertainty characterization, terrain analysis,
+      evapotranspiration, immersive virtual reality visualization, and open
+      hardware data sensor networks. Dr. Ames has conducted and overseen
+      numerous GIS and engineering software development projects funded by NSF,
+      EPA, USGS, and various state and local agencies and private industry.</p>
+  </byu-faculty-listing>
+  <byu-faculty-listing id="demo" faculty-image="./test_image_4.jpg" faculty-profile-link="https://github.com/byuweb">
+    <h2 slot="listing-name">James Archibald</h2>
+    <span slot="listing-title">Professor</span>
+    <span slot="listing-office">451 CB</span>
+    <span slot="listing-phone">801-422-2598</span>
+    <span slot="listing-email">james_archibald@byu.edu</span>
+    <p slot="listing-research">Embedded systems, computer vision, real-time systems</p>
+    <p slot="listing-biography">Dr. Archibald received the BS degree in
+      mathematics from BYU in 1981, and MS and PhD degrees in computer science
+      from the University of Washington in 1983 and 1987 respectively. He has
+      been with BYU's Electrical and Computer Engineering Department since 1987.
+      In 1994-1995 he was a visiting professor at the Swiss Federal Institute
+      of Technology in Zurich.  Dr. Archibald's current research interests are
+      in the areas of real-time computer vision systems and autonomous agents.</p>
   </byu-faculty-listing>-->
-  <byu-faculty-profile background-image="./test_image_2.jpg" faculty-image="./test_image.png">
-    <h1 slot="faculty-name">Bradley R. Adams</h1>
-    <span slot="faculty-title">Professor and Department Chair</span>
+
+  <!--===== DEMO PT 2 =====-->
+  <byu-faculty-profile background-image="./test_image_5.jpg" faculty-image="./test_image.png">
+    <div slot="faculty-name">Bradley R. Adams</div>
+    <span slot="faculty-title">Associate Professor</span>
     <span slot="faculty-office">265 Crabtree</span>
     <span slot="faculty-phone">801-422-6300</span>
     <span slot="faculty-email">testingemail@byu.edu</span>
@@ -113,14 +153,22 @@
       of these processes. Current research interests include advanced power
       generation systms (e.g., oxy-fuel combustion, chemical looping),
       radiative heat transfer, and multi-physics simulations.</p>
-    <p slot="faculty-research">Bradley Adams joined BYU in 2015 after 30 years
-      in industry, including positions at GenRad, MIT Lincoln Laboratories, and
-      Reaction Engineering International. He has significant experience in
-      technical management and has performed R&D in the areas of heat transfer,
-      combustion, and air pollution control, with an emphasis on CFD simulation
-      of these processes. Current research interests include advanced power
+    <p slot="faculty-research">Current research interests include advanced power
       generation systms (e.g., oxy-fuel combustion, chemical looping),
       radiative heat transfer, and multi-physics simulations.</p>
+    <p slot="faculty-papers">Fossil Fuels, Encyclopedia of Sustainability
+      Science and Technology; 2015 Spring Meeting & 11th Global Congress on
+      Process Safety: Paper 85b; 2015 Spring Meeting & 11th Global Congress on
+      Process Safety: Paper 2b</p>
+    <p slot="faculty-students">Todd Williams (PhD), Taylor Schroedter (MS)</p>
+    <p slot="faculty-courses">ME 510 - Compressible Flow; ME 340 - Heat Transfer;
+      ME 393 - Professional Skills</p>
+    <p slot="faculty-awards">Most Important, Original, and High Quality Paper
+      ASPACC-99 (Combustion Institute) 1999</p>
+    <div slot="faculty-custom-header">Custom Header</div>
+    <p slot="faculty-custom-body">This is a card that can be used for custom
+    content.</p>
   </byu-faculty-profile>
+  <byu-footer></byu-footer>
 </body>
 </html>

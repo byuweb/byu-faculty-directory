@@ -28,11 +28,15 @@
       <tr>
         <td id="column-left" class="column">
             <div class="image-wrapper">
-              <img class="faculty-image" id="default-image"/>
+              <a class="profile-link" href="">
+                <img class="faculty-image" id="default-image"/>
+              </a>
             </div>
         </td>
         <td id="column-middle" class="column">
-          <slot id="listing-name" name="listing-name"></slot>
+          <a class="profile-link" href="">
+            <slot id="listing-name" name="listing-name"></slot>
+          </a>
           <i><slot name="listing-title"></slot></i>
 
           <div class="contact-wrapper">
@@ -54,13 +58,13 @@
         </td>
         <td id="column-right" class="column">
           <div class="research-slot-wrapper">
-            <h3 class="section-header">Research:</h3>
+            <h3 class="section-header">Research</h3>
             <div class="slot">
               <slot name="listing-research"></slot>
             </div>
           </div>
           <div class="biography-slot-wrapper">
-            <h3 class="section-header">Biography:</h3>
+            <h3 class="section-header">Biography</h3>
             <div class="slot">
               <slot name="listing-biography"></slot>
             </div>

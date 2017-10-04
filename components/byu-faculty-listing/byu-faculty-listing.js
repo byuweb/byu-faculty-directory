@@ -19,7 +19,6 @@
 import template from './byu-faculty-listing.html';
 import * as util from 'byu-web-component-utils';
 
-const ATTR_API_KEY = 'api-key';
 const ATTR_PROFILE_IMAGE = "faculty-image";
 const ATTR_NAME = 'faculty-name';
 const ATTR_TITLE = 'faculty-title';
@@ -29,8 +28,8 @@ const ATTR_EMAIL = 'faculty-email';
 const ATTR_OFFICE_HOURS = 'faculty-office-hours';
 const ATTR_RESEARCH = 'faculty-research';
 const ATTR_BIOGRAPHY = 'faculty-biography';
+const ATTR_PROFILE_LINK = 'faculty-profile-link';
 
-const DEFAULT_apiKey = 1;
 const DEFAULT_INFORMATION = "Unknown";
 
 class ByuFacultyListing extends HTMLElement {
@@ -43,12 +42,10 @@ class ByuFacultyListing extends HTMLElement {
     //This will stamp our template for us, then let us perform actions on the stamped DOM.
     util.applyTemplate(this, 'byu-faculty-listing', template, () => {
       applyProfileImage(this);
+      applyProfileLinks(this);
       truncateText(this);
-      //setupButtonListeners(this);
-      //applyApiKey(this);
-      //applyListing(this);
-
       setupSlotListeners(this);
+      clearEmptyFields(this);
     });
   }
 
@@ -57,7 +54,7 @@ class ByuFacultyListing extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [ATTR_PROFILE_IMAGE, ATTR_API_KEY, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY];
+    return [ATTR_PROFILE_IMAGE, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY, ATTR_PROFILE_LINK];
   }
 
   attributeChangedCallback(attr, oldValue, newValue) {
@@ -69,24 +66,18 @@ class ByuFacultyListing extends HTMLElement {
       case ATTR_EMAIL:
       case ATTR_OFFICE_HOURS:
       case ATTR_RESEARCH:
+        truncateText(this);
+        break;
       case ATTR_BIOGRAPHY:
-      case ATTR_API_KEY:
+        truncateText(this);
+        break;
+      case ATTR_PROFILE_LINK:
+        applyProfileLinks(this);
+        break;
       case ATTR_PROFILE_IMAGE:
         applyProfileImage(this);
-        //applyApiKey(this);
         break;
     }
-  }
-
-  set apiKey(value) {
-    this.setAttribute(ATTR_API_KEY, value);
-  }
-
-  get apiKey() {
-    if (this.hasAttribute(ATTR_API_KEY)) {
-      return this.getAttribute(ATTR_API_KEY);
-    }
-    return DEFAULT_apiKey;
   }
 
   set name(value) {
@@ -187,6 +178,17 @@ class ByuFacultyListing extends HTMLElement {
     }
     return '';
   }
+
+  set profileLink(value) {
+    this.setAttribute(ATTR_PROFILE_LINK, value);
+  }
+
+  get profileLink() {
+    if (this.hasAttribute(ATTR_PROFILE_LINK)) {
+      return this.getAttribute(ATTR_PROFILE_LINK);
+    }
+    return '';
+  }
 }
 
 window.customElements.define('byu-faculty-listing', ByuFacultyListing);
@@ -198,6 +200,14 @@ function applyProfileImage(component) {
 
   for (var i = 0; i < profileImages.length; i++) {
     profileImages[i].src = component.profileImage;
+    //profileImages[i].parentNode.setAttribute('href', component.profileLink);
+  }
+}
+
+function applyProfileLinks(component) {
+  let profileLinks = component.shadowRoot.querySelectorAll('.profile-link');
+  for (var i = 0; i < profileLinks.length; i++) {
+    profileLinks[i].setAttribute('href', component.profileLink);
   }
 }
 
@@ -205,19 +215,58 @@ function truncateText(component) {
   let slots = component.shadowRoot.querySelectorAll('.slot');
 
   for(var i = 0; i < slots.length; i++) {
-    var slot = slots[i].children[0].assignedNodes()[0];
+    if (slots[i].children[0].assignedNodes().length > 0) {
+      var slot = slots[i].children[0].assignedNodes()[0];
 
-    if (slots[i].parentNode.className == "research-slot-wrapper") {
-      while (slot.innerText.length > 180) {
-        slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '...');
+      if (slots[i].parentNode.className == "research-slot-wrapper") {
+        if (slot.innerText.length > 140) {
+          while (slot.innerText.length > 140) {
+            slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '... ');
+          }
+        }
       }
-    }
-    else {
-      while (slot.innerText.length > 500) {
-        slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '...');
+      else {
+        if (slot.innerText.length > 500) {
+          while (slot.innerText.length > 500) {
+            slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '... ');
+          }
+          slot.innerHTML = slot.innerHTML + "<a style='color: #008080' href='" + component.profileLink + "'>Read More</a>";
+        }
       }
     }
   }
+}
+
+function clearEmptyFields(component) {
+  let office_hours = component.shadowRoot.querySelectorAll('.office-hours-slot-wrapper');
+
+  for (var i = 0; i < office_hours.length; i++) {
+      var element = office_hours[i];
+      element = element.children[2];
+
+      if (element.assignedNodes().length == 0) {
+        office_hours[i].classList.add("hide");
+      }
+    }
+
+    let research = component.shadowRoot.querySelectorAll('.research-slot-wrapper');
+    let biography = component.shadowRoot.querySelectorAll('.biography-slot-wrapper');
+    for (var i = 0; i < research.length; i++) {
+      var element = research[i];
+      element = element.children[1].children[0];
+
+      if (element.assignedNodes().length == 0) {
+        research[i].classList.add("hide");
+        biography[i].children[0].classList.remove("section-header");
+        biography[i].children[0].classList.add("adjusted-header");
+      }
+
+      element = biography[i];
+      element = element.children[1].children[0];
+      if (element.assignedNodes().length == 0) {
+        biography[i].classList.add("hide");
+      }
+    }
 }
 
 function setupButtonListeners(component) {
