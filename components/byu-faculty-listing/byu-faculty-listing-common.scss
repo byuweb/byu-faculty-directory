@@ -37,7 +37,7 @@
 }
 
 @mixin contact() {
-  margin: 32px 0px 16px 0px;
+  margin: 36px 0px 16px 0px;
 }
 
 @mixin columnBase() {
@@ -90,7 +90,7 @@
 }
 
 @mixin slottedHeader() {
-  margin-top: 6px;
+  margin-top: 0px;
 }
 
 @mixin slottedHeaderDiv() {
@@ -111,6 +111,7 @@
   color: #515151;
   font-family: "Gotham Book", Helvetica, sans-serif;
   font-weight: 200;
+  line-height: 20px;
   margin: 24px auto 24px auto;
   min-width: 250px;
   width: 1024px;
@@ -141,7 +142,7 @@
 
 @mixin sectionHeader() {
   color: #002E5D;
-  margin: 15px 0px 0px 0px;
+  margin: 12px 0px 0px 0px;
 }
 
 @mixin showHiddenImage() {
