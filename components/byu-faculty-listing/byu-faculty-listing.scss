@@ -17,25 +17,29 @@
 //this is a change
 @import 'byu-faculty-listing-common';
 
+.reggae-rock-and-roll {
+  color: red !important;
+}
+
 .biography-slot-wrapper {
   @include biography();
 }
 
-#column-left {
+#faculty-listing-column-left {
   @include columnLeft();
 }
 
-#column-middle {
+#faculty-listing-column-middle {
   @include columnMiddle();
 }
 
-#column-middle {
+#faculty-listing-column-middle {
   ::slotted(h2) {
     @include slottedHeader();
   }
 }
 
-#column-right {
+#faculty-listing-column-right {
   @include columnRight();
 }
 
@@ -65,11 +69,11 @@
   }
 }
 
-#column-middle > a ::slotted(div) {
+#faculty-listing-column-middle > a ::slotted(div) {
   @include slottedHeaderDiv();
 }
 
-#column-middle > a ::slotted(h2) {
+#faculty-listing-column-middle > a ::slotted(h2) {
   @include rootSlottedH2();
 }
 
@@ -112,11 +116,11 @@
 }
 
 @media only screen and (max-width: 1023px) {
-  #column-right {
+  #faculty-listing-column-right {
     @include hide();
   }
 
-  #column-middle {
+  #faculty-listing-column-middle {
     @include columnRight();
   }
 
@@ -126,11 +130,11 @@
 }
 
 @media only screen and (max-width: 671px) {
-  #column-left {
+  #faculty-listing-column-left {
     @include hide();
   }
 
-  #column-middle {
+  #faculty-listing-column-middle {
     @include centerColumn();
   }
 

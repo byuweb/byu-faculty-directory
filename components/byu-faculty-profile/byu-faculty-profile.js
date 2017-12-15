@@ -209,7 +209,26 @@ window.ByuFacultyProfile = ByuFacultyProfile;
 // -------------------- Helper Functions --------------------
 function applyBackgroundImage(component) {
   let imageBox = component.shadowRoot.querySelector('div.background-image-wrapper');
-  imageBox.style.backgroundImage = "url('" + component.backgroundImage + "')";
+
+  if(imageBox) {
+    imageBox.style.backgroundImage = "url('" + component.backgroundImage + "')";
+  }
+  //remove background of table in front of background image in firefox
+  let table  = component.shadowRoot.querySelector('table.content-wrapper');
+  let tableData = component.shadowRoot.querySelector('td#right-column');
+  let imageContainer = component.shadowRoot.querySelector('td#left-column');
+  let facultyName = component.shadowRoot.querySelector('slot#faculty-name');
+  if(table) {
+    table.style.background = 'transparent';
+    table.style.border = 'solid 0px #fff';
+    tableData.style['color'] = 'inherit';
+    tableData.style['font-size'] = 'inherit';
+    tableData.style['font-family'] = 'inherit';
+    facultyName.style['font-size'] = 'inherit';
+    facultyName.style['font-family'] = 'inherit';
+    facultyName.style['font-style'] = 'inherit';
+    imageContainer.style['width'] = '191px';
+  }
 }
 
 function applyProfileImage(component) {
@@ -307,3 +326,11 @@ function showContent(component) {
     }
   }
 }
+
+// function tableBackground(component) {
+//   let table = component.shadowRoot.querySelectorAll('.byu-faculty-profile');
+//   if(table) {
+//     // table.style.background = 'transparent';
+//     // console.log(table.style.background);
+//   }
+// }
