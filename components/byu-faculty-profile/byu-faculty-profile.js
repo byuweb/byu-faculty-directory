@@ -208,7 +208,6 @@ window.ByuFacultyProfile = ByuFacultyProfile;
 
 // -------------------- Helper Functions --------------------
 function applyBackgroundImage(component) {
-  console.log('cats are really fun');
   let imageBox = component.shadowRoot.querySelector('div.background-image-wrapper');
 
   if(imageBox) {
@@ -216,18 +215,16 @@ function applyBackgroundImage(component) {
   }
   //remove background of table in front of background image in firefox
   let table  = component.shadowRoot.querySelector('table.content-wrapper');
+  //Allow font of heading to be inherited
   let tableData = component.shadowRoot.querySelector('td#right-column');
+  //Widen space for profile image
   let imageContainer = component.shadowRoot.querySelector('td#left-column');
-  let facultyName = component.shadowRoot.querySelector('slot#faculty-name');
   if(table) {
     table.style.background = 'transparent';
     table.style.border = 'solid 0px #fff';
     tableData.style['color'] = 'inherit';
     tableData.style['font-size'] = 'inherit';
     tableData.style['font-family'] = 'inherit';
-    facultyName.style['font-size'] = 'inherit';
-    facultyName.style['font-family'] = 'inherit';
-    facultyName.style['font-style'] = 'inherit';
     imageContainer.style['width'] = '191px';
   }
 }
