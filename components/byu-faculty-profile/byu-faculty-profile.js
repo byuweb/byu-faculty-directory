@@ -208,7 +208,7 @@ window.ByuFacultyProfile = ByuFacultyProfile;
 
 // -------------------- Helper Functions --------------------
 function applyBackgroundImage(component) {
-  console.log(imageBox);
+  console.log('cats are really fun');
   let imageBox = component.shadowRoot.querySelector('div.background-image-wrapper');
 
   if(imageBox) {
