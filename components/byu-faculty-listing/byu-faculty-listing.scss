@@ -18,6 +18,7 @@
 @import 'byu-faculty-listing-common';
 
 .biography-slot-wrapper {
+  color:red !important;
   @include biography();
 }
 
