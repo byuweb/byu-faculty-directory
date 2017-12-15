@@ -208,8 +208,9 @@ window.ByuFacultyProfile = ByuFacultyProfile;
 
 // -------------------- Helper Functions --------------------
 function applyBackgroundImage(component) {
-  let imageBox = component.shadowRoot.querySelector('div.background-image-wrapper');
   console.log(imageBox);
+  let imageBox = component.shadowRoot.querySelector('div.background-image-wrapper');
+
   if(imageBox) {
     imageBox.style.backgroundImage = "url('" + component.backgroundImage + "')";
   }
