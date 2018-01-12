@@ -23,10 +23,12 @@
 
 #faculty-listing-column-left {
   @include columnLeft();
+  width: 20%;
 }
 
 #faculty-listing-column-middle {
   @include columnMiddle();
+  width: 20%;
 }
 
 #faculty-listing-column-middle {
@@ -37,6 +39,7 @@
 
 #faculty-listing-column-right {
   @include columnRight();
+  width: 60%;
 }
 
 .contact-wrapper {
@@ -109,6 +112,8 @@
 
 .section-header {
   @include sectionHeader();
+  margin: 0px;
+  line-height:19px
 }
 
 @media only screen and (max-width: 1023px) {
