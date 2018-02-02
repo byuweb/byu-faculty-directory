@@ -324,11 +324,3 @@ function showContent(component) {
     }
   }
 }
-
-// function tableBackground(component) {
-//   let table = component.shadowRoot.querySelectorAll('.byu-faculty-profile');
-//   if(table) {
-//     // table.style.background = 'transparent';
-//     // console.log(table.style.background);
-//   }
-// }

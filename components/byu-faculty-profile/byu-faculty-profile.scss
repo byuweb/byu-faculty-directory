@@ -73,7 +73,6 @@
 
 .content-wrapper {
   @include content();
-  // @include tableBackground();
 }
 
 .expanded > .card-content {
