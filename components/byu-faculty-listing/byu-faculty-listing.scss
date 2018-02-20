@@ -21,22 +21,25 @@
   @include biography();
 }
 
-#column-left {
+#faculty-listing-column-left {
   @include columnLeft();
+  width: 20%;
 }
 
-#column-middle {
+#faculty-listing-column-middle {
   @include columnMiddle();
+  width: 20%;
 }
 
-#column-middle {
+#faculty-listing-column-middle {
   ::slotted(h2) {
     @include slottedHeader();
   }
 }
 
-#column-right {
+#faculty-listing-column-right {
   @include columnRight();
+  width: 60%;
 }
 
 .contact-wrapper {
@@ -65,11 +68,11 @@
   }
 }
 
-#column-middle > a ::slotted(div) {
+#faculty-listing-column-middle > a ::slotted(div) {
   @include slottedHeaderDiv();
 }
 
-#column-middle > a ::slotted(h2) {
+#faculty-listing-column-middle > a ::slotted(h2) {
   @include rootSlottedH2();
 }
 
@@ -109,14 +112,16 @@
 
 .section-header {
   @include sectionHeader();
+  margin: 0px;
+  line-height:19px
 }
 
 @media only screen and (max-width: 1023px) {
-  #column-right {
+  #faculty-listing-column-right {
     @include hide();
   }
 
-  #column-middle {
+  #faculty-listing-column-middle {
     @include columnRight();
   }
 
@@ -126,11 +131,11 @@
 }
 
 @media only screen and (max-width: 671px) {
-  #column-left {
+  #faculty-listing-column-left {
     @include hide();
   }
 
-  #column-middle {
+  #faculty-listing-column-middle {
     @include centerColumn();
   }
 
