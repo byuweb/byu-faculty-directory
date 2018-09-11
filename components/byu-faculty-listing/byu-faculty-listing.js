@@ -221,14 +221,14 @@ function truncateText(component) {
       if (slots[i].parentNode.className == "research-slot-wrapper") {
         if (slot.innerText.length > 140) {
           while (slot.innerText.length > 140) {
-            slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '... ');
+            slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '...');
           }
         }
       }
       else {
         if (slot.innerText.length > 500) {
           while (slot.innerText.length > 500) {
-            slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '... ');
+            slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '...');
           }
           slot.innerHTML = slot.innerHTML + "<a style='color: #008080' href='" + component.profileLink + "'>Read More</a>";
         }
