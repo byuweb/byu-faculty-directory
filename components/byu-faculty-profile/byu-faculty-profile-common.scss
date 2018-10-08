@@ -25,7 +25,7 @@
 @mixin card() {
   background-color: #FFFFFF;
   color: #515151;
-  font-family: "Gotham", Helvetica, sans-serif;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
   font-weight: 200;
   line-height: 20px;
   margin: 20px auto 20px auto;
@@ -104,7 +104,7 @@
   color: #002e5d;
   margin: 0;
   font-size: 1.17em;
-  font-family: "Gotham", Helvetica, sans-serif;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
   font-weight: 600;
   line-height: 20px;
 }
@@ -112,7 +112,7 @@
 @mixin content() {
   align-content: center;
   color: #FFFFFF;
-  font-family: "Gotham A", "Gotham B", Helvetica, sans-serif;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
   font-weight: 500;
   line-height: 24px;
   margin: auto;
@@ -168,13 +168,13 @@
 }
 
 @mixin rootBaseSlotted() {
-  font-family: "Vitesse A", "Vitesse B", Georgia,serif;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
   margin: 0px 0px 8px 0px;
   font-weight: 500;
 }
 
 @mixin rootBaseSlottedDiv() {
-  font-family: "Vitesse A", "Vitesse B", Georgia,serif;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
   margin: 0px 0px 8px 0px;
   font-weight: 500;
   display: block;
