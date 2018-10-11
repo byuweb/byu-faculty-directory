@@ -1,6 +1,6 @@
 {
   "name": "byu-faculty-directory",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "engines": {
     "node": ">=6.10.0"
@@ -18,7 +18,7 @@
     "byu-web-component-utils": "^0.4.2"
   },
   "devDependencies": {
-    "browser-sync": "^2.18.12",
+    "browser-sync": "^2.26.0",
     "byu-web-component-build": "^0.2.3",
     "gulp": "^3.9.1"
   }

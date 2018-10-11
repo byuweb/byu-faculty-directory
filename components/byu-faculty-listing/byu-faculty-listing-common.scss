@@ -98,7 +98,7 @@
   font-size: 1.5em;
   font-weight: bold;
   color: #002e5d;
-  font-family: "Vitesse A", "Vitesse B", Georgia, serif;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
   margin: 0;
 }
 
@@ -109,7 +109,7 @@
 @mixin rootBase() {
   background-color: #FFFFFF;
   color: #515151;
-  font-family: "Gotham Book", Helvetica, sans-serif;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
   font-weight: 200;
   line-height: 20px;
   margin: 24px auto 24px auto;
@@ -128,7 +128,7 @@
 
 @mixin rootSlottedH2() {
   color: #002E5D;
-  font-family: "Vitesse A","Vitesse B",Georgia,serif;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
   margin: 0px 0px 0px 0px;
 }
 
