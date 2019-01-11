@@ -252,5 +252,45 @@
         <slot class="card-slot" name="faculty-custom-body">No Information</slot>
       </div>
     </div>
+    <div class="card education-card hide">
+      <div class="click-area">
+        <table>
+          <tbody>
+            <tr>
+              <td class="card-title-wrapper">
+                <h3>Education</h3>
+              </td>
+              <td class="card-chevron-wrapper">
+                <img class="chevron svg-md" src="./Chevron-Right.svg">
+                <img class="chevron svg-md hide" src="./Chevron-Down.svg">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-content">
+        <slot class="card-slot" name="faculty-education">No Information</slot>
+      </div>
+    </div>
+    <div class="card cv-card hide">
+      <div class="click-area">
+        <table>
+          <tbody>
+            <tr>
+              <td class="card-title-wrapper">
+                <h3>Curriculum Vitae</h3>
+              </td>
+              <td class="card-chevron-wrapper">
+                <img class="chevron svg-md" src="./Chevron-Right.svg">
+                <img class="chevron svg-md hide" src="./Chevron-Down.svg">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-content">
+        <slot class="card-slot" name="faculty-cv">No Information</slot>
+      </div>
+    </div>
   </div>
 </div>
