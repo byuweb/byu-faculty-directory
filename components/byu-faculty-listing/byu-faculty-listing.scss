@@ -15,145 +15,139 @@
  *    limitations under the License.
  */
 
- @import 'byu-faculty-listing-common';
+@import 'byu-faculty-listing-common';
 
- .biography-slot-wrapper {
-   @include biography();
- }
- 
- #faculty-listing-column-left {
-   @include columnLeft();
-   width: 20%;
- }
- 
- #faculty-listing-column-middle {
-   @include columnMiddle();
-   width: 20%;
- }
- 
- #faculty-listing-column-middle {
-   ::slotted(h2) {
-     @include slottedHeader();
-   }
- }
- 
- #faculty-listing-column-right {
-   @include columnRight();
-   width: 60%;
- }
- 
- .contact-wrapper {
-   @include contact();
- }
- 
- .faculty-image {
-   @include facultyImage();
- }
- 
- #hidden-image {
-   @include hide();
- }
- 
- .hide {
-   @include hide();
- }
- 
- 
- .listing-root {
-   @include rootBase();
- }
- 
- .listing-root {
-   ::slotted(h2) {
-     @include rootSlottedH2();
-   }
- }
- 
- #faculty-listing-column-middle > a ::slotted(div) {
-   @include slottedHeaderDiv();
- }
- 
- #faculty-listing-column-middle > a ::slotted(h2) {
-   @include rootSlottedH2();
- }
- 
- .listing-root {
-   ::slotted(p) {
-     @include rootSlottedP();
-   }
- }
- 
- .contact-wrapper > div ::slotted(p) {
-   @include rootSlottedP();
- }
- 
- .slot > ::slotted(p) {
-   @include rootSlottedP();
- }
- 
- .adjusted-header {
-   @include adjustedHeader();
- }
- 
- .profile-link {
-   @include noUnderline();
- }
- 
- .research-slot-wrapper, .biography-slot-wrapper {
-   @include overflowBase();
- }
- 
- .research-slot-wrapper {
-   @include research();
- }
- 
- .research-slot-wrapper > h3 {
-   @include slottedHeader();
- }
- 
- .section-header {
-   @include sectionHeader();
-   margin: 0px;
-   line-height:19px
- }
- 
- @media only screen and (max-width: 1023px) {
-   #faculty-listing-column-right {
-     @include hide();
-   }
- 
-   #faculty-listing-column-middle {
-     @include columnRight();
-   }
- 
-   .listing-root {
-     @include rootMedium();
-   }
- }
- 
- @media only screen and (max-width: 671px) {
-   #faculty-listing-column-left {
-     @include hide();
-   }
- 
-   #faculty-listing-column-middle {
-     @include centerColumn();
-   }
- 
-   #default-image {
-     @include hide();
-   }
- 
-   #hidden-image {
-     @include showHiddenImage();
-   }
-   
-   .image-wrapper{
-     padding-top: 15px;
-   }
- 
-   .listing-root {
-     @include rootSmall();
-   }
- }
- 
+.biography-slot-wrapper {
+  @include biography();
+}
+
+#faculty-listing-column-left {
+  @include columnLeft();
+  width: 20%;
+}
+
+#faculty-listing-column-middle {
+  @include columnMiddle();
+  width: 20%;
+}
+
+#faculty-listing-column-middle {
+  ::slotted(h2) {
+    @include slottedHeader();
+  }
+}
+
+#faculty-listing-column-right {
+  @include columnRight();
+  width: 60%;
+}
+
+.contact-wrapper {
+  @include contact();
+}
+
+.faculty-image {
+  @include facultyImage();
+}
+
+#hidden-image {
+  @include hide();
+}
+
+.hide {
+  @include hide();
+}
+
+.listing-root {
+  @include rootBase();
+}
+
+.listing-root {
+  ::slotted(h2) {
+    @include rootSlottedH2();
+  }
+}
+
+#faculty-listing-column-middle > a ::slotted(div) {
+  @include slottedHeaderDiv();
+}
+
+#faculty-listing-column-middle > a ::slotted(h2) {
+  @include rootSlottedH2();
+}
+
+.listing-root {
+  ::slotted(p) {
+    @include rootSlottedP();
+  }
+}
+
+.contact-wrapper > div ::slotted(p) {
+  @include rootSlottedP();
+}
+
+.slot > ::slotted(p) {
+  @include rootSlottedP();
+}
+
+.adjusted-header {
+  @include adjustedHeader();
+}
+
+.profile-link {
+  @include noUnderline();
+}
+
+.research-slot-wrapper, .biography-slot-wrapper {
+  @include overflowBase();
+}
+
+.research-slot-wrapper {
+  @include research();
+}
+
+.research-slot-wrapper > h3 {
+  @include slottedHeader();
+}
+
+.section-header {
+  @include sectionHeader();
+  margin: 0px;
+  line-height:19px
+}
+
+@media only screen and (max-width: 1023px) {
+  #faculty-listing-column-right {
+    @include hide();
+  }
+
+  #faculty-listing-column-middle {
+    @include columnRight();
+  }
+
+  .listing-root {
+    @include rootMedium();
+  }
+}
+
+@media only screen and (max-width: 671px) {
+  #faculty-listing-column-left {
+    @include hide();
+  }
+
+  #faculty-listing-column-middle {
+    @include centerColumn();
+  }
+
+  #default-image {
+    @include hide();
+  }
+
+  #hidden-image {
+    @include showHiddenImage();
+  }
+
+  .listing-root {
+    @include rootSmall();
+  }
+}
