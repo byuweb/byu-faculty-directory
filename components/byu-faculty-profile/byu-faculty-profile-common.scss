@@ -157,7 +157,6 @@
 @mixin hide() {
   display: none;
   overflow: hidden;
-  padding: 0 1em;
   max-height: 0;
   height: 0;
   opacity: 0;
