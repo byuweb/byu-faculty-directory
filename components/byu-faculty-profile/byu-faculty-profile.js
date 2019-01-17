@@ -270,17 +270,16 @@ function setupButtonListeners(component) {
       element = element.children[0];
       element = element.children[1];
 
-      if (!element.children[0].classList.contains('hide')) {
-        element.children[0].className += ' hide';
-        element.children[1].classList.remove('hide');
-
+      if (!element.children[0].classList.contains('open')) {
+        
+        element.children[0].className += ' open';
         this.parentNode.className += ' expanded';
+        element.children[0].setAttribute('style','transform:rotate(90deg)');
       }
 
       else {
-        element.children[0].classList.remove('hide');
-        element.children[1].className += ' hide';
-
+        element.children[0].classList.remove('open');
+        element.children[0].setAttribute('style','transform:rotate(0deg)');
         this.parentNode.classList.remove('expanded');
       }
     });
@@ -321,6 +320,7 @@ function showContent(component) {
 
     if (slots[i].assignedNodes().length > 0) {
       element.classList.remove("hide");
+      
     }
   }
 }

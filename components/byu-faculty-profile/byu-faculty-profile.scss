@@ -15,149 +15,173 @@
  *    limitations under the License.
  */
 
-@import 'byu-faculty-profile-common';
+ @import 'byu-faculty-profile-common';
 
-#background-image {
-  @include hide();
-}
-
-.background-image-wrapper {
-  @include backroundImage();
-}
-
-.card {
-  @include card();
-}
-
-.card-chevron-wrapper {
-  @include cardChevron();
-}
-
-.card-content {
-  @include cardContent();
-  @include hide();
-}
-
-.card-title-wrapper ::slotted(h3) {
-  @include customHeaderSlotted();
-}
-
-.card-title-wrapper ::slotted(div) {
-  @include customHeaderSlottedDiv();
-}
-
-.card-content ::slotted(*) {
-  @include noMargin();
-}
-
-.card-title-wrapper > h3 {
-  @include cardTitle();
-}
-
-.click-area {
-  @include cardPadding;
-}
-
-.click-area:hover {
-  @include clickAreaHover();
-  @include cursorPointer();
-}
-
-.click-area > table {
-  @include cardTable();
-}
-
-.contact-wrapper {
-  @include contact();
-}
-
-.content-wrapper {
-  @include content();
-}
-
-.expanded > .card-content {
-  @include show();
-}
-
-.faculty-image {
-  @include facultyImage();
-}
-
-#hidden-image {
-  @include hide();
-}
-
-.hide {
-  @include hide();
-}
-
-#left-column {
-  @include leftColumn();
-  @include columnPadding();
-}
-
-.content-wrapper ::slotted(h1) {
-  @include rootBaseSlotted();
-}
-
-.content-wrapper ::slotted(div) {
-  @include rootBaseSlottedDiv();
-}
-
-#right-column {
-  @include rightColumn();
-  @include columnPadding();
-}
-
-.svg-md {
-  @include svgMedium();
-}
-
-.svg-md:hover {
-  @include cursorPointer();
-}
-
-.svg-shadow {
-  @include svgShadow();
-}
-
-.svg-sm {
-  @include svgSmall();
-}
-
-@media only screen and (max-width: 859px) {
-  .card {
-    @include cardMedium();
-  }
-
-  .content-wrapper {
-    @include contentMedium();
-  }
-}
-
-@media only screen and (max-width: 491px) {
-  .card {
-    @include cardSmall();
-  }
-
-  .contact-wrapper {
-    @include contactAdjustedMargin();
-  }
-
-  .content-wrapper {
-    @include contentCenter();
-  }
-
-  #default-image {
-    @include hide();
-  }
-
-  #left-column {
-    @include hide();
-  }
-
-  #hidden-image {
-    @include hiddenImage();
-    @include show();
-  }
-}
+ #background-image {
+   @include hide();
+ }
+ 
+ .background-image-wrapper {
+   @include backroundImage();
+ }
+ 
+ .card {
+   @include card();
+ 
+ }
+ 
+ .card-chevron-wrapper {
+   @include cardChevron();
+ }
+ 
+ .card-content {
+   @include cardContent();
+   @include hide();
+   
+ }
+ 
+ .card-title-wrapper ::slotted(h3) {
+   @include customHeaderSlotted();
+ }
+ 
+ .card-title-wrapper ::slotted(div) {
+   @include customHeaderSlottedDiv();
+ }
+ 
+ .card-content ::slotted(*) {
+   @include noMargin();
+ }
+ 
+ .card-title-wrapper > h3 {
+   @include cardTitle();
+ }
+ 
+ .click-area {
+   @include cardPadding;
+ }
+ 
+ .click-area:hover {
+   @include clickAreaHover();
+   @include cursorPointer();
+ }
+ 
+ .click-area > table {
+   @include cardTable();
+ }
+ 
+ .contact-wrapper {
+   @include contact();
+ }
+ 
+ .content-wrapper {
+   @include content();
+ }
+ 
+ .expanded > .card-content {
+   @include show();
+   animation: fadein 1s;
+   -webkit-animation: fadein 1s;
+   -moz-animation:    fadein 1s;
+   -o-animation:      fadein 1s;
+   -ms-transition:    fadein 1s;
+ }
+ 
+ .faculty-image {
+   @include facultyImage();
+ }
+ 
+ #hidden-image {
+   @include hide();
+ }
+ 
+ .hide {
+   @include hide();
+   
+ }
+ 
+ img#hiddenimage{
+   max-width: 120px !important;
+ }
+ #left-column {
+   @include leftColumn();
+   @include columnPadding();
+ }
+ 
+ .content-wrapper ::slotted(h1) {
+   @include rootBaseSlotted();
+ }
+ 
+ .content-wrapper ::slotted(div) {
+   @include rootBaseSlottedDiv();
+ }
+ 
+ #right-column {
+   @include rightColumn();
+   @include columnPadding();
+ }
+ 
+ .svg-md {
+   @include svgMedium();
+ }
+ 
+ .svg-md:hover {
+   @include cursorPointer();
+ }
+ 
+ .svg-shadow {
+   @include svgShadow();
+ }
+ 
+ .svg-sm {
+   @include svgSmall();
+ }
+ 
+ @media only screen and (max-width: 859px) {
+   .card {
+     @include cardMedium();
+   }
+ 
+   .content-wrapper {
+     @include contentMedium();
+   }
+ }
+ 
+ @media only screen and (max-width: 491px) {
+   .card {
+     @include cardSmall();
+   }
+ 
+   .contact-wrapper {
+     @include contactAdjustedMargin();
+   }
+ 
+   .content-wrapper {
+     @include contentCenter();
+   }
+ 
+   #default-image {
+     @include hide();
+   }
+ 
+   #left-column {
+     @include hide();
+   }
+ 
+   #hidden-image {
+     @include hiddenImage();
+     @include show();
+     height: 130px;
+   }
+ }
+ .chevron.svg-md{
+   transition: 0.3s;
+ }
+ 
+ @keyframes fadein{
+   from{
+     max-height: 0px;
+   }
+   to{
+     max-height: 500px;
+   }
+ }
