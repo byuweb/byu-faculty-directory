@@ -14,7 +14,8 @@
   ~    See the License for the specific language governing permissions and
   ~    limitations under the License.
   -->
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+   integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <style>
     ${require('./byu-faculty-profile.scss')}
 </style>
@@ -53,7 +54,7 @@
   </div>
   <div class="additional-info-wrapper">
     <div class="card biography-card">
-      <div class="click-area">
+      <div class="click-area" data-toggle="collapse" data-target="biography-content">
         <table>
           <tbody>
             <tr>
@@ -67,7 +68,7 @@
           </tbody>
         </table>
       </div>
-      <div class="card-content">
+      <div class="card-content collapse" id="biography-content">
         <slot class="card-slot" name="faculty-biography">No Information</slot>
       </div>
     </div>
