@@ -265,22 +265,13 @@ function setupButtonListeners(component) {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function cardClick() {
       var element = this;
-      element = element.children[0];
-      element = element.children[0];
-      element = element.children[0];
-      element = element.children[1];
-
-      if (!element.children[0].classList.contains('open')) {
-        
-        element.children[0].className += ' open';
+      if (!this.parentNode.classList.contains('expanded')) {
         this.parentNode.className += ' expanded';
-        element.children[0].setAttribute('style','transform:rotate(90deg)');
+        element.children[1].children[0].setAttribute('style','transform:rotate(90deg)');
       }
-
       else {
-        element.children[0].classList.remove('open');
-        element.children[0].setAttribute('style','transform:rotate(0deg)');
         this.parentNode.classList.remove('expanded');
+        element.children[1].children[0].setAttribute('style','transform:rotate(0deg)');
       }
     });
   }

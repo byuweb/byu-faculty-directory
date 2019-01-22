@@ -29,13 +29,6 @@
   margin-right: auto;
 }
 
-@mixin centerColumn() {
-  text-align: center;
-  margin: auto;
-  padding: 16px;
-  width: 288px;
-}
-
 @mixin contact() {
   margin: 36px 0px 16px 0px;
 }
@@ -45,29 +38,14 @@
   vertical-align: top;
 }
 
-@mixin columnLeft() {
-  padding: 16px 8px 16px 16px;
-}
-
-@mixin columnMiddle() {
-  padding: 16px 8px 16px 8px;
-  width: 232px;
-  vertical-align: top;
-}
-
-@mixin columnRight() {
-  padding: 16px 16px 16px 8px;
-  vertical-align: top;
-}
-
 @mixin facultyImage() {
   height: 270px;
   vertical-align: middle;
   width: 186px;
   border-radius: 5px;
-  box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
+  /*box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
   -moz-box-shadow:    rgba(0,0,0,.2) 4px 5px 2px -2px;
-  -webkit-box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
+  -webkit-box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;*/
 }
 
 @mixin hide() {
@@ -110,6 +88,7 @@
 }
 
 @mixin rootBase() {
+  padding: 16px 16px 16px 16px;
   background-color: #FFFFFF;
   color: #515151;
   font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
@@ -117,7 +96,7 @@
   line-height: 20px;
   margin: 24px auto 24px auto;
   min-width: 250px;
-  width: 1024px;
+  //width: 1024px;
   vertical-align: top;
   border-radius: 5px;
   box-shadow: rgba(0,0,0,.2) 1px 4px 2px -2px;

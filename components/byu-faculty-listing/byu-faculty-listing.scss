@@ -20,26 +20,11 @@
  .biography-slot-wrapper {
    @include biography();
  }
- 
- #faculty-listing-column-left {
-   @include columnLeft();
-   width: 20%;
- }
- 
- #faculty-listing-column-middle {
-   @include columnMiddle();
-   width: 20%;
- }
- 
+
  #faculty-listing-column-middle {
    ::slotted(h2) {
      @include slottedHeader();
    }
- }
- 
- #faculty-listing-column-right {
-   @include columnRight();
-   width: 60%;
  }
  
  .contact-wrapper {
@@ -58,7 +43,6 @@
    @include hide();
  }
  
- 
  .listing-root {
    @include rootBase();
  }
@@ -76,7 +60,17 @@
  #faculty-listing-column-middle > a ::slotted(h2) {
    @include rootSlottedH2();
  }
- 
+
+ #faculty-listing-column-left{
+ }
+
+ #faculty-listing-column-middle{
+   
+ }
+
+ #faculty-listing-column-right{
+
+ }
  .listing-root {
    ::slotted(p) {
      @include rootSlottedP();
@@ -116,44 +110,47 @@
    margin: 0px;
    line-height:19px
  }
- 
- @media only screen and (max-width: 1023px) {
-   #faculty-listing-column-right {
-     @include hide();
-   }
- 
-   #faculty-listing-column-middle {
-     @include columnRight();
-   }
- 
-   .listing-root {
-     @include rootMedium();
-   }
+
+ .container-fluid{
+   max-width: 1032px;
+   margin-right: auto;
+   margin-left: auto;
  }
- 
- @media only screen and (max-width: 671px) {
-   #faculty-listing-column-left {
-     @include hide();
-   }
- 
-   #faculty-listing-column-middle {
-     @include centerColumn();
-   }
- 
-   #default-image {
-     @include hide();
-   }
- 
-   #hidden-image {
-     @include showHiddenImage();
-   }
-   
-   .image-wrapper{
-     padding-top: 15px;
-   }
- 
-   .listing-root {
-     @include rootSmall();
-   }
+
+@media only screen and (max-width: 1238px) {
+  .container-fluid{
+    margin-right: 10%;
+    margin-left: 10%;
+  }
  }
- 
+
+ @media only screen and (max-width: 991px) {
+
+  #faculty-listing-column-middle{
+    text-align: center;
+  }
+  .image-wrapper{
+    margin: 0 auto;
+    padding-left: 0px;
+  }
+  .container-fluid{
+    margin-right: 10%;
+    margin-left: 10%;
+  }
+ }
+
+ #faculty-listing-column-right{
+    padding-right: 40px;
+ }
+ @media only screen and (max-width: 768px) {
+
+  #faculty-listing-column-middle{
+    text-align: center;
+  }
+  .image-wrapper{
+    margin: 0 auto;
+    padding-left: 0px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+ }

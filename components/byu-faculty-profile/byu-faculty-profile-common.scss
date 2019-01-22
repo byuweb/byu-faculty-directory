@@ -29,9 +29,8 @@
   font-weight: 200;
   line-height: 20px;
   margin: 20px auto 20px auto;
-  /*padding: 16px;*/
-  width: 100%;
   max-width: 824px;
+  min-width: 300px;
   border-radius: 5px;
   box-shadow: rgba(0,0,0,.2) 1px 4px 2px -2px;
   -moz-box-shadow:    rgba(0,0,0,.2) 1px 4px 2px -2px;
@@ -40,30 +39,16 @@
 
 @mixin cardChevron() {
   text-align: right;
+  display: inline;
+  float: right;
 }
 
 @mixin cardContent() {
   padding: 8px 20px 16px 20px;
 }
 
-@mixin cardMedium() {
-  width: 456px;
-}
-
-@mixin cardLong() {
-  width: 95%;
-}
-
 @mixin cardPadding() {
   padding: 16px;
-}
-
-@mixin cardSmall() {
-  width: 290px;
-}
-
-@mixin cardTable() {
-  width: 100%;
 }
 
 @mixin cardTitle() {

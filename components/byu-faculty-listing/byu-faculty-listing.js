@@ -226,8 +226,8 @@ function truncateText(component) {
         }
       }
       else {
-        if (slot.innerText.length > 500) {
-          while (slot.innerText.length > 500) {
+        if (slot.innerText.length > 400) {
+          while (slot.innerText.length > 400) {
             slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '...');
           }
           slot.innerHTML = slot.innerHTML + "<a style='color: #008080' href='" + component.profileLink + "'>Read More</a>";

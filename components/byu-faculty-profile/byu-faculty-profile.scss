@@ -46,16 +46,23 @@
  
  .card-title-wrapper ::slotted(div) {
    @include customHeaderSlottedDiv();
+   display: inline;
  }
  
  .card-content ::slotted(*) {
    @include noMargin();
  }
- 
+
  .card-title-wrapper > h3 {
    @include cardTitle();
+   display: inline;
  }
- 
+ .card-title-wrapper{
+   display: inline;
+ }
+ .chevron.svg-md{
+  transition: 0.3s;
+}
  .click-area {
    @include cardPadding;
  }
@@ -64,26 +71,24 @@
    @include clickAreaHover();
    @include cursorPointer();
  }
- 
- .click-area > table {
-   @include cardTable();
- }
- 
+
+ .chevron.svg-md{
+  transition: 0.3s;
+  }
+
  .contact-wrapper {
    @include contact();
  }
- 
+ .container-fluid{
+   padding: 0px 0px 0px 0px;
+ }
+
  .content-wrapper {
    @include content();
  }
  
  .expanded > .card-content {
    @include show();
-   animation: fadein 1s;
-   -webkit-animation: fadein 1s;
-   -moz-animation:    fadein 1s;
-   -o-animation:      fadein 1s;
-   -ms-transition:    fadein 1s;
  }
  
  .faculty-image {
@@ -135,11 +140,13 @@
  .svg-sm {
    @include svgSmall();
  }
- 
- @media only screen and (max-width: 859px) {
-   .card {
-     @include cardMedium();
+ @media only screen and (max-width: 1050px) {
+   .container-fluid{
+     margin-left: 10%;
+     margin-right: 10%;
    }
+ }
+ @media only screen and (max-width: 859px) {
  
    .content-wrapper {
      @include contentMedium();
@@ -147,9 +154,6 @@
  }
  
  @media only screen and (max-width: 491px) {
-   .card {
-     @include cardSmall();
-   }
  
    .contact-wrapper {
      @include contactAdjustedMargin();
@@ -173,15 +177,6 @@
      height: 130px;
    }
  }
- .chevron.svg-md{
-   transition: 0.3s;
- }
- 
- @keyframes fadein{
-   from{
-     max-height: 0px;
-   }
-   to{
-     max-height: 500px;
-   }
+ div.click-area:hover{
+   background-color: rgb(197, 197, 197);
  }
