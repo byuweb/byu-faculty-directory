@@ -39,9 +39,9 @@
 }
 
 @mixin facultyImage() {
-  height: 270px;
+  height: 250px;
   vertical-align: middle;
-  width: 186px;
+  width: auto;
   border-radius: 5px;
   box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
   -moz-box-shadow:    rgba(0,0,0,.2) 4px 5px 2px -2px;
@@ -95,8 +95,8 @@
   font-weight: 200 !important;
   line-height: 20px;
   margin: 24px auto 24px auto;
-  min-width: 250px;
-  //width: 1024px;
+  min-width: 274px;
+  min-height: 282px;
   vertical-align: top;
   border-radius: 5px;
   box-shadow: rgba(0,0,0,.2) 1px 4px 2px -2px;

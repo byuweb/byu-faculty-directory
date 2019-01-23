@@ -126,9 +126,6 @@
 
  @media only screen and (max-width: 991px) {
 
-  #faculty-listing-column-middle{
-    text-align: center;
-  }
   .image-wrapper{
     margin: 0 auto;
     padding-left: 0px;
@@ -142,8 +139,22 @@
  #faculty-listing-column-right{
     padding-right: 40px;
  }
- @media only screen and (max-width: 768px) {
 
+ @media (min-width: 631px){
+  .col-sm-5 {
+      width: 41.66666667%;
+  }
+}
+@media (min-width: 992px){
+  .col-md-3 {
+      width: 25%;
+  }
+}
+ @media only screen and (max-width: 630px) {
+  .faculty-image{
+    height: 150px;
+    width: auto;
+  }
   #faculty-listing-column-middle{
     text-align: center;
   }
@@ -152,9 +163,5 @@
     padding-left: 0px;
     padding-bottom: 10px;
     text-align: center;
-  }
-  .faculty-image{
-    height: 150px;
-    width: auto;
   }
  }
