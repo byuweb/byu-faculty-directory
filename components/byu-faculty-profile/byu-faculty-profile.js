@@ -238,27 +238,6 @@ function applyProfileImage(component) {
 }
 
 function setupButtonListeners(component) {
-  /*let buttons = component.shadowRoot.querySelectorAll('.chevron');
-
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', function() {
-      if (this.src.includes('Chevron-Right')) {
-        this.src = "/components/byu-faculty-profile/Chevron-Down.svg";
-
-        var element = this, i = 5;
-        while(i-- && (element = element.parentNode));
-        element.className += " expanded";
-      }
-
-      else {
-        this.src = "/components/byu-faculty-profile/Chevron-Right.svg";
-
-        var element = this, i = 5;
-        while(i-- && (element = element.parentNode));
-        element.classList.remove("expanded");
-      }
-    });
-  }*/
 
   let buttons = component.shadowRoot.querySelectorAll('.click-area');
 
@@ -275,12 +254,6 @@ function setupButtonListeners(component) {
       }
     });
   }
-
-  // let callback = component.__buttonListener = function(event) {
-  //   component.apiKey = component.apiKey + 1;
-  // };
-
-  // button.addEventListener('click', callback, false);
 }
 
 //We generally want to be good neighbors and clean up after ourselves when we're done with things.
