@@ -23,49 +23,49 @@
 </style>
   <div class="root listing-root container-fluid">
     <div class="row">
-      <img class="faculty-image" id="hidden-image"/>
-    <div id="faculty-listing-column-left" class="col-md-3 col-sm-5 col-xs-12">
-      <div class="image-wrapper">
-        <a class="profile-link" href="">
-          <img class="faculty-image" id="default-image"/>
-        </a>
-      </div>
-    </div>
-    <div id="faculty-listing-column-middle" class="col-md-3 col-sm-5 col-xs-12">
-      <a class="profile-link" href="">
-        <slot id="listing-name" name="listing-name"></slot>
-      </a>
-      <i><slot name="listing-title"></slot></i>
-      <div class="contact-wrapper">
-        <div class="office-slot-wrapper">
-          <b>Office: </b><slot name="listing-office"></slot>
-        </div>
-        <div class="phone-slot-wrapper">
-          <b>Phone: </b><slot name="listing-phone"></slot>
-        </div>
-        <div class="email-slot-wrapper">
-          <b>Email: </b><slot name="listing-email"></slot>
+      <div id="faculty-listing-column-left" class="col-md-3 col-sm-5 col-xs-12">
+        <div class="image-wrapper">
+          <a class="profile-link" href="">
+            <img class="faculty-image" id="default-image"/>
+          </a>
         </div>
       </div>
-      <div class="office-hours-slot-wrapper">
-        <b>Office Hours: </b><br>
-        <slot name="listing-office-hours"></slot>
-      </div>
-    </div>
 
-    <div id="faculty-listing-column-right" class="col-md-6 visible-lg visible-md">
-      <div class="research-slot-wrapper">
-        <h3 class="section-header">Research</h3>
-        <div class="slot">
-          <slot name="listing-research"></slot>
+      <div id="faculty-listing-column-middle" class="col-md-3 col-sm-5 col-xs-12">
+        <a class="profile-link" href="">
+          <slot id="listing-name" name="listing-name"></slot>
+        </a>
+        <i><slot name="listing-title"></slot></i>
+        <div class="contact-wrapper">
+          <div class="office-slot-wrapper">
+            <b>Office: </b><slot name="listing-office"></slot>
+          </div>
+          <div class="phone-slot-wrapper">
+            <b>Phone: </b><slot name="listing-phone"></slot>
+          </div>
+          <div class="email-slot-wrapper">
+            <b>Email: </b><slot name="listing-email"></slot>
+          </div>
+        </div>
+        <div class="office-hours-slot-wrapper">
+          <b>Office Hours: </b><br>
+          <slot name="listing-office-hours"></slot>
         </div>
       </div>
-      <div class="biography-slot-wrapper">
-        <h3 class="section-header">Biography</h3>
-        <div class="slot">
-          <slot name="listing-biography"></slot>
+
+      <div id="faculty-listing-column-right" class="col-md-6 visible-lg visible-md">
+        <div class="research-slot-wrapper">
+          <h3 class="section-header">Research</h3>
+          <div class="slot">
+            <slot name="listing-research"></slot>
+          </div>
+        </div>
+        <div class="biography-slot-wrapper">
+          <h3 class="section-header">Biography</h3>
+          <div class="slot">
+            <slot name="listing-biography"></slot>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>

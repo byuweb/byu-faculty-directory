@@ -60,11 +60,15 @@
  .card-title-wrapper{
    display: inline;
  }
- .chevron.svg-md{
-  transition: 0.3s;
-}
+
+ .center-col{
+  text-align: center;
+  margin: 0 auto;
+ }
+
  .click-area {
    @include cardPadding;
+   @include transition();
  }
  
  .click-area:hover {
@@ -73,7 +77,7 @@
  }
 
  .chevron.svg-md{
-  transition: 0.3s;
+  @include transition();
   }
 
  .contact-wrapper {
@@ -94,35 +98,22 @@
  .faculty-image {
    @include facultyImage();
  }
- 
- #hidden-image {
-   @include hide();
+
+ .faculty-image-wrapper{
+   padding-top: 25px;
  }
  
  .hide {
    @include hide();
    
  }
- 
- img#hiddenimage{
-   max-width: 120px !important;
- }
- #left-column {
-   @include leftColumn();
-   @include columnPadding();
- }
- 
+
  .content-wrapper ::slotted(h1) {
    @include rootBaseSlotted();
  }
  
  .content-wrapper ::slotted(div) {
    @include rootBaseSlottedDiv();
- }
- 
- #right-column {
-   @include rightColumn();
-   @include columnPadding();
  }
  
  .svg-md {
@@ -140,43 +131,23 @@
  .svg-sm {
    @include svgSmall();
  }
+
+  .vertical-center-col{
+   top: 25px;
+  }
+
  @media only screen and (max-width: 1050px) {
-   .container-fluid{
+   .card{
      margin-left: 10%;
      margin-right: 10%;
    }
  }
- @media only screen and (max-width: 859px) {
- 
-   .content-wrapper {
-     @include contentMedium();
-   }
+ @media only screen and (max-width: 450px) {
+
+ .faculty-image{
+   height: 175px;
  }
- 
- @media only screen and (max-width: 491px) {
- 
-   .contact-wrapper {
-     @include contactAdjustedMargin();
-   }
- 
-   .content-wrapper {
-     @include contentCenter();
-   }
- 
-   #default-image {
-     @include hide();
-   }
- 
-   #left-column {
-     @include hide();
-   }
- 
-   #hidden-image {
-     @include hiddenImage();
-     @include show();
-     height: 130px;
-   }
+ .faculty-image-wrapper{
+   padding-top: 62px;
  }
- div.click-area:hover{
-   background-color: rgb(197, 197, 197);
  }

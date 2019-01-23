@@ -102,21 +102,9 @@
   line-height: 24px;
   margin: auto;
   text-shadow: 4px 4px 8px #000000;
-  width: 824px;
-}
-
-@mixin contentMedium {
-  width: 456px;
-}
-
-@mixin contentLong() {
-  width: 80%;
-}
-
-@mixin contentCenter() {
-  line-height: 18px;
-  text-align: center;
-  width: 100%;
+  max-width: 824px;
+  height: 300px;
+  min-width: 350px;
 }
 
 @mixin cursorPointer() {
@@ -125,7 +113,6 @@
 
 @mixin facultyImage() {
   height: 250px;
-  margin: 8px 0px 0px 0px;
   width: auto;
   border-radius: 5px;
   box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
@@ -147,16 +134,8 @@
   opacity: 0;
 }
 
-@mixin leftColumn() {
-  width: 170px;
-}
-
 @mixin noMargin {
   margin: 0px;
-}
-
-@mixin rightColumn {
-  vertical-align: middle;
 }
 
 @mixin rootBaseSlotted() {
@@ -202,4 +181,12 @@
   height: 16px;
   vertical-align: middle;
   width: 16px;
+}
+
+@mixin transition() {
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -ms-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
 }

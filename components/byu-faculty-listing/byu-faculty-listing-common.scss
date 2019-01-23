@@ -43,9 +43,9 @@
   vertical-align: middle;
   width: 186px;
   border-radius: 5px;
-  /*box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
+  box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
   -moz-box-shadow:    rgba(0,0,0,.2) 4px 5px 2px -2px;
-  -webkit-box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;*/
+  -webkit-box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
 }
 
 @mixin hide() {
@@ -76,10 +76,10 @@
 
 @mixin slottedHeaderDiv() {
   display: block;
-  font-size: 1.5em;
-  font-weight: bold;
+  font-size: 1.5em !important;
+  font-weight: bold !important;
   color: #002e5d;
-  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif !important;
   margin: 0;
 }
 
@@ -91,8 +91,8 @@
   padding: 16px 16px 16px 16px;
   background-color: #FFFFFF;
   color: #515151;
-  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
-  font-weight: 200;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif !important;
+  font-weight: 200 !important;
   line-height: 20px;
   margin: 24px auto 24px auto;
   min-width: 250px;
@@ -110,7 +110,7 @@
 
 @mixin rootSlottedH2() {
   color: #002E5D;
-  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif !important;
   margin: 0px 0px 0px 0px;
 }
 
