@@ -123,8 +123,15 @@
     margin-left: 10%;
   }
  }
+ @media only screen and (max-width: 1200px) {
+  .listing-root{
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+ }
 
- @media only screen and (max-width: 991px) {
+ @media only screen and (max-width: 950px) {
 
   .image-wrapper{
     margin: 0 auto;
@@ -147,6 +154,11 @@
 }
 @media (min-width: 992px){
   .col-md-3 {
+      width: 25%;
+  }
+}
+@media (min-width: 1200px){
+  .col-lg-3 {
       width: 25%;
   }
 }
