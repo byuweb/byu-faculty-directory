@@ -15,123 +15,114 @@
  *    limitations under the License.
  */
 
- @import 'byu-faculty-listing-common';
+@import 'byu-faculty-listing-common';
+@import 'bootstrap.css';
 
- .biography-slot-wrapper {
-   @include biography();
- }
+.adjusted-header {
+  @include adjustedHeader();
+}
 
- #faculty-listing-column-middle {
-   ::slotted(h2) {
-     @include slottedHeader();
-   }
- }
- 
- .contact-wrapper {
-   @include contact();
- }
- 
- .faculty-image {
-   @include facultyImage();
- }
- /* Image hover to see profile possibly.
- .faculty-image:hover{
-   opacity: 0.7;
- }*/
- 
- .hide {
-   @include hide();
- }
- 
- .listing-root {
-   @include rootBase();
- }
- 
- .listing-root {
-   ::slotted(h2) {
-     @include rootSlottedH2();
-   }
- }
- 
- #faculty-listing-column-middle > a ::slotted(div) {
-   @include slottedHeaderDiv();
- }
- 
- #faculty-listing-column-middle > a ::slotted(h2) {
-   @include rootSlottedH2();
- }
+.biography-slot-wrapper {
+  @include biography();
+}
 
- #faculty-listing-column-left{
- }
+.contact-wrapper {
+  @include contact();
+}
 
- #faculty-listing-column-middle{
-   
- }
+.contact-wrapper > div ::slotted(p) {
+  @include rootSlottedP(); 
+}
 
- #faculty-listing-column-right{
+.container-fluid{
+  max-width: 1032px;
+  margin-right: auto;
+  margin-left: auto;
+}
 
- }
- .listing-root {
-   ::slotted(p) {
-     @include rootSlottedP();
-   }
- }
- 
- .contact-wrapper > div ::slotted(p) {
-   @include rootSlottedP();
- }
- 
- .slot > ::slotted(p) {
-   @include rootSlottedP();
- }
- 
- .adjusted-header {
-   @include adjustedHeader();
- }
- 
- .profile-link {
-   @include noUnderline();
- }
- 
- .research-slot-wrapper, .biography-slot-wrapper {
-   @include overflowBase();
- }
- 
- .research-slot-wrapper {
-   @include research();
- }
- 
- .research-slot-wrapper > h3 {
-   @include slottedHeader();
- }
- 
- .section-header {
-   @include sectionHeader();
-   margin: 0px;
-   line-height:19px
- }
+.faculty-image {
+  @include facultyImage();
+}
 
- .container-fluid{
-   max-width: 1032px;
-   margin-right: auto;
-   margin-left: auto;
- }
+#faculty-listing-column-middle > a ::slotted(div) {
+  @include slottedHeaderDiv();
+}
 
+#faculty-listing-column-middle > a ::slotted(h2) {
+  @include rootSlottedH2();
+}
+
+#faculty-listing-column-right{
+  padding-right: 40px;
+}
+
+#faculty-listing-column-middle {
+  ::slotted(h2) {
+    @include slottedHeader();
+  }
+}
+
+.hide {
+  @include hide();
+}
+
+.listing-root {
+  @include rootBase();
+}
+
+.listing-root {
+  ::slotted(h2) {
+    @include rootSlottedH2();
+  }
+}
+
+.listing-root {
+  ::slotted(p) {
+    @include rootSlottedP();
+  }
+}
+ 
+.slot > ::slotted(p) {
+  @include rootSlottedP();
+}
+ 
+.profile-link {
+  @include noUnderline();
+}
+
+.research-slot-wrapper, .biography-slot-wrapper {
+  @include overflowBase();
+}
+
+.research-slot-wrapper {
+  @include research();
+}
+ 
+.research-slot-wrapper > h3 {
+  @include slottedHeader();
+}
+
+.section-header {
+  @include sectionHeader();
+}
+
+//The @media section helps keep the card transitions smooth and looking proportional
 @media only screen and (max-width: 1290px) {
   .container-fluid{
     margin-right: 10%;
     margin-left: 10%;
   }
  }
- @media only screen and (max-width: 1200px) {
+
+@media only screen and (max-width: 1200px) {
   .listing-root{
     max-width: 750px;
     margin-left: auto;
     margin-right: auto;
   }
- }
+}
 
- @media only screen and (max-width: 950px) {
+@media only screen and (max-width: 950px) {
 
   .image-wrapper{
     margin: 0 auto;
@@ -141,28 +132,9 @@
     margin-right: 10%;
     margin-left: 10%;
   }
- }
+}
 
- #faculty-listing-column-right{
-    padding-right: 40px;
- }
-
- @media (min-width: 631px){
-  .col-sm-5 {
-      width: 41.66666667%;
-  }
-}
-@media (min-width: 992px){
-  .col-md-3 {
-      width: 25%;
-  }
-}
-@media (min-width: 1200px){
-  .col-lg-3 {
-      width: 25%;
-  }
-}
- @media only screen and (max-width: 630px) {
+@media only screen and (max-width: 630px) {
   .faculty-image{
     height: 150px;
     width: auto;
@@ -176,4 +148,22 @@
     padding-bottom: 10px;
     text-align: center;
   }
- }
+}
+
+@media (min-width: 631px){
+  .col-sm-5 {
+      width: 41.66666667%;
+  }
+}
+@media (min-width: 1200px){
+  .col-lg-3 {
+      width: 25%;
+  }
+}
+
+@media (min-width: 992px){
+  .col-md-3 {
+      width: 25%;
+  }
+}
+

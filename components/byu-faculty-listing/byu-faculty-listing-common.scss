@@ -39,7 +39,7 @@
 }
 
 @mixin facultyImage() {
-  height: 250px;
+  height: 278px;
   vertical-align: middle;
   width: auto;
   border-radius: 5px;
@@ -76,10 +76,10 @@
 
 @mixin slottedHeaderDiv() {
   display: block;
-  font-size: 1.5em !important;
-  font-weight: bold !important;
+  font-size: 1.5em;
+  font-weight: bold;
   color: #002e5d;
-  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif !important;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
   margin: 0;
 }
 
@@ -91,8 +91,8 @@
   padding: 16px 16px 16px 16px;
   background-color: #FFFFFF;
   color: #515151;
-  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif !important;
-  font-weight: 200 !important;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
+  font-weight: 200;
   line-height: 20px;
   margin: 24px auto 24px auto;
   min-width: 274px;
@@ -110,7 +110,7 @@
 
 @mixin rootSlottedH2() {
   color: #002E5D;
-  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif !important;
+  font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
   margin: 0px 0px 0px 0px;
 }
 
