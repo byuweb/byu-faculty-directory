@@ -20,7 +20,6 @@
 }
 
 @mixin biography() {
-  height: 194px;
   line-height: 20px;
 }
 
@@ -67,7 +66,6 @@
 
 @mixin research() {
   line-height: 20px;
-  height: 64px;
 }
 
 @mixin slottedHeader() {

@@ -134,7 +134,7 @@
  }
 
   .vertical-center-col{
-   top: 25px;
+   padding-top: 60px;
   }
 
  @media only screen and (max-width: 1050px) {
@@ -143,12 +143,27 @@
      margin-right: 10%;
    }
  }
- @media only screen and (max-width: 475px) {
+ @media only screen and (max-width: 499px) {
+  .faculty-image{
+    height: 120px;
+  }
+  .faculty-image-wrapper{
+    padding-top: 10px;
+  }
+  .vertical-center-col{
+    padding-top: 10px;
+    text-align: center;
+  }
+  .contact-wrapper{
+    margin-top: 20px;
+  }
+ }
 
- .faculty-image{
-   height: 175px;
- }
- .faculty-image-wrapper{
-   padding-top: 62px;
- }
- }
+ @media (min-width: 500px){
+  .col-sm-5 {
+      width: 41.66666667%;
+  }
+  .col-sm-7{
+    width: 58.33333333%;
+  }
+}

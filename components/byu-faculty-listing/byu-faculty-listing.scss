@@ -132,6 +132,9 @@
     margin-right: 10%;
     margin-left: 10%;
   }
+  #faculty-listing-column-middle{
+    padding-left: 40px;
+  }
 }
 
 @media only screen and (max-width: 630px) {
@@ -141,6 +144,7 @@
   }
   #faculty-listing-column-middle{
     text-align: center;
+    padding-left: 15px;
   }
   .image-wrapper{
     margin: 0 auto;
