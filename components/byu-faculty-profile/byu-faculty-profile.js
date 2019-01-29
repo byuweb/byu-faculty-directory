@@ -48,8 +48,8 @@ class ByuFacultyProfile extends HTMLElement {
       setupButtonListeners(this);
       showContent(this);
       //applyApiKey(this);
-
       //setupSlotListeners(this);
+      
     });
   }
 
@@ -255,6 +255,7 @@ function setupButtonListeners(component) {
     });
   }
 }
+
 
 //We generally want to be good neighbors and clean up after ourselves when we're done with things.
 function teardownButtonListeners(component) {

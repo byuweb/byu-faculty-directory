@@ -63,8 +63,8 @@
  }
 
  .center-col{
-  text-align: center;
   margin: 0 auto;
+  padding-left: 0px;
  }
 
  .click-area {
@@ -104,6 +104,10 @@
    padding-top: 25px;
  }
  
+ #faculty-name::slotted(div){
+  line-height: 28px;
+ }
+
  .hide {
    @include hide();
    
@@ -135,14 +139,28 @@
 
   .vertical-center-col{
    padding-top: 60px;
+   padding-left: 0px;
   }
 
  @media only screen and (max-width: 1050px) {
-   .card{
+   .card, .content-wrapper{
      margin-left: 10%;
      margin-right: 10%;
    }
  }
+
+ @media only screen and (max-width: 700px) {
+  .vertical-center-col{
+    padding-right: 0px;
+    padding-left: 30px;
+  }
+  .faculty-image{
+    height: 200px;
+  }
+  .faculty-image-wrapper{
+    padding-top: 50px;
+  }
+}
  @media only screen and (max-width: 499px) {
   .faculty-image{
     height: 120px;
@@ -150,20 +168,26 @@
   .faculty-image-wrapper{
     padding-top: 10px;
   }
+  .center-col{
+    text-align: center;
+    padding-left: 15px;
+  }
   .vertical-center-col{
     padding-top: 10px;
     text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
   }
   .contact-wrapper{
-    margin-top: 20px;
+    margin-top: 15px;
   }
  }
 
  @media (min-width: 500px){
-  .col-sm-5 {
-      width: 41.66666667%;
+  .col-sm-4 {
+      width: 33.333333%;
   }
-  .col-sm-7{
-    width: 58.33333333%;
+  .col-sm-8{
+    width: 66.666666%;
   }
 }
