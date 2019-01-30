@@ -16,42 +16,50 @@
  */
 
 @import 'byu-faculty-listing-common';
+@import 'bootstrap.css';
+
+.adjusted-header {
+  @include adjustedHeader();
+}
 
 .biography-slot-wrapper {
   @include biography();
-}
-
-#faculty-listing-column-left {
-  @include columnLeft();
-  width: 20%;
-}
-
-#faculty-listing-column-middle {
-  @include columnMiddle();
-  width: 20%;
-}
-
-#faculty-listing-column-middle {
-  ::slotted(h2) {
-    @include slottedHeader();
-  }
-}
-
-#faculty-listing-column-right {
-  @include columnRight();
-  width: 60%;
 }
 
 .contact-wrapper {
   @include contact();
 }
 
+.contact-wrapper > div ::slotted(p) {
+  @include rootSlottedP(); 
+}
+
+.container-fluid{
+  max-width: 1032px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .faculty-image {
   @include facultyImage();
 }
 
-#hidden-image {
-  @include hide();
+#faculty-listing-column-middle > a ::slotted(div) {
+  @include slottedHeaderDiv();
+}
+
+#faculty-listing-column-middle > a ::slotted(h2) {
+  @include rootSlottedH2();
+}
+
+#faculty-listing-column-right{
+  padding-right: 40px;
+}
+
+#faculty-listing-column-middle {
+  ::slotted(h2) {
+    @include slottedHeader();
+  }
 }
 
 .hide {
@@ -68,30 +76,15 @@
   }
 }
 
-#faculty-listing-column-middle > a ::slotted(div) {
-  @include slottedHeaderDiv();
-}
-
-#faculty-listing-column-middle > a ::slotted(h2) {
-  @include rootSlottedH2();
-}
-
 .listing-root {
   ::slotted(p) {
     @include rootSlottedP();
   }
 }
 
-.contact-wrapper > div ::slotted(p) {
-  @include rootSlottedP();
-}
-
+ 
 .slot > ::slotted(p) {
   @include rootSlottedP();
-}
-
-.adjusted-header {
-  @include adjustedHeader();
 }
 
 .profile-link {
@@ -112,42 +105,69 @@
 
 .section-header {
   @include sectionHeader();
-  margin: 0px;
-  line-height:19px
 }
 
-@media only screen and (max-width: 1023px) {
-  #faculty-listing-column-right {
-    @include hide();
+//The @media section helps keep the card transitions smooth and looking proportional
+@media only screen and (max-width: 1290px) {
+  .container-fluid{
+    margin-right: 10%;
+    margin-left: 10%;
   }
+ }
 
-  #faculty-listing-column-middle {
-    @include columnRight();
-  }
-
-  .listing-root {
-    @include rootMedium();
+@media only screen and (max-width: 1200px) {
+  .listing-root{
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
-@media only screen and (max-width: 671px) {
-  #faculty-listing-column-left {
-    @include hide();
-  }
+@media only screen and (max-width: 950px) {
 
-  #faculty-listing-column-middle {
-    @include centerColumn();
+  .image-wrapper{
+    margin: 0 auto;
+    padding-left: 0px;
   }
-
-  #default-image {
-    @include hide();
+  .container-fluid{
+    margin-right: 10%;
+    margin-left: 10%;
   }
-
-  #hidden-image {
-    @include showHiddenImage();
+  #faculty-listing-column-middle{
+    padding-left: 40px;
   }
+}
 
-  .listing-root {
-    @include rootSmall();
+@media only screen and (max-width: 630px) {
+  .faculty-image{
+    height: 150px;
+    width: auto;
+  }
+  #faculty-listing-column-middle{
+    text-align: center;
+    padding-left: 15px;
+  }
+  .image-wrapper{
+    margin: 0 auto;
+    padding-left: 0px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 631px){
+  .col-sm-5 {
+      width: 41.66666667%;
+  }
+}
+@media (min-width: 1200px){
+  .col-lg-3 {
+      width: 25%;
+  }
+}
+
+@media (min-width: 992px){
+  .col-md-3 {
+      width: 25%;
   }
 }

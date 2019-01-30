@@ -15,149 +15,183 @@
  *    limitations under the License.
  */
 
-@import 'byu-faculty-profile-common';
+ @import 'byu-faculty-profile-common';
+ @import 'bootstrap.css';
 
-#background-image {
-  @include hide();
-}
+ #background-image {
+   @include hide();
+ }
+ 
+ .background-image-wrapper {
+   @include backroundImage();
+ }
+ 
+ .card {
+   @include card();
+ 
+ }
+ 
+ .card-chevron-wrapper {
+   @include cardChevron();
+ }
+ 
+ .card-content {
+   @include cardContent();
+   @include hide();
+   
+ }
+ 
+ .card-title-wrapper ::slotted(h3) {
+   @include customHeaderSlotted();
+ }
+ 
+ .card-title-wrapper ::slotted(div) {
+   @include customHeaderSlottedDiv();
+   display: inline;
+ }
+ 
+ .card-content ::slotted(*) {
+   @include noMargin();
+ }
 
-.background-image-wrapper {
-  @include backroundImage();
-}
+ .card-title-wrapper > h3 {
+   @include cardTitle();
+   display: inline;
+ }
+ .card-title-wrapper{
+   display: inline;
+ }
 
-.card {
-  @include card();
-}
+ .center-col{
+  margin: 0 auto;
+  padding-left: 0px;
+ }
 
-.card-chevron-wrapper {
-  @include cardChevron();
-}
+ .click-area {
+   @include cardPadding;
+   @include transition();
+ }
+ 
+ .click-area:hover {
+   @include clickAreaHover();
+   @include cursorPointer();
+ }
 
-.card-content {
-  @include cardContent();
-  @include hide();
-}
-
-.card-title-wrapper ::slotted(h3) {
-  @include customHeaderSlotted();
-}
-
-.card-title-wrapper ::slotted(div) {
-  @include customHeaderSlottedDiv();
-}
-
-.card-content ::slotted(*) {
-  @include noMargin();
-}
-
-.card-title-wrapper > h3 {
-  @include cardTitle();
-}
-
-.click-area {
-  @include cardPadding;
-}
-
-.click-area:hover {
-  @include clickAreaHover();
-  @include cursorPointer();
-}
-
-.click-area > table {
-  @include cardTable();
-}
-
-.contact-wrapper {
-  @include contact();
-}
-
-.content-wrapper {
-  @include content();
-}
-
-.expanded > .card-content {
-  @include show();
-}
-
-.faculty-image {
-  @include facultyImage();
-}
-
-#hidden-image {
-  @include hide();
-}
-
-.hide {
-  @include hide();
-}
-
-#left-column {
-  @include leftColumn();
-  @include columnPadding();
-}
-
-.content-wrapper ::slotted(h1) {
-  @include rootBaseSlotted();
-}
-
-.content-wrapper ::slotted(div) {
-  @include rootBaseSlottedDiv();
-}
-
-#right-column {
-  @include rightColumn();
-  @include columnPadding();
-}
-
-.svg-md {
-  @include svgMedium();
-}
-
-.svg-md:hover {
-  @include cursorPointer();
-}
-
-.svg-shadow {
-  @include svgShadow();
-}
-
-.svg-sm {
-  @include svgSmall();
-}
-
-@media only screen and (max-width: 859px) {
-  .card {
-    @include cardMedium();
+ .chevron.svg-md{
+  @include transition();
   }
 
-  .content-wrapper {
-    @include contentMedium();
+ .contact-wrapper {
+   @include contact();
+ }
+ .container-fluid{
+   padding: 0px 0px 0px 0px;
+ }
+
+ .content-wrapper {
+   @include content();
+ }
+ 
+ .expanded > .card-content {
+   @include show();
+ }
+ 
+ .faculty-image {
+   @include facultyImage();
+ }
+
+ .faculty-image-wrapper{
+   padding-top: 25px;
+ }
+ 
+ #faculty-name::slotted(div){
+  line-height: 28px;
+ }
+
+ .hide {
+   @include hide();
+   
+ }
+
+ .content-wrapper ::slotted(h1) {
+   @include rootBaseSlotted();
+ }
+ 
+ .content-wrapper ::slotted(div) {
+   @include rootBaseSlottedDiv();
+ }
+ 
+ .svg-md {
+   @include svgMedium();
+ }
+ 
+ .svg-md:hover {
+   @include cursorPointer();
+ }
+ 
+ .svg-shadow {
+   @include svgShadow();
+ }
+ 
+ .svg-sm {
+   @include svgSmall();
+ }
+
+  .vertical-center-col{
+   padding-top: 60px;
+   padding-left: 0px;
+  }
+
+ @media only screen and (max-width: 1050px) {
+   .card, .content-wrapper{
+     margin-left: 10%;
+     margin-right: 10%;
+   }
+ }
+
+ @media only screen and (max-width: 700px) {
+  .vertical-center-col{
+    padding-right: 0px;
+    padding-left: 30px;
+  }
+  .faculty-image{
+    height: 200px;
+  }
+  .faculty-image-wrapper{
+    padding-top: 50px;
   }
 }
-
-@media only screen and (max-width: 491px) {
-  .card {
-    @include cardSmall();
+ @media only screen and (max-width: 499px) {
+  .faculty-image{
+    height: 120px;
   }
-
-  .contact-wrapper {
-    @include contactAdjustedMargin();
+  .faculty-image-wrapper{
+    padding-top: 10px;
   }
-
-  .content-wrapper {
-    @include contentCenter();
+  .center-col{
+    text-align: center;
+    padding-left: 15px;
   }
-
-  #default-image {
-    @include hide();
+  .vertical-center-col{
+    padding-top: 10px;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
   }
-
-  #left-column {
-    @include hide();
+  .contact-wrapper{
+    margin-top: 15px;
   }
+  .content-wrapper{
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+ }
 
-  #hidden-image {
-    @include hiddenImage();
-    @include show();
+ @media (min-width: 500px){
+  .col-sm-4 {
+      width: 33.333333%;
+  }
+  .col-sm-8{
+    width: 66.666666%;
   }
 }

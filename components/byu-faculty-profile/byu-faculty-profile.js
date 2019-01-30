@@ -48,8 +48,8 @@ class ByuFacultyProfile extends HTMLElement {
       setupButtonListeners(this);
       showContent(this);
       //applyApiKey(this);
-
       //setupSlotListeners(this);
+      
     });
   }
 
@@ -238,60 +238,24 @@ function applyProfileImage(component) {
 }
 
 function setupButtonListeners(component) {
-  /*let buttons = component.shadowRoot.querySelectorAll('.chevron');
-
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', function() {
-      if (this.src.includes('Chevron-Right')) {
-        this.src = "/components/byu-faculty-profile/Chevron-Down.svg";
-
-        var element = this, i = 5;
-        while(i-- && (element = element.parentNode));
-        element.className += " expanded";
-      }
-
-      else {
-        this.src = "/components/byu-faculty-profile/Chevron-Right.svg";
-
-        var element = this, i = 5;
-        while(i-- && (element = element.parentNode));
-        element.classList.remove("expanded");
-      }
-    });
-  }*/
 
   let buttons = component.shadowRoot.querySelectorAll('.click-area');
 
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function cardClick() {
       var element = this;
-      element = element.children[0];
-      element = element.children[0];
-      element = element.children[0];
-      element = element.children[1];
-
-      if (!element.children[0].classList.contains('hide')) {
-        element.children[0].className += ' hide';
-        element.children[1].classList.remove('hide');
-
+      if (!this.parentNode.classList.contains('expanded')) {
         this.parentNode.className += ' expanded';
+        element.children[1].children[0].setAttribute('style','transform:rotate(90deg)');
       }
-
       else {
-        element.children[0].classList.remove('hide');
-        element.children[1].className += ' hide';
-
         this.parentNode.classList.remove('expanded');
+        element.children[1].children[0].setAttribute('style','transform:rotate(0deg)');
       }
     });
   }
-
-  // let callback = component.__buttonListener = function(event) {
-  //   component.apiKey = component.apiKey + 1;
-  // };
-
-  // button.addEventListener('click', callback, false);
 }
+
 
 //We generally want to be good neighbors and clean up after ourselves when we're done with things.
 function teardownButtonListeners(component) {

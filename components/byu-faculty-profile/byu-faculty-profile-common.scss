@@ -29,41 +29,27 @@
   font-weight: 200;
   line-height: 20px;
   margin: 20px auto 20px auto;
-  /*padding: 16px;*/
-  width: 100%;
   max-width: 824px;
 
-  -moz-box-shadow: 8px 8px 16px 1px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 8px 8px 16px 1px rgba(0, 0, 0, 0.2);
-	box-shadow: 8px 8px 16px 1px rgba(0, 0, 0, 0.2);
+  min-width: 300px;
+  border-radius: 5px;
+  box-shadow: rgba(0,0,0,.2) 1px 4px 2px -2px;
+  -moz-box-shadow:    rgba(0,0,0,.2) 1px 4px 2px -2px;
+  -webkit-box-shadow: rgba(0,0,0,.2) 1px 4px 2px -2px;
 }
 
 @mixin cardChevron() {
   text-align: right;
+  display: inline;
+  float: right;
 }
 
 @mixin cardContent() {
   padding: 8px 20px 16px 20px;
 }
 
-@mixin cardMedium() {
-  width: 456px;
-}
-
-@mixin cardLong() {
-  width: 95%;
-}
-
 @mixin cardPadding() {
   padding: 16px;
-}
-
-@mixin cardSmall() {
-  width: 290px;
-}
-
-@mixin cardTable() {
-  width: 100%;
 }
 
 @mixin cardTitle() {
@@ -117,21 +103,9 @@
   line-height: 24px;
   margin: auto;
   text-shadow: 4px 4px 8px #000000;
-  width: 824px;
-}
-
-@mixin contentMedium {
-  width: 456px;
-}
-
-@mixin contentLong() {
-  width: 80%;
-}
-
-@mixin contentCenter() {
-  line-height: 18px;
-  text-align: center;
-  width: 100%;
+  max-width: 824px;
+  height: 300px;
+  min-width: 350px;
 }
 
 @mixin cursorPointer() {
@@ -140,7 +114,6 @@
 
 @mixin facultyImage() {
   height: 250px;
-  margin: 8px 0px 0px 0px;
   width: auto;
 }
 
@@ -153,18 +126,14 @@
 
 @mixin hide() {
   display: none;
-}
-
-@mixin leftColumn() {
-  width: 170px;
+  overflow: hidden;
+  max-height: 0;
+  height: 0;
+  opacity: 0;
 }
 
 @mixin noMargin {
   margin: 0px;
-}
-
-@mixin rightColumn {
-  vertical-align: middle;
 }
 
 @mixin rootBaseSlotted() {
@@ -206,4 +175,12 @@
   height: 16px;
   vertical-align: middle;
   width: 16px;
+}
+
+@mixin transition() {
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -ms-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
 }

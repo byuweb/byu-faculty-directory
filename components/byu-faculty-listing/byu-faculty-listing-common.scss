@@ -20,20 +20,12 @@
 }
 
 @mixin biography() {
-  height: 194px;
   line-height: 20px;
 }
 
 @mixin center() {
   margin-left: auto;
   margin-right: auto;
-}
-
-@mixin centerColumn() {
-  text-align: center;
-  margin: auto;
-  padding: 16px;
-  width: 288px;
 }
 
 @mixin contact() {
@@ -45,26 +37,14 @@
   vertical-align: top;
 }
 
-@mixin columnLeft() {
-  padding: 16px 8px 16px 16px;
-}
-
-@mixin columnMiddle() {
-  padding: 16px 8px 16px 8px;
-  width: 232px;
-  vertical-align: top;
-}
-
-@mixin columnRight() {
-  padding: 16px 16px 16px 8px;
-  vertical-align: top;
-}
-
 @mixin facultyImage() {
-  height: 270px;
+  height: 278px;
   vertical-align: middle;
-  width: 186px;
-  padding: 4px 0px 4px 0px;
+  width: auto;
+  border-radius: 5px;
+  box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
+  -moz-box-shadow:    rgba(0,0,0,.2) 4px 5px 2px -2px;
+  -webkit-box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
 }
 
 @mixin hide() {
@@ -86,7 +66,6 @@
 
 @mixin research() {
   line-height: 20px;
-  height: 64px;
 }
 
 @mixin slottedHeader() {
@@ -107,14 +86,15 @@
 }
 
 @mixin rootBase() {
+  padding: 16px 16px 16px 16px;
   background-color: #FFFFFF;
   color: #515151;
   font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
   font-weight: 200;
   line-height: 20px;
   margin: 24px auto 24px auto;
-  min-width: 250px;
-  width: 1024px;
+  min-width: 274px;
+  min-height: 282px;
   vertical-align: top;
 
   -moz-box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
