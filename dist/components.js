@@ -63,14 +63,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='30' viewBox='0 0 18 30'%3E%3Cpath fill='%23ADADAD' d='M0 0h9.333L18 15.001 9.333 30H0l8.667-14.999L0 0z'/%3E%3C/svg%3E"
+module.exports = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath fill='%23ADADAD' d='M10 0v3L5 7 0 3V0l5 4 5-4z'/%3E%3C/svg%3E"
 
 /***/ }),
 /* 1 */
@@ -126,7 +126,6 @@ module.exports = function() {
 	};
 	return list;
 };
-
 
 /***/ }),
 /* 2 */
@@ -202,6 +201,7 @@ function matchesSelector(el, selector) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html__ = __webpack_require__(15);
+
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_byu_web_component_utils__ = __webpack_require__(2);
 /**
@@ -503,7 +503,7 @@ function setupSlotListeners(component) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -756,6 +756,7 @@ function setupButtonListeners(component) {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function cardClick() {
       var element = this;
+
       if (!this.parentNode.classList.contains('expanded')) {
         this.parentNode.className += ' expanded';
         element.children[1].children[0].setAttribute('style','transform:rotate(90deg)');
@@ -797,19 +798,18 @@ function showContent(component) {
 
     if (slots[i].assignedNodes().length > 0) {
       element.classList.remove("hide");
-      
     }
   }
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_byu_faculty_listing_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__byu_faculty_profile_byu_faculty_profile_js__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_byu_faculty_listing_js__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__byu_faculty_profile_byu_faculty_profile_js__ = __webpack_require__(6);
 /**
  *  @license
  *    Copyright 2017 Brigham Young University
@@ -833,7 +833,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -867,7 +867,7 @@ function createEvent(name, detail) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -913,7 +913,7 @@ function querySelectorSlot(slot, selector) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1004,7 +1004,7 @@ function runAfterStamping(element, callback) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
@@ -1018,7 +1018,7 @@ exports.push([module.i, "/*!\r\n *  @license\r\n *    Copyright 2017 Brigham You
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
@@ -1032,7 +1032,7 @@ exports.push([module.i, "/*!\r\n *  @license\r\n *    Copyright 2017 Brigham You
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();

@@ -81,11 +81,12 @@
     @include rootSlottedP();
   }
 }
+
  
 .slot > ::slotted(p) {
   @include rootSlottedP();
 }
- 
+
 .profile-link {
   @include noUnderline();
 }
@@ -97,7 +98,7 @@
 .research-slot-wrapper {
   @include research();
 }
- 
+
 .research-slot-wrapper > h3 {
   @include slottedHeader();
 }
@@ -170,4 +171,3 @@
       width: 25%;
   }
 }
-

@@ -285,7 +285,6 @@ function showContent(component) {
 
     if (slots[i].assignedNodes().length > 0) {
       element.classList.remove("hide");
-      
     }
   }
 }

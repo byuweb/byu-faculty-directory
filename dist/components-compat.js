@@ -92,7 +92,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
   /******/__webpack_require__.p = "";
   /******/
   /******/ // Load entry module and return exports
-  /******/return __webpack_require__(__webpack_require__.s = 6);
+  /******/return __webpack_require__(__webpack_require__.s = 7);
   /******/
 })(
 /************************************************************************/
@@ -100,11 +100,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /* 0 */
 /***/function (module, exports) {
 
-  module.exports = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='30' viewBox='0 0 18 30'%3E%3Cpath fill='%23ADADAD' d='M0 0h9.333L18 15.001 9.333 30H0l8.667-14.999L0 0z'/%3E%3C/svg%3E";
+  module.exports = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath fill='%23ADADAD' d='M10 0v3L5 7 0 3V0l5 4 5-4z'/%3E%3C/svg%3E";
 
   /***/
 },
 /* 1 */
+
 /***/function (module, exports) {
 
   /*
@@ -532,7 +533,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 5 */
+/* 6 */
 /***/function (module, __webpack_exports__, __webpack_require__) {
 
   "use strict";
@@ -842,14 +843,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 6 */
+/* 7 */
 /***/function (module, __webpack_exports__, __webpack_require__) {
 
   "use strict";
 
   Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-  /* harmony import */var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_byu_faculty_listing_js__ = __webpack_require__(4);
-  /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__byu_faculty_profile_byu_faculty_profile_js__ = __webpack_require__(5);
+  /* harmony import */var __WEBPACK_IMPORTED_MODULE_0__byu_faculty_listing_byu_faculty_listing_js__ = __webpack_require__(5);
+  /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__byu_faculty_profile_byu_faculty_profile_js__ = __webpack_require__(6);
   /**
    *  @license
    *    Copyright 2017 Brigham Young University
@@ -869,7 +870,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 7 */
+/* 8 */
 /***/function (module, __webpack_exports__, __webpack_require__) {
 
   "use strict";
@@ -902,7 +903,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 8 */
+/* 9 */
 /***/function (module, __webpack_exports__, __webpack_require__) {
 
   "use strict";
@@ -946,7 +947,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 9 */
+/* 10 */
 /***/function (module, __webpack_exports__, __webpack_require__) {
 
   "use strict";
@@ -1034,7 +1035,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 10 */
+/* 11 */
 /***/function (module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(1)();
@@ -1042,6 +1043,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
   exports.i(__webpack_require__(12), "");
 
   // module
+
   exports.push([module.i, "/*!\r\n *  @license\r\n *    Copyright 2017 Brigham Young University\r\n *\r\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\r\n *    you may not use this file except in compliance with the License.\r\n *    You may obtain a copy of the License at\r\n *\r\n *        http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n *    Unless required by applicable law or agreed to in writing, software\r\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\r\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n *    See the License for the specific language governing permissions and\r\n *    limitations under the License.\r\n */\n/*!\r\n *  @license\r\n *    Copyright 2017 Brigham Young University\r\n *\r\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\r\n *    you may not use this file except in compliance with the License.\r\n *    You may obtain a copy of the License at\r\n *\r\n *        http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n *    Unless required by applicable law or agreed to in writing, software\r\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\r\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n *    See the License for the specific language governing permissions and\r\n *    limitations under the License.\r\n */.adjusted-header{color:#002e5d;margin:0}.biography-slot-wrapper{line-height:20px}.contact-wrapper{margin:36px 0 16px}.contact-wrapper>div ::slotted(p){margin:0}.container-fluid{max-width:1032px;margin-right:auto;margin-left:auto}.faculty-image{height:278px;vertical-align:middle;width:auto;border-radius:5px;box-shadow:4px 5px 2px -2px rgba(0,0,0,.2);-moz-box-shadow:rgba(0,0,0,.2) 4px 5px 2px -2px;-webkit-box-shadow:rgba(0,0,0,.2) 4px 5px 2px -2px}#faculty-listing-column-middle>a ::slotted(div){display:block;font-size:1.5em;font-weight:700}#faculty-listing-column-middle>a ::slotted(div),#faculty-listing-column-middle>a ::slotted(h2){color:#002e5d;font-family:HCo Ringside Narrow SSm,Arial Narrow,sans-serif;margin:0}#faculty-listing-column-right{padding-right:40px}#faculty-listing-column-middle ::slotted(h2){margin-top:0}.hide{display:none}.listing-root{padding:16px;background-color:#fff;color:#515151;font-weight:200;line-height:20px;margin:24px auto;min-width:274px;min-height:282px;vertical-align:top;border-radius:5px;box-shadow:1px 4px 2px -2px rgba(0,0,0,.2);-moz-box-shadow:rgba(0,0,0,.2) 1px 4px 2px -2px;-webkit-box-shadow:rgba(0,0,0,.2) 1px 4px 2px -2px}.listing-root,.listing-root ::slotted(h2){font-family:HCo Ringside Narrow SSm,Arial Narrow,sans-serif}.listing-root ::slotted(h2){color:#002e5d;margin:0}.listing-root ::slotted(p),.slot>::slotted(p){margin:0}.profile-link{text-decoration:none}.biography-slot-wrapper,.research-slot-wrapper{overflow:hidden}.research-slot-wrapper{line-height:20px}.research-slot-wrapper>h3{margin-top:0}.section-header{color:#002e5d;margin:12px 0 0}@media only screen and (max-width:1290px){.container-fluid{margin-right:10%;margin-left:10%}}@media only screen and (max-width:1200px){.listing-root{max-width:750px;margin-left:auto;margin-right:auto}}@media only screen and (max-width:950px){.image-wrapper{margin:0 auto;padding-left:0}.container-fluid{margin-right:10%;margin-left:10%}#faculty-listing-column-middle{padding-left:40px}}@media only screen and (max-width:630px){.faculty-image{height:150px;width:auto}#faculty-listing-column-middle{text-align:center;padding-left:15px}.image-wrapper{margin:0 auto;padding-left:0;padding-bottom:10px;text-align:center}}@media (min-width:631px){.col-sm-5{width:41.66666667%}}@media (min-width:1200px){.col-lg-3{width:25%}}@media (min-width:992px){.col-md-3{width:25%}}", ""]);
 
   // exports
@@ -1049,14 +1051,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 11 */
+/* 12 */
 /***/function (module, exports, __webpack_require__) {
+
 
   exports = module.exports = __webpack_require__(1)();
   // imports
   exports.i(__webpack_require__(13), "");
 
   // module
+
   exports.push([module.i, "/*!\r\n *  @license\r\n *    Copyright 2017 Brigham Young University\r\n *\r\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\r\n *    you may not use this file except in compliance with the License.\r\n *    You may obtain a copy of the License at\r\n *\r\n *        http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n *    Unless required by applicable law or agreed to in writing, software\r\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\r\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n *    See the License for the specific language governing permissions and\r\n *    limitations under the License.\r\n */\n/*!\r\n *  @license\r\n *    Copyright 2017 Brigham Young University\r\n *\r\n *    Licensed under the Apache License, Version 2.0 (the \"License\");\r\n *    you may not use this file except in compliance with the License.\r\n *    You may obtain a copy of the License at\r\n *\r\n *        http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n *    Unless required by applicable law or agreed to in writing, software\r\n *    distributed under the License is distributed on an \"AS IS\" BASIS,\r\n *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n *    See the License for the specific language governing permissions and\r\n *    limitations under the License.\r\n */#background-image{display:none;overflow:hidden;max-height:0;height:0;opacity:0}.background-image-wrapper{background-position:50%;background-size:cover;height:300px;width:100%}.card{background-color:#fff;color:#515151;font-family:HCo Ringside Narrow SSm,Arial Narrow,sans-serif;font-weight:200;line-height:20px;margin:20px auto;max-width:824px;min-width:300px;border-radius:5px;box-shadow:1px 4px 2px -2px rgba(0,0,0,.2);-moz-box-shadow:rgba(0,0,0,.2) 1px 4px 2px -2px;-webkit-box-shadow:rgba(0,0,0,.2) 1px 4px 2px -2px}.card-chevron-wrapper{text-align:right;display:inline;float:right}.card-content{padding:8px 20px 16px;display:none;overflow:hidden;max-height:0;height:0;opacity:0}.card-title-wrapper ::slotted(h3){color:#002e5d;margin:0}.card-title-wrapper ::slotted(div){color:#002e5d;margin:0;font-size:1.17em;font-family:HCo Ringside Narrow SSm,Arial Narrow,sans-serif;font-weight:600;line-height:20px;display:inline}.card-content ::slotted(*){margin:0}.card-title-wrapper>h3{color:#002e5d;margin:0;display:inline}.card-title-wrapper{display:inline}.center-col{margin:0 auto;padding-left:0}.click-area{padding:16px;transition:.2s ease-in-out;-webkit-transition:.2s ease-in-out;-moz-transition:.2s ease-in-out;-ms-transition:.2s ease-in-out;-o-transition:.2s ease-in-out}.click-area:hover{background-color:#c5c5c5;cursor:pointer}.chevron.svg-md{transition:.2s ease-in-out;-webkit-transition:.2s ease-in-out;-moz-transition:.2s ease-in-out;-ms-transition:.2s ease-in-out;-o-transition:.2s ease-in-out}.contact-wrapper{margin:32px 0 0}.container-fluid{padding:0}.content-wrapper{align-content:center;color:#fff;font-family:HCo Ringside Narrow SSm,Arial Narrow,sans-serif;font-weight:500;line-height:24px;margin:auto;text-shadow:4px 4px 8px #000;max-width:824px;height:300px;min-width:350px}.expanded>.card-content{display:block;max-height:500px;opacity:1;height:auto}.faculty-image{height:250px;width:auto;border-radius:5px;box-shadow:4px 5px 2px -2px rgba(0,0,0,.2);-moz-box-shadow:rgba(0,0,0,.2) 4px 5px 2px -2px;-webkit-box-shadow:rgba(0,0,0,.2) 4px 5px 2px -2px}.faculty-image-wrapper{padding-top:25px}#faculty-name::slotted(div){line-height:28px}.hide{display:none;overflow:hidden;max-height:0;height:0;opacity:0}.content-wrapper ::slotted(div),.content-wrapper ::slotted(h1){font-family:HCo Ringside Narrow SSm,Arial Narrow,sans-serif;margin:0 0 8px;font-weight:500}.content-wrapper ::slotted(div){display:block;font-size:2em}.svg-md{fill:#c1c1c1;height:24px;vertical-align:middle;width:24px}.svg-md:hover{cursor:pointer}.svg-shadow{-webkit-filter:drop-shadow(2px 2px 4px #000);filter:drop-shadow(2px 2px 4px #000000)}.svg-sm{fill:#fff;height:16px;vertical-align:middle;width:16px}.vertical-center-col{padding-top:60px;padding-left:0}@media only screen and (max-width:1050px){.card,.content-wrapper{margin-left:10%;margin-right:10%}}@media only screen and (max-width:700px){.vertical-center-col{padding-right:0;padding-left:30px}.faculty-image{height:200px}.faculty-image-wrapper{padding-top:50px}}@media only screen and (max-width:499px){.faculty-image{height:120px}.faculty-image-wrapper{padding-top:10px}.center-col,.vertical-center-col{text-align:center;padding-left:15px}.vertical-center-col{padding-top:10px;padding-right:15px}.contact-wrapper{margin-top:15px}.content-wrapper{margin-left:0;margin-right:0}}@media (min-width:500px){.col-sm-4{width:33.333333%}.col-sm-8{width:66.666666%}}", ""]);
 
   // exports
@@ -1064,7 +1068,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
-/* 12 */
+/* 13 */
 /***/function (module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(1)();
@@ -1179,6 +1183,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
+
 /* 18 */
 /***/function (module, exports) {
 
@@ -1186,6 +1191,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   /***/
 },
+
 /* 19 */
 /***/function (module, exports) {
 
