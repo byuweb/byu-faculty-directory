@@ -29,6 +29,7 @@ const ATTR_OFFICE_HOURS = 'faculty-office-hours';
 const ATTR_RESEARCH = 'faculty-research';
 const ATTR_BIOGRAPHY = 'faculty-biography';
 const ATTR_PROFILE_LINK = 'faculty-profile-link';
+const ATTR_SIZE = 'size';
 
 const DEFAULT_INFORMATION = "Unknown";
 
@@ -46,6 +47,7 @@ class ByuFacultyListing extends HTMLElement {
       truncateText(this);
       setupSlotListeners(this);
       clearEmptyFields(this);
+      switchToSmall(this);
     });
   }
 
@@ -54,7 +56,7 @@ class ByuFacultyListing extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [ATTR_PROFILE_IMAGE, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY, ATTR_PROFILE_LINK];
+    return [ATTR_PROFILE_IMAGE, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY, ATTR_PROFILE_LINK, ATTR_SIZE];
   }
 
   attributeChangedCallback(attr, oldValue, newValue) {
@@ -77,7 +79,19 @@ class ByuFacultyListing extends HTMLElement {
       case ATTR_PROFILE_IMAGE:
         applyProfileImage(this);
         break;
+      case ATTR_SIZE:
+        //switchToSmall(this);
+        //break;
     }
+  }
+
+
+  set size(value){
+    this.setAttribute(ATTR_SIZE, value);
+  }
+  
+  get size(){
+      return this.getAttribute(ATTR_SIZE);
   }
 
   set name(value) {
@@ -239,7 +253,6 @@ function truncateText(component) {
 
 function clearEmptyFields(component) {
   let office_hours = component.shadowRoot.querySelectorAll('.office-hours-slot-wrapper');
-
   for (var i = 0; i < office_hours.length; i++) {
       var element = office_hours[i];
       element = element.children[2];
@@ -269,6 +282,23 @@ function clearEmptyFields(component) {
     }
 }
 
+//This function switches the layout to smaller icon thingys
+function switchToSmall(component) {
+  if(component.size == 'small'){
+    component.shadowRoot.querySelector('.container-fluid').setAttribute('id', 'main-column');
+    let maincol = component.shadowRoot.querySelector('#main-column');
+    maincol.classList.remove('container-fluid');
+    maincol.classList.add('col-sm-3');
+    let research = maincol.querySelector('.research-slot-wrapper');
+    let biography = maincol.querySelector('.biography-slot-wrapper');
+    research.classList.add('hide');
+    biography.classList.add('hide');
+    maincol.querySelector('#faculty-listing-column-left').classList = '';
+    maincol.querySelector('#faculty-listing-column-right').classList = '';
+    maincol.querySelector('#faculty-listing-column-middle').classList = '';
+    
+  }
+}
 function setupButtonListeners(component) {
   // let button = component.shadowRoot.querySelector('.root');
 
