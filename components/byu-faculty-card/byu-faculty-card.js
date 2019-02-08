@@ -16,7 +16,7 @@
  **/
 "use strict";
 
-import template from './byu-faculty-listing.html';
+import template from './byu-faculty-card.html';
 import * as util from 'byu-web-component-utils';
 
 const ATTR_PROFILE_IMAGE = "faculty-image";
@@ -26,13 +26,12 @@ const ATTR_OFFICE = 'faculty-office';
 const ATTR_PHONE = 'faculty-phone';
 const ATTR_EMAIL = 'faculty-email';
 const ATTR_OFFICE_HOURS = 'faculty-office-hours';
-const ATTR_RESEARCH = 'faculty-research';
-const ATTR_BIOGRAPHY = 'faculty-biography';
 const ATTR_PROFILE_LINK = 'faculty-profile-link';
+const ATTR_SIZE = 'size';
 
 const DEFAULT_INFORMATION = "Unknown";
 
-class ByuFacultyListing extends HTMLElement {
+class ByuFacultyCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -40,10 +39,9 @@ class ByuFacultyListing extends HTMLElement {
 
   connectedCallback() {
     //This will stamp our template for us, then let us perform actions on the stamped DOM.
-    util.applyTemplate(this, 'byu-faculty-listing', template, () => {
+    util.applyTemplate(this, 'byu-faculty-card', template, () => {
       applyProfileImage(this);
       applyProfileLinks(this);
-      truncateText(this);
       setupSlotListeners(this);
       clearEmptyFields(this);
       
@@ -55,7 +53,7 @@ class ByuFacultyListing extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [ATTR_PROFILE_IMAGE, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY, ATTR_PROFILE_LINK];
+    return [ATTR_PROFILE_IMAGE, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_PROFILE_LINK, ATTR_SIZE];
   }
 
   attributeChangedCallback(attr, oldValue, newValue) {
@@ -66,18 +64,15 @@ class ByuFacultyListing extends HTMLElement {
       case ATTR_PHONE:
       case ATTR_EMAIL:
       case ATTR_OFFICE_HOURS:
-      case ATTR_RESEARCH:
-        truncateText(this);
-        break;
-      case ATTR_BIOGRAPHY:
-        truncateText(this);
-        break;
       case ATTR_PROFILE_LINK:
         applyProfileLinks(this);
         break;
       case ATTR_PROFILE_IMAGE:
         applyProfileImage(this);
         break;
+      case ATTR_SIZE:
+        //switchToSmall(this);
+        //break;
     }
   }
 
@@ -147,28 +142,6 @@ class ByuFacultyListing extends HTMLElement {
     return DEFAULT_INFORMATION;
   }
 
-  set research(value) {
-    this.setAttribute(ATTR_RESEARCH, value);
-  }
-
-  get research() {
-    if (this.hasAttribute(ATTR_RESEARCH)) {
-      return this.getAttribute(ATTR_RESEARCH);
-    }
-    return DEFAULT_INFORMATION;
-  }
-
-  set biography(value) {
-    this.setAttribute(ATTR_BIOGRAPHY, value);
-  }
-
-  get biography() {
-    if (this.hasAttribute(ATTR_BIOGRAPHY)) {
-      return this.getAttribute(ATTR_BIOGRAPHY);
-    }
-    return DEFAULT_INFORMATION;
-  }
-
   set profileImage(value) {
     this.setAttribute(ATTR_PROFILE_IMAGE, value);
   }
@@ -192,8 +165,8 @@ class ByuFacultyListing extends HTMLElement {
   }
 }
 
-window.customElements.define('byu-faculty-listing', ByuFacultyListing);
-window.ByuFacultyListing = ByuFacultyListing;
+window.customElements.define('byu-faculty-card', ByuFacultyCard);
+window.ByuFacultyCard = ByuFacultyCard;
 
 // -------------------- Helper Functions --------------------
 function applyProfileImage(component) {
@@ -212,32 +185,6 @@ function applyProfileLinks(component) {
   }
 }
 
-function truncateText(component) {
-  let slots = component.shadowRoot.querySelectorAll('.slot');
-
-  for(var i = 0; i < slots.length; i++) {
-    if (slots[i].children[0].assignedNodes().length > 0) {
-      var slot = slots[i].children[0].assignedNodes()[0];
-
-      if (slots[i].parentNode.className == "research-slot-wrapper") {
-        if (slot.innerText.length > 140) {
-          while (slot.innerText.length > 140) {
-            slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '...');
-          }
-        }
-      }
-      else {
-        if (slot.innerText.length > 400) {
-          while (slot.innerText.length > 400) {
-            slot.innerText = slot.innerText.replace(/\W*\s(\S)*$/, '...');
-          }
-          slot.innerHTML = slot.innerHTML + "<a style='color: #008080' href='" + component.profileLink + "'>Read More</a>";
-        }
-      }
-    }
-  }
-}
-
 function clearEmptyFields(component) {
   let office_hours = component.shadowRoot.querySelectorAll('.office-hours-slot-wrapper');
   for (var i = 0; i < office_hours.length; i++) {
@@ -248,49 +195,4 @@ function clearEmptyFields(component) {
         office_hours[i].classList.add("hide");
       }
     }
-
-    let research = component.shadowRoot.querySelectorAll('.research-slot-wrapper');
-    let biography = component.shadowRoot.querySelectorAll('.biography-slot-wrapper');
-    for (var i = 0; i < research.length; i++) {
-      var element = research[i];
-      element = element.children[1].children[0];
-
-      if (element.assignedNodes().length == 0) {
-        research[i].classList.add("hide");
-        biography[i].children[0].classList.remove("section-header");
-        biography[i].children[0].classList.add("adjusted-header");
-      }
-
-      element = biography[i];
-      element = element.children[1].children[0];
-      if (element.assignedNodes().length == 0) {
-        biography[i].classList.add("hide");
-      }
-    }
-}
-
-function setupButtonListeners(component) {
-  // let button = component.shadowRoot.querySelector('.root');
-
-  // let callback = component.__buttonListener = function(event) {
-  //    alert("Testing");
-  // };
-
-  // button.addEventListener('click', callback, false);
-}
-
-//We generally want to be good neighbors and clean up after ourselves when we're done with things.
-function teardownButtonListeners(component) {
-  // let button = component.shadowRoot.querySelector('.root');
-
-  // button.removeEventListener('click', component.__buttonListener, false);
-}
-
-function setupSlotListeners(component) {
-  // let slot = component.shadowRoot.querySelector('#apiKey-template');
-
-  // //this will listen to changes to the contents of our <slot>, so we can take appropriate action
-  // slot.addEventListener('slotchange', () => {
-  //   applyApiKey(component);
-  // }, false);
 }
