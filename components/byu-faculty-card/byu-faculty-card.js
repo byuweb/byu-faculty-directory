@@ -42,7 +42,6 @@ class ByuFacultyCard extends HTMLElement {
     util.applyTemplate(this, 'byu-faculty-card', template, () => {
       applyProfileImage(this);
       applyProfileLinks(this);
-      setupSlotListeners(this);
       clearEmptyFields(this);
       
     });

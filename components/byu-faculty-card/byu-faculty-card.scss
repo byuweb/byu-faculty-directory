@@ -42,14 +42,11 @@
 
 #faculty-listing-column-middle > a ::slotted(div) {
   @include slottedHeaderDiv();
+  text-align: center;
 }
 
 #faculty-listing-column-middle > a ::slotted(h2) {
   @include rootSlottedH2();
-}
-
-#faculty-listing-column-right{
-  padding-right: 40px;
 }
 
 #faculty-listing-column-middle {
@@ -57,11 +54,18 @@
     @include slottedHeader();
   }
 }
+#faculty-listing-column-middle{
+  text-align: center;
+}
 
 .hide {
   @include hide();
 }
 
+.image-wrapper{
+  text-align: center;
+  margin-bottom: 15px;
+}
 .listing-root {
   @include rootBase();
 }
@@ -95,86 +99,3 @@
 }
 
 //The @media section helps keep the card transitions smooth and looking proportional
-
-@media only screen and (max-width: 1290px) {
-  .container-fluid{
-    margin-right: 10%;
-    margin-left: 10%;
-  }
- }
-
-@media only screen and (max-width: 1200px) {
-  .listing-root{
-    max-width: 750px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media only screen and (max-width: 950px) {
-
-  .image-wrapper{
-    margin: 0 auto;
-    padding-left: 0px;
-  }
-  .container-fluid{
-    margin-right: 10%;
-    margin-left: 10%;
-  }
-  #faculty-listing-column-middle{
-    padding-left: 40px;
-  }
-}
-
-@media only screen and (max-width: 630px) {
-  .faculty-image{
-    height: 150px;
-    width: auto;
-  }
-  #faculty-listing-column-middle{
-    text-align: center;
-    padding-left: 15px;
-  }
-  .image-wrapper{
-    margin: 0 auto;
-    padding-left: 0px;
-    padding-bottom: 10px;
-    text-align: center;
-  }
-}
-
-@media (min-width: 631px){
-  .col-sm-5 {
-      width: 41.66666667%;
-  }
-}
-@media (min-width: 1200px){
-  .col-lg-3 {
-      width: 25%;
-  }
-}
-
-@media (min-width: 992px){
-  .col-md-3 {
-      width: 25%;
-  }
-}
-
-
-/* -------------------------------------------------------------------------------
-  This is the styling for when the size switches over to small-only
-  --------------------------------------------------------------------------------
-*/
-
-.small-card > .image-wrapper{
-  text-align: center;
-}
-
-.small-card > .image-wrapper > a > .faculty-image{
-  height: 150px;
-}
-
-#faculty-listing-column-middle.small-card{
-  text-align: center;
-  padding-top: 20px;
-}
