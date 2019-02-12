@@ -19,10 +19,6 @@
   border-bottom: solid;
 }
 
-@mixin biography() {
-  line-height: 20px;
-}
-
 @mixin center() {
   margin-left: auto;
   margin-right: auto;
@@ -102,10 +98,6 @@
 	box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
 }
 
-@mixin rootMedium() {
-  width: 672px;
-}
-
 @mixin rootSlottedH2() {
   color: #002E5D;
   font-family: "HCo Ringside Narrow SSm", Arial Narrow, sans-serif;
@@ -114,10 +106,6 @@
 
 @mixin rootSlottedP() {
   margin: 0px;
-}
-
-@mixin rootSmall() {
-  width: 320px;
 }
 
 @mixin sectionHeader() {

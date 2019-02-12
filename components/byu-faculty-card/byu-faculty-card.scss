@@ -22,10 +22,6 @@
   @include adjustedHeader();
 }
 
-.biography-slot-wrapper {
-  @include biography();
-}
-
 .contact-wrapper {
   @include contact();
 }
@@ -92,18 +88,6 @@
 
 .profile-link {
   @include noUnderline();
-}
-
-.research-slot-wrapper, .biography-slot-wrapper {
-  @include overflowBase();
-}
-
-.research-slot-wrapper {
-  @include research();
-}
-
-.research-slot-wrapper > h3 {
-  @include slottedHeader();
 }
 
 .section-header {
