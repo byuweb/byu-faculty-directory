@@ -19,9 +19,11 @@
 <style>
     /*${require('./byu-faculty-card.scss')}*/
 </style>
+
+
   <div class="root listing-root">
     <div class="row">
-      <div id="faculty-listing-column-left" class="">
+      <div id="faculty-listing-column-left">
         <div class="image-wrapper">
           <a class="profile-link" href="">
             <img class="faculty-image" id="default-image"/>
@@ -45,9 +47,6 @@
             <b>Email: </b><slot name="listing-email"></slot>
           </div>
         </div>
-        <div class="office-hours-slot-wrapper">
-          <b>Office Hours: </b><br>
-          <slot name="listing-office-hours"></slot>
-        </div>
       </div>
+    </div>
   </div>
