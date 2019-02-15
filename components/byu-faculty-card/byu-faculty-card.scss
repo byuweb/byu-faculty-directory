@@ -16,7 +16,6 @@
  */
 
 @import 'byu-faculty-card-common';
-@import 'bootstrap.css';
 
 .adjusted-header {
   @include adjustedHeader();
@@ -95,7 +94,9 @@
 }
 
 .listing-root:hover{
-  box-shadow: rgba(0,0,0,.2) 1px 4px 13px 1px;
+  box-shadow: 1px 4px 15px 1px rgba(0,0,0,.2);
+  -moz-box-shadow: 1px 4px 15px 1px rgba(0,0,0,.2);
+  -webkit-box-shadow: 1px 4px 15px 1px rgba(0,0,0,.2);
 }
 
 .section-header {

@@ -82,10 +82,6 @@
   }
 }
 
-.listing-root:hover{
-  box-shadow: rgba(0,0,0,.2) 1px 4px 13px 1px;
-}
-
 #main-column{
   @include maincol();
 }
@@ -178,42 +174,4 @@
   .col-md-3 {
       width: 25%;
   }
-}
-
-
-/* -------------------------------------------------------------------------------
-  This is the styling for when the size switches over to small-only
-  --------------------------------------------------------------------------------
-*/
-
-.small-card > .image-wrapper{
-  text-align: center;
-}
-
-.small-card > .image-wrapper > a > .faculty-image{
-  height: 150px;
-}
-
-#faculty-listing-column-middle.small-card{
-  text-align: center;
-  padding-top: 20px;
-}
-
-.card{
-  min-width: 274px;
-  width: 255;
-  display: inline-block;
-  margin: 20px 20px 20px 20px;
-}
-
-.card-image{
-  max-height: 150px;
-}
-.card-image-wrapper{
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.card-column{
-  text-align: center;
 }

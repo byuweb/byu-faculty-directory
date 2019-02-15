@@ -20,33 +20,28 @@
     /*${require('./byu-faculty-card.scss')}*/
 </style>
 
-
+<a class="profile-link" href="">
   <div class="root listing-root">
-    <div class="row">
-      <div id="faculty-listing-column-left">
-        <div class="image-wrapper">
-          <a class="profile-link" href="">
-            <img class="faculty-image" id="default-image"/>
-          </a>
-        </div>
+    <div id="faculty-listing-column-left">
+      <div class="image-wrapper">
+          <img class="faculty-image" id="default-image"/>
       </div>
+    </div>
 
-      <div id="faculty-listing-column-middle" class="">
-        <a class="profile-link" href="">
-          <slot id="listing-name" name="listing-name"></slot>
-        </a>
-        <i><slot name="listing-title"></slot></i>
-        <div class="contact-wrapper">
-          <div class="office-slot-wrapper">
-            <b>Office: </b><slot name="listing-office"></slot>
-          </div>
-          <div class="phone-slot-wrapper">
-            <b>Phone: </b><slot name="listing-phone"></slot>
-          </div>
-          <div class="email-slot-wrapper">
-            <b>Email: </b><slot name="listing-email"></slot>
-          </div>
+    <div id="faculty-listing-column-middle" class="">
+        <slot id="listing-name" name="listing-name"></slot>
+      <i><slot name="listing-title"></slot></i>
+      <div class="contact-wrapper">
+        <div class="office-slot-wrapper">
+          <b>Office: </b><slot name="listing-office"></slot>
+        </div>
+        <div class="phone-slot-wrapper">
+          <b>Phone: </b><slot name="listing-phone"></slot>
+        </div>
+        <div class="email-slot-wrapper">
+          <b>Email: </b><slot name="listing-email"></slot>
         </div>
       </div>
     </div>
   </div>
+</a>
