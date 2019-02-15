@@ -29,6 +29,7 @@ const ATTR_OFFICE_HOURS = 'faculty-office-hours';
 const ATTR_RESEARCH = 'faculty-research';
 const ATTR_BIOGRAPHY = 'faculty-biography';
 const ATTR_PROFILE_LINK = 'faculty-profile-link';
+const ATTR_SIZE = 'size';
 
 const DEFAULT_INFORMATION = "Unknown";
 
@@ -46,6 +47,7 @@ class ByuFacultyListing extends HTMLElement {
       truncateText(this);
       setupSlotListeners(this);
       clearEmptyFields(this);
+      determineSize(this);
       
     });
   }
@@ -55,7 +57,7 @@ class ByuFacultyListing extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [ATTR_PROFILE_IMAGE, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY, ATTR_PROFILE_LINK];
+    return [ATTR_PROFILE_IMAGE, ATTR_NAME, ATTR_TITLE, ATTR_OFFICE, ATTR_PHONE, ATTR_EMAIL, ATTR_OFFICE_HOURS, ATTR_RESEARCH, ATTR_BIOGRAPHY, ATTR_PROFILE_LINK, ATTR_SIZE];
   }
 
   attributeChangedCallback(attr, oldValue, newValue) {
@@ -81,6 +83,16 @@ class ByuFacultyListing extends HTMLElement {
     }
   }
 
+  set size(value){
+    this.setAttribute(ATTR_SIZE, value);
+  }
+  
+  get size(){
+    if (this.hasAttribute(ATTR_SIZE)) {
+      return this.getAttribute(ATTR_SIZE);
+    }
+    return DEFAULT_INFORMATION;
+  }
   set name(value) {
     this.setAttribute(ATTR_NAME, value);
   }
@@ -267,6 +279,26 @@ function clearEmptyFields(component) {
         biography[i].classList.add("hide");
       }
     }
+}
+
+function determineSize(component){
+  if(component.size == 'small'){
+
+    var root = component.shadowRoot.querySelector('.root');
+    var left_col = component.shadowRoot.querySelector('#faculty-listing-column-left');
+    var middle_col = component.shadowRoot.querySelector('#faculty-listing-column-middle');
+
+    component.shadowRoot.querySelector('.research-slot-wrapper').classList.add('hide');
+    component.shadowRoot.querySelector('.biography-slot-wrapper').classList.add('hide');
+    root.classList.remove('container-fluid');
+    root.classList.add('card');
+    left_col.classList = "";
+    middle_col.classList = "";
+    component.shadowRoot.querySelector('.image-wrapper').classList.add('card-image-wrapper');
+    component.shadowRoot.querySelector('.faculty-image').classList.add('card-image');
+    component.shadowRoot.querySelector('#faculty-listing-column-middle').classList.add('card-column');
+    
+  }
 }
 
 function setupButtonListeners(component) {

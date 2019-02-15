@@ -194,3 +194,22 @@
   text-align: center;
   padding-top: 20px;
 }
+
+.card{
+  min-width: 274px;
+  width: 255;
+  display: inline-block;
+  margin: 20px 20px 20px 20px;
+}
+
+.card-image{
+  max-height: 150px;
+}
+.card-image-wrapper{
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.card-column{
+  text-align: center;
+}
