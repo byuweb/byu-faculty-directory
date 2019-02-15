@@ -82,6 +82,10 @@
   }
 }
 
+.listing-root:hover{
+  box-shadow: rgba(0,0,0,.2) 1px 4px 13px 1px;
+}
+
 #main-column{
   @include maincol();
 }

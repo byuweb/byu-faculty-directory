@@ -100,6 +100,7 @@
   box-shadow: rgba(0,0,0,.2) 1px 4px 2px -2px;
   -moz-box-shadow:    rgba(0,0,0,.2) 1px 4px 2px -2px;
   -webkit-box-shadow: rgba(0,0,0,.2) 1px 4px 2px -2px;
+  transition: 0.3s;
 }
 
 @mixin rootMedium() {
