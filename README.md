@@ -69,7 +69,7 @@ The card works just like the listing; however, it is excludes some of the conten
   </byu-faculty-profile>
 ```
 
-The faculty profile is best used as the destination link when clicking on a listing from above. It adds a few more slots that you are able to put more information into.
+The faculty profile is best used as the destination link when clicking on a listing from above. It adds a few more slots that you are able to put more information into it.
 It also lets you choose a background-image. Just put the link to the image and it will be seen in the profile. (Refer to picture below)
 
 ## Tips
