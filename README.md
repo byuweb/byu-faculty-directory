@@ -36,7 +36,7 @@ Place the url to the profile image in a "faculty-image" attribute of the <byu-fa
 Place the url to the faculty profile page in a "faculty-profile-link" attribute of the <byu-faculty-listing> tag.
 The content should then be placed in an appropriate slot (see above).
 
-###BYU Faculty Card
+### BYU Faculty Card
 ```html
 <byu-faculty-card id="id" faculty-image="img_src" faculty-profile-link="link_src">
 	<h2 slot="listing-name">Name</h2>
@@ -48,7 +48,7 @@ The content should then be placed in an appropriate slot (see above).
 ```
 The card works just like the listing; however, it is excludes some of the content to make the card much smaller. The card is ideal if you want to display 3 or 4 listings one line.
 
-###BYU Faculty Profile
+### BYU Faculty Profile
 
 ```html
   <byu-faculty-profile background-image="./test_image_5.jpg" faculty-image="./test_image.png">
