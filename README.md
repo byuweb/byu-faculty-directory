@@ -80,6 +80,7 @@ It also lets you choose a background-image. Just put the link to the image and i
 
 ## Tips
 -If you don't need/want to fill all the slots, no worries. Just leave them out and they will automatically remove themselves from the component. 
+
 -To center the cards, just put a div around the entire card area, and style that div to text-align: center;
 
  
