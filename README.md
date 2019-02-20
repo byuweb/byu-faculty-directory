@@ -73,8 +73,8 @@ The faculty profile is best used as the destination link when clicking on a list
 It also lets you choose a background-image. Just put the link to the image and it will be seen in the profile. (Refer to picture below)
 
 ## Tips
-If you don't need/want to fill all the slots, no worries. Just leave them out and they will automatically remove them selves from the component. 
-
+If you don't need/want to fill all the slots, no worries. Just leave them out and they will automatically remove themselves from the component. 
+ 
 # Getting Started
 
 ```
