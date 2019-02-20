@@ -79,6 +79,7 @@
  .click-area:hover {
    @include clickAreaHover();
    @include cursorPointer();
+   border-radius: inherit;
  }
 
  .chevron.svg-md{
