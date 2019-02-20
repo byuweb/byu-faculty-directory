@@ -72,8 +72,11 @@ The card works just like the listing; however, it is excludes some of the conten
 The faculty profile is best used as the destination link when clicking on a listing from above. It adds a few more slots that you are able to put more information into it.
 It also lets you choose a background-image. Just put the link to the image and it will be seen in the profile. (Refer to picture below)
 
+[BYU Faculty Profile Example]
 ## Tips
-If you don't need/want to fill all the slots, no worries. Just leave them out and they will automatically remove themselves from the component. 
+-If you don't need/want to fill all the slots, no worries. Just leave them out and they will automatically remove themselves from the component. 
+-To center the cards, just put a <div> around the entire card area, and style that div to text-align: center;
+
  
 # Getting Started
 

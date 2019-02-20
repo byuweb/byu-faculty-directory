@@ -40,11 +40,12 @@
 @mixin facultyImage() {
   height: 278px;
   vertical-align: middle;
-  width: auto;
+  max-width: 200px;
   border-radius: 5px;
   box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
   -moz-box-shadow:    rgba(0,0,0,.2) 4px 5px 2px -2px;
   -webkit-box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
+  object-fit: cover;
 }
 
 @mixin hide() {
