@@ -16,6 +16,8 @@ Then, place your content inside <byu-faculty-listing> tags. See the demo for mor
 
 ## How it Works
 
+### BYU Faculty Listing
+
 ```html
 <byu-faculty-listing id="id" faculty-image="img_src" faculty-profile-link="link_src">
 	<h2 slot="listing-name">Name</h2>
@@ -34,11 +36,54 @@ Place the url to the profile image in a "faculty-image" attribute of the <byu-fa
 Place the url to the faculty profile page in a "faculty-profile-link" attribute of the <byu-faculty-listing> tag.
 The content should then be placed in an appropriate slot (see above).
 
+![BYU Faculty Listing](./byu-faculty-listing-example.png)
 
-# Spec URL
+### BYU Faculty Card
+```html
+<byu-faculty-card id="id" faculty-image="img_src" faculty-profile-link="link_src">
+	<h2 slot="listing-name">Name</h2>
+	<span slot="listing-title">Title</span>
+	<span slot="listing-office">Office Location</span>
+	<span slot="listing-phone">Phone Number</span>
+	<span slot="listing-email">Email Address</span>
+</byu-faculty-card>
+```
+The card works just like the listing; however, it is excludes some of the content to make the card much smaller. The card is ideal if you want to display 3 or 4 listings one line.
 
-https://www.figma.com/file/FbyACEZ2W7UJKct4TZW1t8jL/New-Canvas-with-%232A-and-%233
+![BYU Faculty Card](./byu-faculty-card-example.png)
 
+### BYU Faculty Profile
+
+```html
+  <byu-faculty-profile background-image="./test_image_5.jpg" faculty-image="./test_image.png">
+    <div slot="faculty-name">Name</div>
+    <span slot="faculty-title">Title</span>
+    <span slot="faculty-office">Office Location</span>
+    <span slot="faculty-phone">Phone Number</span>
+    <span slot="faculty-email">Email Address</span>
+    <p slot="faculty-biography">Place biography information here</p>
+    <p slot="faculty-research">Place research information here</p>
+    <p slot="faculty-papers">Place papers information here</p>
+    <p slot="faculty-students">Place student information here</p>
+    <p slot="faculty-awards">Place awards information here</p>
+    <div slot="faculty-custom-header">Custom Header</div>
+    <p slot="faculty-custom-body">Place custom body information here</p>
+    <p slot="faculty-education">Place education information here!</p>
+    <p slot="faculty-cv">Place CV File here</p>
+  </byu-faculty-profile>
+```
+
+The faculty profile is best used as the destination link when clicking on a listing from above. It adds a few more slots that you are able to put more information into it.
+It also lets you choose a background-image. Just put the link to the image and it will be seen in the profile.
+
+![BYU Faculty Profile](./byu-faculty-profile-example.png)
+
+## Tips
+-If you don't need/want to fill all the slots, no worries. Just leave them out and they will automatically remove themselves from the component. 
+
+-To center the cards, just put a div around the entire card area, and style that div to text-align: center;
+
+ 
 # Getting Started
 
 ```

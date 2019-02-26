@@ -28,7 +28,11 @@
  
  .card {
    @include card();
- 
+   transition: 0.3s;
+ }
+
+ .card:hover{
+  box-shadow: rgba(0,0,0,.2) 1px 4px 13px 1px;
  }
  
  .card-chevron-wrapper {
@@ -75,6 +79,7 @@
  .click-area:hover {
    @include clickAreaHover();
    @include cursorPointer();
+   border-radius: inherit;
  }
 
  .chevron.svg-md{

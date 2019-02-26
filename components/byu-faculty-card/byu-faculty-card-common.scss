@@ -19,17 +19,13 @@
   border-bottom: solid;
 }
 
-@mixin biography() {
-  line-height: 20px;
-}
-
 @mixin center() {
   margin-left: auto;
   margin-right: auto;
 }
 
 @mixin contact() {
-  margin: 36px 0px 16px 0px;
+  margin: 20px 0px 16px 0px;
 }
 
 @mixin columnBase() {
@@ -38,14 +34,13 @@
 }
 
 @mixin facultyImage() {
-  height: 278px;
+  height: 175px;
   vertical-align: middle;
-  max-width: 200px;
+  width: auto;
   border-radius: 5px;
   box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
   -moz-box-shadow:    rgba(0,0,0,.2) 4px 5px 2px -2px;
   -webkit-box-shadow: rgba(0,0,0,.2) 4px 5px 2px -2px;
-  object-fit: cover;
 }
 
 @mixin hide() {
@@ -63,10 +58,6 @@
 
 @mixin overflowBase() {
   overflow: hidden;
-}
-
-@mixin research() {
-  line-height: 20px;
 }
 
 @mixin slottedHeader() {
@@ -95,16 +86,16 @@
   line-height: 20px;
   margin: 24px auto 24px auto;
   min-width: 274px;
-  min-height: 282px;
+  width: 25%;
+  max-width: 300px;
   vertical-align: top;
+  display: inline-block;
+  margin: 20px 20px 20px 20px;
   border-radius: 5px;
   box-shadow: rgba(0,0,0,.2) 2px 3px 5px 0;
   -moz-box-shadow:    rgba(0,0,0,.2) 2px 3px 5px 0;
   -webkit-box-shadow: rgba(0,0,0,.2) 2px 3px 5px 0;
-}
-
-@mixin rootMedium() {
-  width: 672px;
+  transition: 0.3s;
 }
 
 @mixin rootSlottedH2() {
@@ -115,10 +106,6 @@
 
 @mixin rootSlottedP() {
   margin: 0px;
-}
-
-@mixin rootSmall() {
-  width: 320px;
 }
 
 @mixin sectionHeader() {

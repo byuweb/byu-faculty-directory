@@ -29,11 +29,9 @@
     html {
       background-color: #efefef;
     }
-
     body {
       margin: 0px;
     }
-
     .faculty-listing-header {
       background-color: #FFFFFF;
       color: #002E5D;
@@ -44,21 +42,23 @@
       max-width: 1008px;
       padding: 12px;
       vertical-align: top;
-
-      -moz-box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
-    	-webkit-box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
-    	box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      box-shadow: rgba(0,0,0,.2) 1px 4px 2px -2px;
+      -moz-box-shadow:    rgba(0,0,0,.2) 1px 4px 2px -2px;
+      -webkit-box-shadow: rgba(0,0,0,.2) 1px 4px 2px -2px;
     }
-
     .faculty-listing-header > h1 {
       margin: 0px;
     }
-
     @media only screen and (max-width: 1290px) {
   .faculty-listing-header{
     margin-right: 10%;
     margin-left: 10%;
   }
+ }
+ .center{
+   text-align: center;
+   margin: 0% 5% 0% 5%;
  }
   </style>
 </head>
@@ -130,17 +130,80 @@
       of Technology in Zurich.  Dr. Archibald's current research interests are
       in the areas of real-time computer vision systems and autonomous agents.</p>
   </byu-faculty-listing>
+  <br><br>
+  
+  <div class="faculty-listing-header container-fluid">
+    <h1>
+      Faculty Cards Examples
+    </h1>
+  </div>
+  <div class="center">
+    <byu-faculty-card id="demo" faculty-image="./test_image_3.jpg" faculty-profile-link="https://github.com/byuweb">
+      <h2 slot="listing-name">Dan Ames</h2>
+      <span slot="listing-title">Professor</span>
+      <span slot="listing-office">242J CB</span>
+      <span slot="listing-phone">801-422-3620</span>
+      <span slot="listing-email">dan.ames@byu.edu</span>
+    </byu-faculty-card>
+    <byu-faculty-card id="demo" faculty-image="./test_image_4.jpg" faculty-profile-link="https://github.com/byuweb">
+      <h2 slot="listing-name">James Archibald</h2>
+      <span slot="listing-title">Professor</span>
+      <span slot="listing-office">451 CB</span>
+      <span slot="listing-phone">801-422-2598</span>
+      <span slot="listing-email">james_archibald@byu.edu</span>
+    </byu-faculty-card>
+    <byu-faculty-card id="demo" faculty-image="./test_image.png" faculty-profile-link="https://home.byu.edu/home/">
+      <h2 slot="listing-name">Bradley R. Adams</h2>
+      <span slot="listing-title">Associate Professor</span>
+      <span slot="listing-office">435W CTB</span>
+      <span slot="listing-phone">801-422-6545</span>
+      <span slot="listing-email">brad.adams@byu.edu</span>
+    </byu-faculty-card>
+    <byu-faculty-card id="demo" faculty-image="./test_image_3.jpg" faculty-profile-link="https://github.com/byuweb">
+      <h2 slot="listing-name">Dan Ames</h2>
+      <span slot="listing-title">Professor</span>
+      <span slot="listing-office">242J CB</span>
+      <span slot="listing-phone">801-422-3620</span>
+      <span slot="listing-email">dan.ames@byu.edu</span>
+    </byu-faculty-card>
+    <byu-faculty-card id="demo" faculty-image="./test_image_4.jpg" faculty-profile-link="https://github.com/byuweb">
+      <h2 slot="listing-name">James Archibald</h2>
+      <span slot="listing-title">Professor</span>
+      <span slot="listing-office">451 CB</span>
+      <span slot="listing-phone">801-422-2598</span>
+      <span slot="listing-email">james_archibald@byu.edu</span>
+    </byu-faculty-card>
+    <byu-faculty-card id="demo" faculty-image="./test_image.png" faculty-profile-link="https://home.byu.edu/home/">
+      <h2 slot="listing-name">Bradley R. Adams</h2>
+      <span slot="listing-title">Associate Professor</span>
+      <span slot="listing-office">435W CTB</span>
+      <span slot="listing-phone">801-422-6545</span>
+      <span slot="listing-email">brad.adams@byu.edu</span>
+    </byu-faculty-card>
+    <byu-faculty-card id="demo" faculty-image="./test_image_3.jpg" faculty-profile-link="https://github.com/byuweb">
+      <h2 slot="listing-name">Dan Ames</h2>
+      <span slot="listing-title">Professor</span>
+      <span slot="listing-office">242J CB</span>
+      <span slot="listing-phone">801-422-3620</span>
+      <span slot="listing-email">dan.ames@byu.edu</span>
+    </byu-faculty-card>
+    <byu-faculty-card id="demo" faculty-image="./test_image_4.jpg" faculty-profile-link="https://github.com/byuweb">
+      <h2 slot="listing-name">James Archibald</h2>
+      <span slot="listing-title">Professor</span>
+      <span slot="listing-office">451 CB</span>
+      <span slot="listing-phone">801-422-2598</span>
+      <span slot="listing-email">james_archibald@byu.edu</span>
+    </byu-faculty-card>
+</div>
+  
+  
 
   <!--===== DEMO PT 2 =====-->
-  <br />
-  <br />
-  <br />
   <div class=faculty-listing-header>
     <h1>
       Faculty Profile Example
     </h1>
   </div>
-
   <byu-faculty-profile background-image="./test_image_5.jpg" faculty-image="./test_image.png">
     <div slot="faculty-name">Bradley R. Adams</div>
     <span slot="faculty-title">Associate Professor</span>
@@ -174,6 +237,5 @@
     <p slot="faculty-cv">This is where the CV goes!</p>
   </byu-faculty-profile>
   <byu-footer></byu-footer>
-  <link rel="stylesheet" href="dist/css/bootstrap.min.css"/>
 </body>
 </html>

@@ -15,15 +15,10 @@
  *    limitations under the License.
  */
 
-@import 'byu-faculty-listing-common';
-@import 'bootstrap.css';
+@import 'byu-faculty-card-common';
 
 .adjusted-header {
   @include adjustedHeader();
-}
-
-.biography-slot-wrapper {
-  @include biography();
 }
 
 .contact-wrapper {
@@ -46,14 +41,11 @@
 
 #faculty-listing-column-middle > a ::slotted(div) {
   @include slottedHeaderDiv();
+  text-align: center;
 }
 
 #faculty-listing-column-middle > a ::slotted(h2) {
   @include rootSlottedH2();
-}
-
-#faculty-listing-column-right{
-  padding-right: 40px;
 }
 
 #faculty-listing-column-middle {
@@ -61,11 +53,18 @@
     @include slottedHeader();
   }
 }
+#faculty-listing-column-middle{
+  text-align: center;
+}
 
 .hide {
   @include hide();
 }
 
+.image-wrapper{
+  text-align: center;
+  margin-bottom: 15px;
+}
 .listing-root {
   @include rootBase();
 }
@@ -94,16 +93,10 @@
   @include noUnderline();
 }
 
-.research-slot-wrapper, .biography-slot-wrapper {
-  @include overflowBase();
-}
-
-.research-slot-wrapper {
-  @include research();
-}
-
-.research-slot-wrapper > h3 {
-  @include slottedHeader();
+.listing-root:hover{
+  box-shadow: 1px 4px 15px 1px rgba(0,0,0,.2);
+  -moz-box-shadow: 1px 4px 15px 1px rgba(0,0,0,.2);
+  -webkit-box-shadow: 1px 4px 15px 1px rgba(0,0,0,.2);
 }
 
 .section-header {
@@ -111,67 +104,3 @@
 }
 
 //The @media section helps keep the card transitions smooth and looking proportional
-
-@media only screen and (max-width: 1290px) {
-  .container-fluid{
-    margin-right: 10%;
-    margin-left: 10%;
-  }
- }
-
-@media only screen and (max-width: 1200px) {
-  .listing-root{
-    max-width: 750px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media only screen and (max-width: 950px) {
-
-  .image-wrapper{
-    margin: 0 auto;
-    padding-left: 0px;
-  }
-  .container-fluid{
-    margin-right: 10%;
-    margin-left: 10%;
-  }
-  #faculty-listing-column-middle{
-    padding-left: 40px;
-  }
-}
-
-@media only screen and (max-width: 630px) {
-  .faculty-image{
-    height: 150px;
-    width: auto;
-  }
-  #faculty-listing-column-middle{
-    text-align: center;
-    padding-left: 15px;
-  }
-  .image-wrapper{
-    margin: 0 auto;
-    padding-left: 0px;
-    padding-bottom: 10px;
-    text-align: center;
-  }
-}
-
-@media (min-width: 631px){
-  .col-sm-5 {
-      width: 41.66666667%;
-  }
-}
-@media (min-width: 1200px){
-  .col-lg-3 {
-      width: 25%;
-  }
-}
-
-@media (min-width: 992px){
-  .col-md-3 {
-      width: 25%;
-  }
-}

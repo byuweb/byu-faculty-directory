@@ -47,9 +47,6 @@ class ByuFacultyProfile extends HTMLElement {
       applyProfileImage(this);
       setupButtonListeners(this);
       showContent(this);
-      //applyApiKey(this);
-      //setupSlotListeners(this);
-      
     });
   }
 
@@ -74,7 +71,7 @@ class ByuFacultyProfile extends HTMLElement {
       case ATTR_API_KEY:
       case ATTR_BACKGROUND_IMAGE:
         applyBackgroundImage(this);
-        break
+        break;
       case ATTR_PROFILE_IMAGE:
         applyProfileImage(this);
         break;
@@ -266,15 +263,6 @@ function teardownButtonListeners(component) {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].removeEventListener('click', cardClick);
   }
-}
-
-function setupSlotListeners(component) {
-  // let slot = component.shadowRoot.querySelector('#apiKey-template');
-
-  // //this will listen to changes to the contents of our <slot>, so we can take appropriate action
-  // slot.addEventListener('slotchange', () => {
-  //   applyApiKey(component);
-  // }, false);
 }
 
 function showContent(component) {

@@ -1,0 +1,47 @@
+<!--
+  ~  @license
+  ~    Copyright 2017 Brigham Young University
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+<!-- Latest compiled and minified CSS -->
+
+<style>
+    /*${require('./byu-faculty-card.scss')}*/
+</style>
+
+<a class="profile-link" href="">
+  <div class="root listing-root">
+    <div id="faculty-listing-column-left">
+      <div class="image-wrapper">
+          <img class="faculty-image" id="default-image"/>
+      </div>
+    </div>
+
+    <div id="faculty-listing-column-middle" class="">
+        <slot id="listing-name" name="listing-name"></slot>
+      <i><slot name="listing-title"></slot></i>
+      <div class="contact-wrapper">
+        <div class="office-slot-wrapper">
+          <b>Office: </b><slot name="listing-office"></slot>
+        </div>
+        <div class="phone-slot-wrapper">
+          <b>Phone: </b><slot name="listing-phone"></slot>
+        </div>
+        <div class="email-slot-wrapper">
+          <b>Email: </b><slot name="listing-email"></slot>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
