@@ -157,7 +157,7 @@
 
 @mixin show() {
   display: block;
-  max-height: 500px;
+  max-height: 100000px;
   opacity: 1;
   height: auto;
 }
